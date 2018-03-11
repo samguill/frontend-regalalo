@@ -1,1 +1,111 @@
 /* You can add global styles to this file, and also import other style files */
+.d-inline-block {
+    display: inline-block !important;
+}
+
+.b-header .container{width: 95%;}
+
+.b-header_bg {
+    background-color: #f05223;
+}
+
+.b-header {
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.b-top_bar_left {
+    padding: 10px 0;
+    line-height: 21px;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.b-topbar_menu ul {
+    padding: 0;
+    margin: 0;
+}
+
+.b-topbar_menu ul > li {
+    position: relative;
+    margin-left: -2px;
+    display: inline-block;
+    line-height: 42px;
+}
+
+.b-topbar_menu ul > li a {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    position: relative;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.mr-1 {
+    margin-right: 0.25rem !important;
+}
+
+.b-topbar_menu ul > li a::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: width .2s ease;
+    -webkit-transition: width .2s ease;
+}
+
+.b-topbar_menu ul > li::after {
+    content: " ";
+    display: inline-block;
+    height: 25px;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-left: 12px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+.b-logo img {
+    max-height: 80px;
+}
+
+.b-menu_top_bar_container .b-main_menu {
+    padding-top: 15px;
+}
+
+.b-main_menu ul {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.b-main_menu > ul {
+    font-size: 0;
+    display: inline-block;
+    text-align: left;
+}
+
+.b-main_menu:not(.b-vertical) > ul,
+.b-main_menu:not(.b-vertical) > ul > li,
+.b-main_menu:not(.b-vertical) > ul > li > a,
+.b-main_menu:not(.b-vertical) > ul > li.b-dropdown_wrapper > a .fa-angle-down,
+.b-main_menu.b-vertical .menu-heading {
+    line-height: 72px;
+    height: 72px;
+}
+
+.b-main_menu > ul > li {
+    display: inline-block;
+    position: relative;
+    font-size: 14px;
+}
+
+.b-main_menu > ul > li > a > .top {
+    transition: opacity 400ms;
+    -webkit-transition: opacity 400ms;
+}
