@@ -27,47 +27,41 @@
 
   <div class="b-header b-header_main">
     <div class="container">
-      <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12 hidden-sm-down hidden-md-down">
-        <div class="b-header_nav">
-          <div class="b-menu_top_bar_container">
-            <div class="b-main_menu menu-stay-left">
-              <ul class="categories pl-0 mb-0 list-unstyled">
-                <li><a><span class="top">Inicio</span></a></li>
-                <li><a><span>Tiendas</span></a></li>
-                <li><a><span>Productos</span></a></li>
-              </ul>
+      <div class="clearfix row">
+        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12 hidden-sm-down hidden-md-down">
+          <div class="b-header_nav">
+            <div class="b-menu_top_bar_container">
+              <div class="b-main_menu menu-stay-left">
+                <ul class="categories pl-0 mb-0 list-unstyled">
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom">
+                    <a [routerLink]="['/']"><span class="top">Inicio</span></a>
+                  </li>
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom">
+                    <a [routerLink]="['/']"><span>Tiendas</span></a>
+                  </li>
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom">
+                    <a [routerLink]="['/']"><span>Productos</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-4 col-xs-6">
+          <div class="b-logo text-sm-left text-lg-center text-xl-center">
+            <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" /></a>
+          </div>
+        </div>
+
+        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-8 col-xs-6">
+          <div class="b-header_right">
+            <div class="b-header_links hidden-sm-down">
+              
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-4 col-xs-6">
-        <div class="b-logo text-sm-left text-lg-center text-xl-center">
-            <a [routerLink]="['/']">
-              <img src="assets/img/logo-regalalo.png" />
-            </a>
-        </div>
-      </div>
     </div>
-  </div>
-
-  <div class="container-fluid">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          
-        </div>
-        <div class="col-md-8"></div>
-      </div>
-      <div class="row inner-menu">
-          <ul class="menu">
-              <li>
-                <a [routerLink]="['/']">Inicio</a>
-              </li>
-              <li>
-                <a [routerLink]="['/']">Tiendas</a>
-              </li>
-            </ul>
-      </div>
-    </div>    
   </div>
 </header>

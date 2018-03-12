@@ -3,7 +3,9 @@
     display: inline-block !important;
 }
 
-.b-header .container{width: 95%;}
+.b-header .container{
+    width: 95%;
+}
 
 .b-header_bg {
     background-color: #f05223;
@@ -105,7 +107,24 @@
     font-size: 14px;
 }
 
+.b-main_menu > ul > li > a {
+    color: rgba(0, 0, 0, 0.9);
+    display: block;
+    padding-right: 11px;
+    padding-left: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 .b-main_menu > ul > li > a > .top {
     transition: opacity 400ms;
     -webkit-transition: opacity 400ms;
+}
+
+.b-main_menu.menu-stay-left > ul > li:first-child > a {
+    padding-left: 0px;
+}
+
+.b-main_menu > ul > li.b-dropdown_wrapper > a {
+    padding-right: 20px;
 }
