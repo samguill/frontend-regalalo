@@ -128,3 +128,111 @@
 .b-main_menu > ul > li.b-dropdown_wrapper > a {
     padding-right: 20px;
 }
+
+.b-header_right {
+    display: table;
+    height: 96px;
+    line-height: 96px;
+    float: right;
+}
+
+.b-header_right > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.b-header_right .b-header_links {
+    border-right: 2px solid #f5f5f5;
+    padding-right: 35px;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.pl-0 {
+    padding-left: 0 !important;
+}
+
+.b-header_right .b-header_links ul li a {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.9);
+    position: relative;
+    top: -3px;
+    position: relative;
+}
+
+.b-header_right .b-header_links ul li a::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: width .2s ease;
+    -webkit-transition: width .2s ease;
+}
+
+.b-header_right .b-search_icon,
+.b-header_right .b-wishlist_icon,
+.b-header_right .b-cart_basket {
+    padding: 0 12px;
+}
+
+.b-header_right .b-search_icon {
+    padding-left: 25px;
+}
+
+.b-header_right .b-search_icon a,
+.b-header_right .b-wishlist_icon a,
+.b-header_right .b-cart_basket a {
+    color: rgba(0, 0, 0, 0.9);
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.b-header_right .b-search_icon i,
+.b-header_right .b-wishlist_icon i,
+.b-header_right .b-cart_basket i {
+    font-size: 20px;
+}
+
+.b-header_right .b-wishlist_icon a {
+    position: relative;
+}
+
+.b-header_right .b-wishlist_icon span {
+    background-color: #f05224;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 15px;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    position: absolute;
+    top: -8px;
+    left: 110%;
+}
+
+.b-footer_container {
+    background-color: #000;
+}
+
+.b-footer_container .b-main_footer {
+    padding: 50px 0 20px 0;
+}
+
+.d-footer_bar {
+    margin-top: 20px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+}

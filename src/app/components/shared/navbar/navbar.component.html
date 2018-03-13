@@ -37,7 +37,7 @@
                     <a [routerLink]="['/']"><span class="top">Inicio</span></a>
                   </li>
                   <li class="b-has_sub b-dropdown_wrapper from-bottom">
-                    <a [routerLink]="['/']"><span>Tiendas</span></a>
+                    <a [routerLink]="['stores']"><span>Tiendas</span></a>
                   </li>
                   <li class="b-has_sub b-dropdown_wrapper from-bottom">
                     <a [routerLink]="['/']"><span>Productos</span></a>
@@ -57,7 +57,22 @@
         <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-8 col-xs-6">
           <div class="b-header_right">
             <div class="b-header_links hidden-sm-down">
-              
+              <ul class="pl-0 mb-0 list-unstyled">
+                <li>
+                  <a [routerLink]="['register']">Login / Registro</a>
+                </li>
+              </ul>
+            </div>
+            <div class="b-search_icon hidden-sm-down">
+              <a href="javascript:;" id="b-search_toggle" class="d-inline-block">
+                <i class="fa fa-search"></i>
+              </a>
+            </div>
+            <div class="b-wishlist_icon">
+              <a href="#" class="d-inline-block">
+                <i class="fa fa-heart-o"></i>
+                <span>0</span>
+              </a>
             </div>
           </div>
         </div>
