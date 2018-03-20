@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Http, HttpModule } from '@angular/http';
 
 import { APP_ROUTING } from './app.routes';
 
@@ -12,6 +12,9 @@ import { StoresComponent } from './components/stores/stores.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 
+// Services
+import { AuthService } from './services/auth.service';
+import { PageService } from './services/page.service';
 
 @NgModule({
   declarations: [
@@ -24,11 +27,15 @@ import { FooterComponent } from './components/shared/footer/footer.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpModule,
     APP_ROUTING
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    PageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

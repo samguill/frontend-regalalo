@@ -1,3 +1,34 @@
-<p>
-  register works!
-</p>
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title">Mi cuenta</h1>
+</div>
+<section id="b-my_account">
+  <div class="container b-my_account">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="b-auth_section b-auth_login">
+          <h2><i class="fa fa-sign-in"></i> Ingresar</h2>
+          <form [formGroup]="signinForm" (ngSubmit)="login()">
+            <div class="form-group">
+              <label for="">E-mail</label>
+              <input class="form-control" type="email" name="email" [formControl]="signinForm.controls['email']">
+              <small *ngIf="signinForm.controls['email'].hasError('required') && signinForm.controls['email'].touched" class="form-error-msg"> Este campo es requerido </small>
+            </div>
+            <div class="form-group">
+              <label for="">Contraseña</label>
+              <input class="form-control" type="password" name="password" [formControl]="signinForm.controls['password']">
+              <small *ngIf="signinForm.controls['password'].hasError('required') && signinForm.controls['password'].touched"  class="form-error-msg"> Este campo es requerido </small>
+            </div>
+            <div class="form-group clearfix">
+              <a href="#" class="pull-right b-lost_password"><i class="icon-support icons"></i>  Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit" class="btn btn-block btn-login" id="">
+              <i [ngClass]="{'fa-circle-o-notch fa-spin': loading}" class="fa"></i>
+              <span *ngIf="!loading">Ingresar</span>
+            </button>  
+          </form>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
+    </div>
+  </div>
+</section>

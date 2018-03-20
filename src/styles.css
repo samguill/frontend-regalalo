@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: "Karla", "sans-serif" !important;
+    font-size: 14px !important;
+    font-weight: normal !important;
+    line-height: 1.2 !important;
+    color: #292b2c !important;
+    background-color: #fff !important;
+}
+
 .d-inline-block {
     display: inline-block !important;
 }
@@ -235,4 +244,71 @@
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.6);
     font-size: 14px;
+}
+
+.b-page_title_default {
+    background-color: #393231;
+    background-size: cover;
+}
+
+.b-page_title {
+    width: 100%;
+    border-bottom: 1px solid rgba(168, 168, 168, 0.15);
+    padding: 15px 15px 20px;
+    margin-bottom: 40px;
+    position: relative;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.b-my_account {
+    margin-bottom: 60px;
+    margin-top: 60px;
+}
+
+.b-auth_section {
+    padding: 60px 0 100px;
+    max-width: 480px;
+    margin: auto;
+}
+
+.b-auth_section h2 i {
+    display: inline-block;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+input {
+    border: 1px solid rgba(129, 129, 129, 0.25);
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0 10px;
+    transition: border-color .5s !important;
+    box-shadow: none;
+    border-radius: 0;
+    border-radius: 0 !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+    border-color: #000;
+    box-shadow: none;
+}
+
+h1.b-entry_title {
+    margin-bottom: 0;
+}
+
+button.btn-login {
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid #393231;
+    background-color: transparent;
+    color: #393231;
+    border-radius: 0;
 }
