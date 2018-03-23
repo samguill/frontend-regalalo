@@ -3,6 +3,8 @@ import { Headers, Http } from '@angular/http';
 import { User } from './../models/user';
 import 'rxjs/add/operator/toPromise';
 
+export const TOKEN: string = 'token';
+
 @Injectable()
 export class AuthService {
 
@@ -19,6 +21,19 @@ export class AuthService {
   register(user: any) : Promise<any> {
     let url : string = `${this.BASE_URL}register`;
     return this.http.post(url, user, {headers: this.headers}).toPromise();
+  }
+
+  getToken(): string {
+    return localStorage.getItem(TOKEN);
+  }
+
+  isTokenExist(): boolean {
+    let token = this.getToken();
+    if(token){
+      return true
+    }else{
+      return false
+    };
   }
 
 }

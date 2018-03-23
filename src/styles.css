@@ -296,7 +296,7 @@ input[type="number"]:focus,
 input[type="date"]:focus,
 input[type="tel"]:focus,
 textarea:focus {
-    border-color: #000;
+    border-color: #f05224;
     box-shadow: none;
 }
 
@@ -311,4 +311,8 @@ button.btn-login {
     background-color: transparent;
     color: #393231;
     border-radius: 0;
+}
+
+.form-error-msg {
+    color: #F44336;
 }

@@ -1,3 +1,3 @@
 export class User {
-    constructor(email?: string, password?: string) {}
+    constructor(first_mname :string = null, last_mname :string = null, email?: string, password?: string) {}
 }

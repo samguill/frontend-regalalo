@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="b-auth_section b-auth_login">
-          <h2><i class="fa fa-sign-in"></i> Ingresar</h2>
+          <h2><i class="fa fa-sign-in"></i> Iniciar sesión</h2>
           <form [formGroup]="signinForm" (ngSubmit)="login()">
             <div class="form-group">
               <label for="">E-mail</label>
@@ -21,14 +21,46 @@
             <div class="form-group clearfix">
               <a href="#" class="pull-right b-lost_password"><i class="icon-support icons"></i>  Olvidaste tu contraseña?</a>
             </div>
-            <button type="submit" class="btn btn-block btn-login" id="">
+            <button type="submit" class="btn btn-block btn-login" id="loginbutton" [disabled]="signinForm.invalid">
               <i [ngClass]="{'fa-circle-o-notch fa-spin': loading}" class="fa"></i>
               <span *ngIf="!loading">Ingresar</span>
             </button>  
           </form>
         </div>
       </div>
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="b-auth_section b-auth_register">
+          <h2><i class="fa fa-user-o"></i> Crear una cuenta</h2>
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="">Nombres</label>
+                <input class="form-control" type="text" name="first_name" [formControl]="registerForm.controls['first_name']">
+                <small *ngIf="registerForm.controls['first_name'].hasError('required') && registerForm.controls['first_name'].touched" class="form-error-msg"> Este campo es requerido </small>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="">Apellidos</label>
+                <input class="form-control" type="text" name="last_name" [formControl]="registerForm.controls['last_name']">
+                <small *ngIf="registerForm.controls['last_name'].hasError('required') && registerForm.controls['last_name'].touched" class="form-error-msg"> Este campo es requerido </small>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">E-mail</label>
+              <input class="form-control" type="email" name="email" [formControl]="registerForm.controls['email']">
+              <small *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched" class="form-error-msg"> Este campo es requerido </small>
+            </div>
+            <div class="form-group">
+              <label for="">Contraseña</label>
+              <input class="form-control" type="password" name="password" [formControl]="registerForm.controls['password']">
+              <small *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched"  class="form-error-msg"> Este campo es requerido </small>
+            </div>
+            <button type="submit" class="btn btn-block btn-login" id="registerbutton" [disabled]="registerForm.invalid">
+              <i [ngClass]="{'fa-circle-o-notch fa-spin': loading}" class="fa"></i>
+              <span *ngIf="!loading">Crear nueva cuenta</span>
+            </button>  
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </section>

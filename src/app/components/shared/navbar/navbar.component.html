@@ -13,7 +13,7 @@
             <div class="b-topbar_menu float-md-right text-center">
               <div class="b-menu_top_bar_container">
                 <ul id="b-menu_top_bar" class="b-menu">
-                  <li><a href="my-account.html"><i class="fa fa-user mr-1"></i>Mi cuenta</a></li>
+                  <li><a [routerLink]="['profile']"><i class="fa fa-user mr-1"></i>Mi cuenta</a></li>
                   <li><a href="cart-default.html">Mi lista de deseos</a></li>
                   <li><a href="contact-01.html">Contáctanos</a></li>
                 </ul>
@@ -34,13 +34,13 @@
               <div class="b-main_menu menu-stay-left">
                 <ul class="categories pl-0 mb-0 list-unstyled">
                   <li class="b-has_sub b-dropdown_wrapper from-bottom">
-                    <a [routerLink]="['/']"><span class="top">Inicio</span></a>
+                    <a [routerLink]="['/']"><span class="top" routerLinkActive="active">Inicio</span></a>
                   </li>
                   <li class="b-has_sub b-dropdown_wrapper from-bottom">
-                    <a [routerLink]="['stores']"><span>Tiendas</span></a>
+                    <a [routerLink]="['stores']" routerLinkActive="active"><span>Tiendas</span></a>
                   </li>
                   <li class="b-has_sub b-dropdown_wrapper from-bottom">
-                    <a [routerLink]="['/']"><span>Productos</span></a>
+                    <a [routerLink]="['stores']" routerLinkActive="active"><span>Productos</span></a>
                   </li>
                 </ul>
               </div>
