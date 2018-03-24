@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import { User } from './../models/user';
 import 'rxjs/add/operator/toPromise';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export const TOKEN: string = 'token';
 
@@ -10,6 +12,8 @@ export class AuthService {
 
   private BASE_URL : string = 'http://regalalo.test/api/client/';
   private headers : Headers = new Headers({'Content-Type': 'application/json'});
+
+  private loggedIn = new BehaviorSubject<boolean>(this.isTokenExist());
 
   constructor(private http:Http) { }
 
@@ -34,6 +38,19 @@ export class AuthService {
     }else{
       return false
     };
+  }
+
+  isLoggedIn() :Observable<boolean> {
+    return this.loggedIn.asObservable();
+  }
+
+  setLogin(): void {
+    this.loggedIn.next(true);
+  }
+
+  logout() : void {
+    localStorage.removeItem('token');
+    this.loggedIn.next(false);
   }
 
 }

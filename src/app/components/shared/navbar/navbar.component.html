@@ -5,7 +5,7 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="b-top_bar_left float-md-left text-center text-white">
             <i class="fa fa-phone-square text-white mr-1"> </i>
-            Teléfono: <a href="tel:+77756334876" class="text-white ml-2">+77 (756) 334 876</a>
+            Teléfono: <a href="tel:+5113187623" class="text-white ml-2">(01) 318 7623</a>
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden-sm-down">
@@ -13,8 +13,18 @@
             <div class="b-topbar_menu float-md-right text-center">
               <div class="b-menu_top_bar_container">
                 <ul id="b-menu_top_bar" class="b-menu">
-                  <li><a [routerLink]="['profile']"><i class="fa fa-user mr-1"></i>Mi cuenta</a></li>
-                  <li><a href="cart-default.html">Mi lista de deseos</a></li>
+                  <li *ngIf="isLoggedIn$ | async">
+                    <a [routerLink]="['profile']"><i class="fa fa-user mr-1"></i>Mi cuenta</a>
+                  </li>
+                  <li *ngIf="(isLoggedIn$ | async)">
+                    <a href="cart-default.html"><i class="fa fa-heart mr-1"></i>Mi lista de deseos</a>
+                  </li>
+                  <li *ngIf="(isLoggedIn$ | async)">
+                    <a class="link" (click)="salir()"><i class="fa fa-sign-out mr-1"></i>Salir</a>
+                  </li>
+                  <li *ngIf="!(isLoggedIn$ | async)">
+                      <a [routerLink]="['register']">Login / Registro</a>
+                    </li>
                   <li><a href="contact-01.html">Contáctanos</a></li>
                 </ul>
               </div>   
@@ -56,21 +66,19 @@
 
         <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-8 col-xs-6">
           <div class="b-header_right">
-            <div class="b-header_links hidden-sm-down">
+            <!--<div class="b-header_links hidden-sm-down">
               <ul class="pl-0 mb-0 list-unstyled">
-                <li>
-                  <a [routerLink]="['register']">Login / Registro</a>
-                </li>
+                
               </ul>
-            </div>
+            </div>-->
             <div class="b-search_icon hidden-sm-down">
               <a href="javascript:;" id="b-search_toggle" class="d-inline-block">
-                <i class="fa fa-search"></i>
+                <i class="icon-magnifier icons"></i>
               </a>
             </div>
             <div class="b-wishlist_icon">
               <a href="#" class="d-inline-block">
-                <i class="fa fa-heart-o"></i>
+                <i class="icon-heart icons"></i>
                 <span>0</span>
               </a>
             </div>

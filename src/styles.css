@@ -8,8 +8,33 @@ body {
     background-color: #fff !important;
 }
 
+.d-transition_slow,
+.b-header_main,
+.b-search_popup .b-searchsubmit::before,
+.b-search_popup .b-close_search,
+.b-featured_cat-2 .b-img_zoom img,
+.b-featured_cat-3 .b-img_zoom img,
+.b-img_zoom img,
+.b-feature_cat-3 .b-featured_cat_img .b-featured_cat_caption,
+.b-product_grid_overlay .b-hover_mask,
+.b-product_grid_overlay .b-hover_mask span,
+.b-product_grid_overlay .b-hover_mask .b-product_name,
+.b-banner_lg .b-banner_lg_img img, .b-minimal_banner img,
+.b-mini_cart .b-close_search, .b-gallery_blocks .col-xl-6 img,
+.owl-carousel .owl-nav > div.owl-prev,
+.owl-carousel .owl-nav > div.owl-next {
+    -webkit-transition: all .7s;
+    -moz-transition: all .7s;
+    -o-transition: all .7s;
+    transition: all .7s;
+}
+
 .d-inline-block {
     display: inline-block !important;
+}
+
+.b-header_main {
+    top: -70px;
 }
 
 .b-header .container{
@@ -22,6 +47,29 @@ body {
 
 .b-header {
     border-bottom: 2px solid #f5f5f5;
+}
+
+.b-header_fixed {
+    padding-top: 70px;
+}
+
+.b-header_fixed .b-header_main {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: #FFF;
+    height: 68px;
+}
+
+.b-header_fixed .b-header_main .b-menu_top_bar_container .b-main_menu {
+    padding-top: 0;
+}
+
+.b-header_fixed .b-header_main .b-header_right {
+    height: 65px;
+    line-height: 65px;
 }
 
 .b-top_bar_left {
@@ -123,6 +171,10 @@ body {
     padding-left: 11px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+}
+
+.b-main_menu > ul > li > a:hover {
+    color: #f05224;
 }
 
 .b-main_menu > ul > li > a > .top {
@@ -227,6 +279,27 @@ body {
     position: absolute;
     top: -8px;
     left: 110%;
+}
+
+.b-header_right .b-header_links ul li a::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: width .2s ease;
+    -webkit-transition: width .2s ease;
+}
+
+.b-header_right .b-header_links ul li a:hover,
+.b-header_nav ul li a:hover {
+    text-decoration: none;
+}
+
+.b-header_right .b-header_links ul li a:hover::after {
+    width: 100%;
 }
 
 .b-footer_container {

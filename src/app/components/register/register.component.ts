@@ -13,7 +13,8 @@ export class RegisterComponent implements OnInit {
 
   signinForm: FormGroup;
   registerForm: FormGroup;
-  loading:boolean = false;
+  loading_login:boolean = false;
+  loading_register:boolean = false;
 
   constructor( private router: Router,
     private auth: AuthService) { }
@@ -33,15 +34,16 @@ export class RegisterComponent implements OnInit {
   }
 
   login(){
-    this.loading = true;
+    this.loading_login = true;
     const loginData = this.signinForm.value;
     this.auth.login(loginData)
       .then((response) => {
-        this.loading = false;
+        this.loading_login = false;
         let status = response.json().status;
         if(status == "ok"){
           localStorage.setItem('token', response.json().token);
           this.signinForm.reset();
+          this.auth.setLogin();
           this.router.navigate(['/profile']);
         }
         if(status == "error"){
@@ -50,17 +52,17 @@ export class RegisterComponent implements OnInit {
         }
       })
       .catch((error) => {
-        this.loading = false;
+        this.loading_login = false;
         alert("Ocurrió un error, inténtalo de nuevo.");
     })
   }
 
   register(){
-    this.loading = true;
+    this.loading_register = true;
     const registerData = this.registerForm.value;
     this.auth.register(registerData)
       .then((response) => {
-        this.loading = false;
+        this.loading_register = false;
         let status = response.json().status;
         if(status == "ok"){
           localStorage.setItem('token', response.json().token);
@@ -73,7 +75,7 @@ export class RegisterComponent implements OnInit {
         }
       })
       .catch((error) => {
-        this.loading = false;
+        this.loading_register = false;
         alert("Ocurrió un error, inténtalo de nuevo.");
       });
   }
