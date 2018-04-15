@@ -1,3 +1,12 @@
-<p>
-  stores works!
-</p>
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title">Catálogo de Tiendas</h1>
+</div>
+<section class="container">
+  <div class="row">
+      <div class="col-md-4" *ngFor="let store of stores">
+        <img src="http://via.placeholder.com/400x200" *ngIf="store.logo_store == null" width="100%" />
+        <img [src]="'http://regalalo.test/' + store.logo_store" *ngIf="store.logo_store !== null" width="100%" />
+        <p class="text-center">{{store.comercial_name}}</p>
+      </div>
+  </div>
+</section>

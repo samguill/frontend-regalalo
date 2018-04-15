@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {LoadingBarHttpModule} from '@ngx-loading-bar/http';
+ 
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
@@ -39,6 +40,7 @@ import { ProfileService } from './services/profile.service';
     FormsModule,
     HttpModule,
     APP_ROUTING,
+    LoadingBarHttpModule,
     NgbModule.forRoot()
   ],
   providers: [

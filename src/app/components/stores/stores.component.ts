@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Meta} from '@angular/platform-browser';
+
+import { PageService } from './../../services/page.service';
 
 @Component({
   selector: 'app-stores',
@@ -7,9 +10,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoresComponent implements OnInit {
 
-  constructor() { }
+  stores:any;
+
+  constructor(
+    private meta:Meta,
+    private page: PageService) {
+
+      this.meta.addTag({
+        name: 'author', content: 'Regalalo'
+      });
+      this.meta.addTag({
+        name: 'description', content: 'Tu regalo ideal'
+      });
+      this.meta.addTag({
+        name: 'description', content: 'Tiendas'
+      });
+
+      this.getStores();
+    }
 
   ngOnInit() {
+  }
+
+  getStores(){
+    this.page.stores()
+      .then((response) => {
+        if(response.json().status === "ok"){
+          this.stores = response.json().stores;
+        }else{
+          alert("Ocurrió un error, inténtalo de nuevo.");
+        }
+      })
+      .catch((error) => {
+        alert("Ocurrió un error, inténtalo de nuevo.");
+    })
   }
 
 }

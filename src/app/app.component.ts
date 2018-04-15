@@ -16,24 +16,12 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   loading;
   title = 'app';
 
   constructor(private router: Router){
-    this.loading = true;
-  }
-
-  ngAfterViewInit(){
-    this.router.events
-      .subscribe((event) => {
-        if(event instanceof NavigationStart){
-          this.loading = true;
-        }
-        else if(event instanceof NavigationEnd || event instanceof NavigationCancel){
-          this.loading = false;
-        }
-      });
+    
   }
 
 }

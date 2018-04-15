@@ -15,4 +15,9 @@ export class PageService {
     return this.http.get(url, {headers : this.headers}).toPromise();
   }
 
+  stores () : Promise<any> {
+    let url : string = `${this.BASE_URL}stores`;
+    return this.http.get(url, {headers : this.headers}).toPromise();
+  }
+
 }
