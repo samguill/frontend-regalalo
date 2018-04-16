@@ -20,8 +20,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // Services
 import { AuthService } from './services/auth.service';
 import { PageService } from './services/page.service';
+import { StoreService } from './services/store.service';
 import { AuthGuard } from './services/auth.guard';
 import { ProfileService } from './services/profile.service';
+import { StoreComponent } from './components/store/store.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { ProfileService } from './services/profile.service';
     StoresComponent,
     RegisterComponent,
     FooterComponent,
-    ProfileComponent
+    ProfileComponent,
+    StoreComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { ProfileService } from './services/profile.service';
   providers: [
     AuthService,
     PageService,
+    StoreService,
     AuthGuard,
     ProfileService
   ],

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 
-import { PageService } from './../../services/page.service';
+import { StoreService } from './../../services/store.service';
 
 @Component({
   selector: 'app-stores',
@@ -14,7 +14,7 @@ export class StoresComponent implements OnInit {
 
   constructor(
     private meta:Meta,
-    private page: PageService) {
+    private store_service: StoreService) {
 
       this.meta.addTag({
         name: 'author', content: 'Regalalo'
@@ -33,7 +33,7 @@ export class StoresComponent implements OnInit {
   }
 
   getStores(){
-    this.page.stores()
+    this.store_service.stores()
       .then((response) => {
         if(response.json().status === "ok"){
           this.stores = response.json().stores;
