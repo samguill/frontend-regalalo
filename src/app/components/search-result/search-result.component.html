@@ -1,0 +1,24 @@
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title">Resultado de búsqueda</h1>
+</div>
+<section class="container">
+  <div class="row">
+    <div class="col-md-3" *ngFor="let product of result">
+      <div class="b-product_grid_single">
+        <div class="b-product_grid_header">
+          <a routerLink="/producto/{{product.slug}}">
+            <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == null" width="100%" />
+            <img [src]="'http://regalalo.test/' + product.featured_image" *ngIf="product.featured_image !== null" width="100%" />
+          </a>
+          <div class="b-product_grid_action">
+            <a href="#">
+              <i class="icon-heart icons"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+        
+        <p class="text-left">{{product.name}}</p>
+      </div>
+  </div>
+</section>

@@ -23,7 +23,12 @@ import { PageService } from './services/page.service';
 import { StoreService } from './services/store.service';
 import { AuthGuard } from './services/auth.guard';
 import { ProfileService } from './services/profile.service';
+import {SearchDataService} from './services/search-data.service';
+import { SearchService } from './services/search.service';
+
 import { StoreComponent } from './components/store/store.component';
+import { OnlyNumber } from './directives/only-number.directive';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import { StoreComponent } from './components/store/store.component';
     RegisterComponent,
     FooterComponent,
     ProfileComponent,
-    StoreComponent
+    StoreComponent,
+    OnlyNumber,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,9 @@ import { StoreComponent } from './components/store/store.component';
     PageService,
     StoreService,
     AuthGuard,
-    ProfileService
+    ProfileService,
+    SearchDataService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

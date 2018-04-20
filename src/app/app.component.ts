@@ -19,9 +19,8 @@ import {
 export class AppComponent {
   loading;
   title = 'app';
+  location : any;
 
   constructor(private router: Router){
-    
   }
-
 }

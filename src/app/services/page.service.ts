@@ -15,4 +15,10 @@ export class PageService {
     return this.http.get(url, {headers : this.headers}).toPromise();
   }
 
+  location_api () : Promise<any> {
+    let api : string = 'AIzaSyDRlAt4Fftas-0hDsaPdbFW11wnKX1zMW8';
+    let url : string = 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + api;
+    return this.http.post(url,{considerIp:true} ,{headers : this.headers}).toPromise();
+  }
+
 }
