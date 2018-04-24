@@ -1,9 +1,12 @@
 import { ElementRef, NgZone, OnInit, ViewChild, Component } from '@angular/core';
 import { CheckoutService } from './../../services/checkout.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
+import { Router, ActivatedRoute, Route } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+import * as jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-checkout',
@@ -24,11 +27,14 @@ export class CheckoutComponent implements OnInit {
   latitude;
   longitude;
   searchControl: FormControl;
+  loading_payment:boolean = false;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
   
   constructor(
+    private router: Router,
+    private auth: AuthService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private check_out_service: CheckoutService,
@@ -45,6 +51,8 @@ export class CheckoutComponent implements OnInit {
     this.address = localStorage.getItem('address');
     this.latitude = localStorage.getItem('latitude');
     this.longitude = localStorage.getItem('longitude');
+    this.subtotal = this.product.price * this.quantity;
+    this.total = (this.product.price * this.quantity) + this.price_delivery;
 
     this.searchControl = new FormControl();
     
@@ -85,6 +93,62 @@ export class CheckoutComponent implements OnInit {
     }else{
       this.price_delivery = 0;
     }
+  }
+
+  payment(){
+    this.loading_payment = true;
+
+    let token = this.auth.getToken();
+    let decode_token:string = jwtDecode(token);
+    let client = decode_token["client"];
+    let delivery_post:boolean;
+
+    if(this.delivery == "recoge"){
+      delivery_post = false;
+    }else{
+      delivery_post = true;
+    }
+
+    let data;
+    data = {
+      order : {
+        store_id: this.branche.store_id,
+        client_id: client.id,
+        sub_total: this.subtotal,
+        total: this.total
+      },
+      orderdetails: [{
+        product_id: this.product.id,
+        quantity: this.quantity,
+        price: this.product.price,
+        price_delivery: this.price_delivery,
+        igv: parseFloat(this.total) * 0.18
+      }],
+      store_branche_id: this.branche.id,
+      destination_client: {
+        contact_person: client.first_name + " " + client.last_name,
+        phone: 98999989,
+        address: this.address,
+        latlon: this.latitude + "," + this.longitude,
+        email: client.email
+      },
+      deliverty : delivery_post
+    }
+    
+    console.log(data);
+    this.check_out_service.payment(data)
+    .then((response) => {
+      this.loading_payment = false;
+      let status = response.json().status;
+      if(status == "ok"){
+        alert("¡Éxito!");
+        this.router.navigate(['/profile']);
+      }
+    })
+    .catch((error) => {
+      this.loading_payment = false;
+      alert("Ocurrió un error, inténtalo de nuevo.");
+    })
   }
 
 }

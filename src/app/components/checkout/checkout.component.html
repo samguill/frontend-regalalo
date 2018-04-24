@@ -91,7 +91,10 @@
                 <tr>
                   <td colspan="2">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <button class="text-uppercase pull-left btn btn-block btn-primary">pagar</button>
+                      <button class="text-uppercase pull-left btn btn-block btn-primary" (click)="payment()">
+                          <i [ngClass]="{'fa-circle-o-notch fa-spin': loading_payment}" class="fa"></i>
+                          <span *ngIf="!loading_payment">pagar</span>
+                      </button>
                     </div>
                   </td>
                 </tr>

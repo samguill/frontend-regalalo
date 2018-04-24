@@ -15,4 +15,9 @@ export class CheckoutService {
     return this.http.post(url, data, {headers : this.headers}).toPromise();
   }
 
+  payment(data:any): Promise<any> {
+    let url : string = `${this.BASE_URL}orders/store`;
+    return this.http.post(url, data, {headers : this.headers}).toPromise();
+  }
+
 }
