@@ -1,0 +1,105 @@
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title"><span>Checkout</span></h1>
+  <div class="b-breadcrumbs">
+    <a>Inicio</a>
+    <span>Checkout</span>
+  </div>
+</div>
+<section id="b-checkout_default">
+  <div class="b-checkout container">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">Producto</div>
+          <div class="panel-body b-cart_default">
+            <table id="cart" class="table table-hover table-condensed">
+              <thead>
+                <tr>
+                  <th style="width:50%">Producto</th>
+                  <th style="width:10%">Precio</th>
+                  <th style="width:8%">Cantidad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="product">
+                  <td data-th="Producto">
+                    <div class="row">
+                      <div class="col-sm-2 hidden-xs">
+                        <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == ''" width="100%" />
+                        <img [src]="'http://adminv2.regalaloprueba.com/' + product.featured_image" *ngIf="product.featured_image !== ''" width="100%" />
+                      </div>
+                      <div class="col-sm-10">
+                        <h4 class="nomargin">{{product.name}}</h4>
+                        <span>{{product.sku_code}}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td data-th="Precio">S/{{product.price}}</td>
+                  <td data-th="Cantidad">
+                    <input class="form-control text-center" value="1" [(ngModel)]="quantity" OnlyNumber="true">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">Pagar</div>
+          <div class="panel-body">
+            <table id="cart" class="table table-hover table-condensed" *ngIf="product">
+              <tbody>
+                <tr>
+                  <td style="width:30%"><b>Subtotal</b></td>
+                  <td style="width:70%">S/{{ (product.price * quantity).toFixed(2) }}</td>
+                </tr>
+                <tr>
+                  <td style="width:30%"><b>Envío</b></td>
+                  <td style="width:70%">
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="delivery" id="recoge" [(ngModel)]="delivery" (change)="onDeliveryChange('recoge')" value="recoge">
+                      <label class="form-check-label" for="recoge"> Recoger en tienda</label>
+                    </div>
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="delivery" id="envio" [(ngModel)]="delivery" (change)="onDeliveryChange('envio')" value="envio">
+                      <label class="form-check-label" for="envio"> Enviar a dirección</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr *ngIf="delivery == 'envio'">
+                  <td style="width:30%; vertical-align: middle;"><b>Dirección de envío</b></td>
+                  <td style="width:70%">
+                      <input class="form-control"
+                        placeholder="Ingresa tu dirección"
+                        [(ngModel)]="address"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        #search [formControl]="searchControl"
+                        spellcheck="off">
+                  </td>
+                </tr>
+                <tr *ngIf="delivery == 'envio'">
+                  <td style="width:30%; vertical-align: middle;"><b>Precio de envío</b></td>
+                  <td style="width:70%">{{price_delivery}}</td>
+                </tr>
+                <tr>
+                  <td style="width:30%"><b>Total</b></td>
+                  <td style="width:70%">S/{{ (product.price * quantity) + price_delivery }}</td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <button class="text-uppercase pull-left btn btn-block btn-primary">pagar</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

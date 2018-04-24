@@ -1,0 +1,196 @@
+<div class="tabs-container">
+    <div class="row">
+      <ngb-tabset>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Productos</ng-template>
+          <ng-template ngbTabContent>
+            <div class="tab-content" id="productos">
+              <div class="form-search-product">
+                <div class="row no-glutters">
+                  <div class="col-md-12">
+                    <h5>¿A quien le regalas?</h5>
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="aquien" id="general" [(ngModel)]="sex" value="G">
+                      <label class="form-check-label" for="general"> General</label>
+                    </div>
+              
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="aquien" id="hombre" [(ngModel)]="sex" value="M">
+                      <label class="form-check-label" for="hombre"> Hombre</label>
+                    </div>
+              
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="aquien" id="mujer" [(ngModel)]="sex" value="F">
+                      <label class="form-check-label" for="mujer"> Mujer</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row no-glutters">
+                  <div class="col-md-3">
+                    <h5>Edad</h5>
+                    <div class="form-group">
+                      <input type="text" name="edad" class="form-control" id="edad" [(ngModel)]="age" OnlyNumber="true">
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                      <h5>¿Cuál es tu presupuesto?</h5>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input type="text" name="desde" class="form-control" id="desde" placeholder="Desde" [(ngModel)]="budget_from" OnlyNumber="true">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <input type="text" name="hasta" class="form-control" id="hasta" placeholder="Hasta" [(ngModel)]="budget_to" OnlyNumber="true">
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row no-glutters">
+                  <div class="col-md-12">
+                    <h5>¿Cuál es la ocasión?</h5>
+                    <div class="row">
+                      <div class="col-md-4" *ngFor="let event of events">
+                        <div class="form-check">
+                          <input type="checkbox" (change)="onEventsChange(event.id, $event.target.checked)" class="form-check-input" [id]="'event-' + event.id">
+                          <label class="form-check-label" [for]="'event-' + event.id"> {{ event.name }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row no-glutters">
+                  <div class="col-md-12">
+                    <h5>¿Cuál es su interés?</h5>
+                    <div class="row">
+                      <div class="col-md-4" *ngFor="let interest of interests">
+                        <div class="form-check">
+                          <input type="checkbox" (change)="onInterestsChange(interest.id, $event.target.checked)" class="form-check-input" [id]="'interest-' + interest.id">
+                          <label class="form-check-label" [for]="'interest-' + interest.id"> {{ interest.name }}</label>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="row no-glutters">
+                  <div class="col-md-12">
+                    <h5>Disponible</h5>
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="disponible" id="ambos" value="A" [(ngModel)]="availability">
+                      <label class="form-check-label" for="ambos"> Ambos</label>
+                    </div>
+                
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="disponible" id="tienda" value="S" [(ngModel)]="availability">
+                      <label class="form-check-label" for="tienda"> Tienda</label>
+                    </div>
+                
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="disponible" id="online" value="O" [(ngModel)]="availability">
+                      <label class="form-check-label" for="online"> Online</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row text-center">
+                  <button class="btn btn-primary mt-20 mb-20" (click)="search()">Realizar búsqueda</button>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab>
+          <ng-template ngbTabTitle>Servicios</ng-template>
+          <ng-template ngbTabContent>
+            <div class="tab-content" id="servicios">
+              <div class="form-search-service">
+                <div class="row no-glutters">
+                  <div class="col-md-12">
+                    <h5>¿A quien le regalas?</h5>
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="aquien" id="general" value="general" checked>
+                      <label class="form-check-label" for="general"> General</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="aquien" id="hombre" value="hombre">
+                      <label class="form-check-label" for="hombre"> Hombre</label>
+                    </div>
+                  
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="aquien" id="mujer" value="mujer">
+                      <label class="form-check-label" for="mujer"> Mujer</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row no-glutters">
+                  <div class="col-md-3">
+                    <h5>Edad</h5>
+                    <div class="form-group">
+                      <input type="text" name="edad" class="form-control" id="edad">
+                    </div>
+                  </div>
+                  <div class="col-md-9">
+                    <h5>¿Cuál es tu presupuesto?</h5>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input type="text" name="desde" class="form-control" id="desde" placeholder="Desde">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <input type="text" name="hasta" class="form-control" id="hasta" placeholder="Hasta">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row no-glutters">
+                  <div class="col-md-12">
+                    <h5>¿Qué experiencia buscas?</h5>
+                    <div class="row">
+                      <div class="col-md-4" *ngFor="let experience of experiences">
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" [id]="'experience-' + experience.id">
+                          <label class="form-check-label" [for]="'experience-' + experience.id"> {{ experience.name }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row no-glutters">
+                  <div class="col-md-12">
+                    <h5>Disponible</h5>
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="disponible" id="ambos" value="ambos" checked>
+                      <label class="form-check-label" for="ambos"> Ambos</label>
+                    </div>
+                  
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="disponible" id="tienda" value="tienda">
+                      <label class="form-check-label" for="tienda"> Tienda</label>
+                    </div>
+                  
+                    <div class="form-check form-check-inline">    
+                      <input class="form-check-input" type="radio" name="disponible" id="online" value="online">
+                      <label class="form-check-label" for="online"> Online</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>

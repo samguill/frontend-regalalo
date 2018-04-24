@@ -3,22 +3,41 @@
 </div>
 <section class="container">
   <div class="row">
-    <div class="col-md-3" *ngFor="let product of result">
-      <div class="b-product_grid_single">
-        <div class="b-product_grid_header">
-          <a routerLink="/producto/{{product.slug}}">
-            <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == null" width="100%" />
-            <img [src]="'http://regalalo.test/' + product.featured_image" *ngIf="product.featured_image !== null" width="100%" />
-          </a>
-          <div class="b-product_grid_action">
-            <a href="#">
-              <i class="icon-heart icons"></i>
-            </a>
+    <div class="col-md-4">
+      <app-search-form></app-search-form>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let product of result">
+          <div class="b-product_grid_single">
+            <div class="b-product_grid_header">
+              <a (click)="product_detail(product)">
+                <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == null" width="100%" />
+                <img [src]="'http://adminv2.regalaloprueba.com/' + product.featured_image" *ngIf="product.featured_image !== null" width="100%" />
+              </a>
+              <div class="b-product_grid_action">
+                <a href="#">
+                  <i class="icon-heart icons"></i>
+                </a>
+              </div>
+            </div>
+            <div class="b-product_grid_info">
+              <h3 class="product-title">
+                <a (click)="product_detail(product)">{{product.name}} <span *ngIf="product.distance" class="b-distance"><br>A {{ product.distance.toFixed(2) }} km.</span></a>
+              </h3>
+              <div class="clearfix">
+                <div class="b-product_grid_toggle float-left">
+                  <span class="b-price">S/{{product.price}} - {{product.quantity}} unidades</span>
+                  
+                  <span class="b-add_cart">
+                    <a (click)="product_detail(product)">Ver detalle</a>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-        
-        <p class="text-left">{{product.name}}</p>
-      </div>
+    </div>
   </div>
 </section>

@@ -8,7 +8,7 @@
           <div class="b-product_grid_header">
             <a routerLink="/producto/{{product.slug}}">
               <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == null" width="100%" />
-              <img [src]="'http://regalalo.test/' + product.featured_image" *ngIf="product.featured_image !== null" width="100%" />
+              <img [src]="'http://adminv2.regalaloprueba.com/' + product.featured_image" *ngIf="product.featured_image !== null" width="100%" />
             </a>
             <div class="b-product_grid_action">
               <a href="#">

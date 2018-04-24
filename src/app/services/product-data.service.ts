@@ -1,18 +1,19 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
 
 @Injectable()
-export class SearchDataService {
+export class ProductDataService {
 
   private data:BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor() { }
 
-  get searchData(){
+  get productData(){
     return this.data.asObservable();
   }
 
-  setData(data:any = []){
+  setData(data:any){
     this.data.next(data);
   }
 

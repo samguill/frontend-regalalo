@@ -6,6 +6,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { StoreComponent } from './components/store/store.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ProductComponent } from './components/product/product.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 import { AuthGuard } from './services/auth.guard';
 
@@ -16,6 +18,8 @@ const APP_ROUTES: Routes = [
     { path: 'busqueda', component: SearchResultComponent},
     { path : 'profile', component : ProfileComponent, canActivate : [AuthGuard] },
     { path: 'tienda/:id', component: StoreComponent, data: {state: 'stores'} },
+    { path: 'producto/:id', component: ProductComponent },
+    { path: 'checkout', component: CheckoutComponent },
     { path: '**', pathMatch: 'full', redirectTo: '' },
   ];
   

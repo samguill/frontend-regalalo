@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class StoreService {
   
-  private BASE_URL : string = 'http://regalalo.test/api/';
+  private BASE_URL : string = 'http://adminv2.regalaloprueba.com/api/';
   private headers : Headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http:Http) { }

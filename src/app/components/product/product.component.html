@@ -1,0 +1,64 @@
+<div class="b-product_single pb-5">
+    <div class="container">
+      <div class="row clearfix">
+        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12">
+          <ul class="pl-0 mb-0" id="b-lightSlider">
+            <li data-thumb="assets/images/instagram/home-fashion/instagram-4.jpg">
+              <img src="http://via.placeholder.com/1200x1200" *ngIf="data_product.featured_image == null" width="100%" />
+              <img [src]="'http://adminv2.regalaloprueba.com/' + data_product.featured_image" *ngIf="data_product.featured_image !== null" width="100%" />
+            </li>
+          </ul>
+        </div>
+        <div class="col-xl-8 col-lg-8 col-mb-8 col-sm-12 col-xs-12">
+          <div class="b-product_single_summary">
+            <h1>{{data_product.name}}</h1>
+            <span>{{data_product.sku_code}}</span>
+            <p class="b-price">
+              <span class="b-amount">
+              <span class="b-symbol">S/</span>{{data_product.price}}</span>
+            </p>
+            <div class="b-produt_description text-left">
+              <div [innerHtml]="data_product.description"></div>
+            </div>
+            <div class="b-product_single_action text-center clearfix">
+              <button class="text-uppercase pull-left btn" (click)="checkout(data_product)">comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="b-gray_bg b-product_tabs">
+  <div class="container">
+    <div class="row">
+      <ngb-tabset [justify]="center">
+        <ngb-tab title="Descripción">
+          <ng-template ngbTabContent>
+            <div [innerHtml]="data_product.description"></div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Información Adicional">
+          <ng-template ngbTabContent>
+            <div>
+              <table class="table">
+                <tr>
+                  <td><b>Color</b></td>
+                  <td>Negro, Blanco</td>
+                </tr>
+                <tr>
+                  <td><b>Tamaño</b></td>
+                  <td>15cm x 9cm</td>
+                </tr>
+              </table>
+            </div>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="Ubicación de la tienda">
+          <ng-template ngbTabContent>
+            
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </div>
+  </div>
+</div>
