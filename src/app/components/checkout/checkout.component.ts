@@ -7,6 +7,7 @@ import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import * as jwtDecode from 'jwt-decode';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout',
@@ -88,7 +89,8 @@ export class CheckoutComponent implements OnInit {
         this.price_delivery = response.json().prices[0].price;
       })
       .catch((error)=>{
-        alert("Ocurrió un error, inténtalo de nuevo.");
+        this.delivery == "recoge";
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       });
     }else{
       this.price_delivery = 0;
@@ -132,23 +134,34 @@ export class CheckoutComponent implements OnInit {
         latlon: this.latitude + "," + this.longitude,
         email: client.email
       },
-      deliverty : delivery_post
-    }
-    
-    console.log(data);
-    this.check_out_service.payment(data)
+      delivery : delivery_post
+    };
+
+    this.check_out_service.generate_payment(data)
+    .then((response) => {
+      this.loading_payment = false;
+      console.log(response);
+    })
+    .catch((error) => {
+      this.loading_payment = false;
+      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+    });
+
+    AlignetVPOS2.openModal('https://integracion.alignetsac.com/');
+
+    /*this.check_out_service.payment(data)
     .then((response) => {
       this.loading_payment = false;
       let status = response.json().status;
       if(status == "ok"){
-        alert("¡Éxito!");
+        swal("Venta realizada", "Su orden ha sido realizada con éxito.", 'success');
         this.router.navigate(['/profile']);
       }
     })
     .catch((error) => {
       this.loading_payment = false;
-      alert("Ocurrió un error, inténtalo de nuevo.");
-    })
+      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+    })*/
   }
 
 }

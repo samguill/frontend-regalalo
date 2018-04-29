@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import swal from 'sweetalert2';
 import { AuthService } from './../../services/auth.service';
 
 @Component({
@@ -48,12 +48,12 @@ export class RegisterComponent implements OnInit {
         }
         if(status == "error"){
           let error_message = response.json().message;
-          alert(error_message);
+          swal("Error", error_message, "error");
         }
       })
       .catch((error) => {
         this.loading_login = false;
-        alert("Ocurrió un error, inténtalo de nuevo.");
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     })
   }
 
@@ -71,12 +71,12 @@ export class RegisterComponent implements OnInit {
         }
         if(status == "error"){
           let error_message = response.json().message;
-          alert(error_message);
+          swal("Error", error_message, "error");
         }
       })
       .catch((error) => {
         this.loading_register = false;
-        alert("Ocurrió un error, inténtalo de nuevo.");
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       });
   }
 

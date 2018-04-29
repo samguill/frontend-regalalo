@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { StoreService } from './../../services/store.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-store',
@@ -23,7 +24,7 @@ export class StoreComponent implements OnInit {
           this.products = response.json().products;
         })
         .catch((error)=>{
-          alert("Ocurrió un error, inténtalo de nuevo.");
+          swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
         })
     });
   }

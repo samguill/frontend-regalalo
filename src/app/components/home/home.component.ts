@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
         let longitude = position.coords.longitude.toFixed(5);
         let address = localStorage.getItem('address');
         if(address){ }else{
-          this.http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + "," + longitude + "&sensor=false")
+          this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + "," + longitude + "&sensor=false")
           .subscribe(data => {
             localStorage.setItem('address', data.json().results[0]['formatted_address']);
           });

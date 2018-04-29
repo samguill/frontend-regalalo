@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class SearchService {
 
-  private BASE_URL : string = 'http://adminv2.regalaloprueba.com/products/search';
+  private BASE_URL : string = 'https://adminv2.regalaloprueba.com/products/search';
   private headers : Headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http:Http) { }

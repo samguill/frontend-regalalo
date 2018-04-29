@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormArray, FormControl, FormBuilder } from '@angular/forms';
-
+import swal from 'sweetalert2';
 import { PageService } from './../../services/page.service';
 import { SearchDataService } from './../../services/search-data.service';
 
@@ -59,11 +59,11 @@ export class SearchFormComponent implements OnInit {
           this.events = response.json().events;
           this.experiences = response.json().experiences;
         }else{
-          alert("Ocurrió un error, inténtalo de nuevo.");
+          swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
         }
       })
       .catch((error) => {
-        alert("Ocurrió un error, inténtalo de nuevo.");
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     })
   }
 

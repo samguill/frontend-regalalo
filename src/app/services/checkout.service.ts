@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class CheckoutService {
 
-  private BASE_URL : string = 'http://adminv2.regalaloprueba.com/api/';
+  private BASE_URL : string = 'https://adminv2.regalaloprueba.com/api/';
   private headers : Headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http:Http) { }
@@ -17,6 +17,11 @@ export class CheckoutService {
 
   payment(data:any): Promise<any> {
     let url : string = `${this.BASE_URL}orders/store`;
+    return this.http.post(url, data, {headers : this.headers}).toPromise();
+  }
+
+  generate_payment(data:any): Promise<any> {
+    let url : string = `${this.BASE_URL}orders/generate`;
     return this.http.post(url, data, {headers : this.headers}).toPromise();
   }
 

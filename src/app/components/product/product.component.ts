@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Route } from '@angular/router';
 import { ProductDataService } from './../../services/product-data.service';
 import { ProductService } from './../../services/product.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product',
@@ -60,7 +61,7 @@ export class ProductComponent implements OnInit {
       this.data_branche = this.data_product.store.branches[0]
     })
     .catch((error)=>{
-      alert("Ocurrió un error, inténtalo de nuevo.");
+      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     });
   }
 
@@ -70,7 +71,7 @@ export class ProductComponent implements OnInit {
       this.data_branche = response.json().data;
     })
     .catch((error)=>{
-      alert("Ocurrió un error, inténtalo de nuevo.");
+      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     });
   }
 

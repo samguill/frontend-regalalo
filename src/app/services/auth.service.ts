@@ -10,7 +10,7 @@ export const TOKEN: string = 'token';
 @Injectable()
 export class AuthService {
 
-  private BASE_URL : string = 'http://adminv2.regalaloprueba.com/api/client/';
+  private BASE_URL : string = 'https://adminv2.regalaloprueba.com/api/client/';
   private headers : Headers = new Headers({'Content-Type': 'application/json'});
 
   private loggedIn = new BehaviorSubject<boolean>(this.isTokenExist());

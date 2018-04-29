@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 
 import { StoreService } from './../../services/store.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-stores',
@@ -38,11 +39,11 @@ export class StoresComponent implements OnInit {
         if(response.json().status === "ok"){
           this.stores = response.json().stores;
         }else{
-          alert("Ocurrió un error, inténtalo de nuevo.");
+          swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
         }
       })
       .catch((error) => {
-        alert("Ocurrió un error, inténtalo de nuevo.");
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     })
   }
 

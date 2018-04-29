@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Route } from '@angular/router';
 import { SearchDataService } from './../../services/search-data.service';
 import { SearchService } from './../../services/search.service';
 import { ProductDataService } from './../../services/product-data.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-search-result',
@@ -43,12 +44,11 @@ export class SearchResultComponent implements OnInit {
           this.result = response.json().data.data;
         }
         if(status == "error"){
-          alert("Error");
+          swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
         }
       })
       .catch((error) => {
-        console.log(error);
-        alert("Error");
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       });
   }
 
