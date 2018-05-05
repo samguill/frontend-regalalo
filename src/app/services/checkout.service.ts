@@ -6,6 +6,7 @@ import 'rxjs/add/operator/toPromise';
 export class CheckoutService {
 
   private BASE_URL : string = 'https://adminv2.regalaloprueba.com/api/';
+  //private BASE_URL : string = 'http://regalalo.test/api/';
   private headers : Headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http:Http) { }
@@ -20,7 +21,8 @@ export class CheckoutService {
     return this.http.post(url, data, {headers : this.headers}).toPromise();
   }
 
-  generate_payment(data:any): Promise<any> {
+  generate_payment(token:string, data:any): Promise<any> {
+    this.headers.append('Authorization', 'Bearer ' + token);
     let url : string = `${this.BASE_URL}orders/generate`;
     return this.http.post(url, data, {headers : this.headers}).toPromise();
   }

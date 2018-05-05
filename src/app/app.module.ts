@@ -30,6 +30,7 @@ import { SearchService } from './services/search.service';
 import { ProductDataService } from './services/product-data.service';
 import { CheckoutDataService } from './services/checkout-data.service';
 import { CheckoutService } from './services/checkout.service';
+import { OrdersService } from './services/orders.service';
 
 import { StoreComponent } from './components/store/store.component';
 import { OnlyNumber } from './directives/only-number.directive';
@@ -37,6 +38,7 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { ProductComponent } from './components/product/product.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     SearchResultComponent,
     ProductComponent,
     SearchFormComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    OrdersComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -79,7 +82,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     ProductDataService,
     ProductService,
     CheckoutDataService,
-    CheckoutService
+    CheckoutService,
+    OrdersService
   ],
   bootstrap: [AppComponent]
 })

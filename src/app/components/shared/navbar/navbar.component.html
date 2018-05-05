@@ -14,7 +14,7 @@
               <div class="b-menu_top_bar_container">
                 <ul id="b-menu_top_bar" class="b-menu">
                   <li *ngIf="isLoggedIn$ | async">
-                    <a [routerLink]="['profile']"><i class="fa fa-user mr-1"></i>Mi cuenta</a>
+                    <a [routerLink]="['mi-cuenta']"><i class="fa fa-user mr-1"></i>Mi cuenta</a>
                   </li>
                   <li *ngIf="(isLoggedIn$ | async)">
                     <a href="cart-default.html"><i class="fa fa-heart mr-1"></i>Mi lista de deseos</a>

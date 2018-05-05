@@ -71,13 +71,12 @@
                 <tr *ngIf="delivery == 'envio'">
                   <td style="width:30%; vertical-align: middle;"><b>Dirección de envío</b></td>
                   <td style="width:70%">
-                      <input class="form-control"
-                        placeholder="Ingresa tu dirección"
-                        [(ngModel)]="address"
-                        autocorrect="off"
-                        autocapitalize="off"
-                        #search [formControl]="searchControl"
-                        spellcheck="off">
+                      <select class="form-control" [(ngModel)]="client_direction_id">
+                          <option value="">Seleccione una dirección...</option>
+                          <option *ngFor="let direction of client_directions" [value]="direction.id">
+                            {{direction.name}}
+                          </option>
+                      </select>
                   </td>
                 </tr>
                 <tr *ngIf="delivery == 'envio'">
@@ -91,10 +90,32 @@
                 <tr>
                   <td colspan="2">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <button class="text-uppercase pull-left btn btn-block btn-primary" (click)="payment()">
+                      <button *ngIf="!payment_generated" class="text-uppercase pull-left btn btn-block btn-primary" (click)="payment()">
                           <i [ngClass]="{'fa-circle-o-notch fa-spin': loading_payment}" class="fa"></i>
-                          <span *ngIf="!loading_payment">pagar</span>
+                          <span *ngIf="!loading_payment">procesar compra</span>
                       </button>
+                      <form name="f1" id="f1" action="#" method="post" class="alignet-form-vpos2">
+                          <input type="hidden" name ="acquirerId" [(ngModel)]="acquirerId" />
+                          <input type="hidden" name ="idCommerce" [(ngModel)]="idCommerce"  />
+                          <input type="hidden" name="purchaseOperationNumber" [(ngModel)]="purchaseOperationNumber"  />
+                          <input type="hidden" name="purchaseAmount" [(ngModel)]="purchaseAmount"  />
+                          <input type="hidden" name="shippingFirstName" [(ngModel)]="shippingFirstName" />
+                          <input type="hidden" name="shippingLastName" [(ngModel)]="shippingLastName" />
+                          <input type="hidden" name="shippingEmail" [(ngModel)]="shippingEmail" />
+                          <input type="hidden" name="shippingAddress" [(ngModel)]="shippingAddress" />
+                          <input type="hidden" name="shippingZIP" value="ZIP 123" />
+                          <input type="hidden" name="shippingCity" value="CITY ABC" />
+                          <input type="hidden" name="shippingState" value="STATE ABC" />
+                          <input type="hidden" name="shippingCountry" value="PE" />
+                          <input type="hidden" name="userCommerce" [(ngModel)]="userCommerce" />
+                          <input type="hidden" name="userCodePayme" [(ngModel)]="userCodePayme" />
+                          <input type="hidden" name="descriptionProducts" value="Producto ABC" />
+                          <input type="hidden" name="programmingLanguage" value="PHP" />
+                          <input type="hidden" name="purchaseVerification" [(ngModel)]="purchaseVerification" />
+                          <input type="hidden" name="purchaseCurrencyCode" value="604" />
+                          <input type="hidden" name="language" value="SP" />
+                          <input *ngIf="payment_generated" type="button" class="text-uppercase pull-left btn btn-block btn-primary" onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/', '2')" value="Pagar">
+                        </form>
                     </div>
                   </td>
                 </tr>

@@ -1,0 +1,32 @@
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title">Mis pedidos</h1>
+</div>
+<section class="container">
+  <div class="row">
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th align="center">#</th>
+          <th>Subtotal</th>
+          <th>Total</th>
+          <th>Estado de pedido</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="loading">
+          <td colspan="5" align="center">
+              <i class="fa fa-circle-o-notch fa-spin"></i>
+          </td>
+        </tr>
+        <tr *ngFor="let order of orders">
+          <td>{{order.order_code}}</td>
+          <td>S/{{order.sub_total}}</td>
+          <td>S/{{order.total}}</td>
+          <td>{{order.status}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

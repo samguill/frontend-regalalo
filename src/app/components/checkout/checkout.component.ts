@@ -2,12 +2,15 @@ import { ElementRef, NgZone, OnInit, ViewChild, Component } from '@angular/core'
 import { CheckoutService } from './../../services/checkout.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
 import { Router, ActivatedRoute, Route } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
+
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import * as jwtDecode from 'jwt-decode';
 import swal from 'sweetalert2';
+
+import { AuthService } from './../../services/auth.service';
+import { ProfileService } from './../../services/profile.service';
 
 @Component({
   selector: 'app-checkout',
@@ -25,10 +28,26 @@ export class CheckoutComponent implements OnInit {
   delivery = "recoge";
   price_delivery = 0;
   address: string;
+  client_directions:any;
+  client_direction_id = "";
   latitude;
   longitude;
   searchControl: FormControl;
   loading_payment:boolean = false;
+
+  purchaseVerification: string;
+  acquirerId: string;
+  idCommerce: string;
+  purchaseOperationNumber: string;
+  purchaseAmount: string;
+  shippingFirstName:string;
+  shippingLastName: string;
+  shippingEmail:string;
+  shippingAddress: string;
+  userCommerce: string;
+  userCodePayme: string;
+
+  payment_generated:boolean = false;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -39,7 +58,8 @@ export class CheckoutComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private check_out_service: CheckoutService,
-    private checkout_data_service: CheckoutDataService) {
+    private checkout_data_service: CheckoutDataService,
+    private profile_service: ProfileService) {
 
   }
 
@@ -56,23 +76,20 @@ export class CheckoutComponent implements OnInit {
     this.total = (this.product.price * this.quantity) + this.price_delivery;
 
     this.searchControl = new FormControl();
-    
-    /*this.mapsAPILoader.load()
-      .then(() => {
-        let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-          types: ["address"]
-        });
-        autocomplete.addListener("place_changed", () => {
-          this.ngZone.run(() => {
-            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-            if(place.geometry === undefined || place.geometry === null){
-              return;
-            }
-            this.latitude = place.geometry.location.lat();
-            this.longitude = place.geometry.location.lng();
-          });
-        });
-      });*/
+    this.getDirections();
+  }
+
+  getDirections(){
+    let token = this.auth.getToken();
+    let decode_token:string = jwtDecode(token);
+    let client: any = decode_token["client"];
+    this.profile_service.directions(token, client.id)
+    .then((response) => {
+      this.client_directions = response.json().order;
+    })
+    .catch((error) => {
+      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+    });
   }
 
   onDeliveryChange(value){
@@ -117,7 +134,8 @@ export class CheckoutComponent implements OnInit {
         store_id: this.branche.store_id,
         client_id: client.id,
         sub_total: this.subtotal,
-        total: this.total
+        total: this.total,
+        client_direction_id: this.client_direction_id
       },
       orderdetails: [{
         product_id: this.product.id,
@@ -137,31 +155,26 @@ export class CheckoutComponent implements OnInit {
       delivery : delivery_post
     };
 
-    this.check_out_service.generate_payment(data)
+    this.check_out_service.generate_payment(token, data)
     .then((response) => {
       this.loading_payment = false;
-      console.log(response);
+      this.purchaseVerification = response.json().purchaseVerification;
+      this.acquirerId = response.json().acquirerId;
+      this.idCommerce = response.json().idCommerce;
+      this.purchaseOperationNumber = response.json().purchaseOperationNumber;
+      this.purchaseAmount = response.json().purchaseAmount;
+      this.shippingFirstName = response.json().shippingFirstName;
+      this.shippingLastName = response.json().shippingLastName;
+      this.shippingEmail = response.json().shippingLastName;
+      this.shippingAddress = response.json().shippingAddress;
+      this.userCommerce = response.json().userCommerce;
+      this.userCodePayme = response.json().userCodePayme;
+      this.payment_generated = true;
     })
     .catch((error) => {
       this.loading_payment = false;
       swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     });
-
-    AlignetVPOS2.openModal('https://integracion.alignetsac.com/');
-
-    /*this.check_out_service.payment(data)
-    .then((response) => {
-      this.loading_payment = false;
-      let status = response.json().status;
-      if(status == "ok"){
-        swal("Venta realizada", "Su orden ha sido realizada con éxito.", 'success');
-        this.router.navigate(['/profile']);
-      }
-    })
-    .catch((error) => {
-      this.loading_payment = false;
-      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
-    })*/
   }
 
 }
