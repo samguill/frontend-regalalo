@@ -10,8 +10,8 @@
           <form [formGroup]="signinForm" (ngSubmit)="login()">
             <div class="form-group">
               <label for="">E-mail</label>
-              <input class="form-control" type="email" name="email" [formControl]="signinForm.controls['email']">
-              <small *ngIf="signinForm.controls['email'].hasError('required') && signinForm.controls['email'].touched" class="form-error-msg"> Este campo es requerido </small>
+              <input class="form-control" type="username" name="username" [formControl]="signinForm.controls['username']">
+              <small *ngIf="signinForm.controls['username'].hasError('required') && signinForm.controls['username'].touched" class="form-error-msg"> Este campo es requerido </small>
             </div>
             <div class="form-group">
               <label for="">Contraseña</label>

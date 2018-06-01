@@ -7,6 +7,7 @@ import { StoreComponent } from './components/store/store.component';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ProductComponent } from './components/product/product.component';
@@ -21,6 +22,7 @@ const APP_ROUTES: Routes = [
     { path: 'busqueda', component: SearchResultComponent},
     { path : 'mi-cuenta', component : ProfileComponent, canActivate : [AuthGuard] },
     { path : 'mis-pedidos', component : OrdersComponent, canActivate : [AuthGuard] },
+    { path : 'mi-lista-de-deseos', component : WishlistComponent, canActivate : [AuthGuard] },
     { path: 'tienda/:id', component: StoreComponent, data: {state: 'stores'} },
     { path: 'producto/:id', component: ProductComponent },
     { path: 'checkout', component: CheckoutComponent },

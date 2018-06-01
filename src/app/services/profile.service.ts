@@ -4,20 +4,35 @@ import { Headers, Http } from '@angular/http';
 @Injectable()
 export class ProfileService {
 
-  private BASE_URL : string = 'https://adminv2.regalaloprueba.com/api/client/';
-  private headers : Headers = new Headers({'Content-Type': 'application/json'});
+  private BASE_URL : string = 'https://admin.regalalo.pe/api/client/';
+  //private BASE_URL : string = 'http://regalalo.test/api/client/';
+  private headers : Headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('access_token')});
 
   constructor(private http:Http) { }
 
-  login (token:string) : Promise<any> {
+  profile () : Promise<any> {
     let url : string = `${this.BASE_URL}profile`;
-    return this.http.post(url, {token:token}, {headers : this.headers}).toPromise();
+    return this.http.get(url, {headers : this.headers}).toPromise();
   }
 
-  directions (token:string, client_id) :Promise<any> {
-    this.headers.append('Authorization', 'Bearer ' + token);
+  directions () :Promise<any> {
     let url : string = `${this.BASE_URL}directions`;
-    return this.http.post(url, {client_id:client_id}, {headers : this.headers}).toPromise();
+    return this.http.get(url, {headers : this.headers}).toPromise();
+  }
+
+  wishlist () :Promise<any> {
+    let url : string = `${this.BASE_URL}wishlist`;
+    return this.http.get(url, {headers : this.headers}).toPromise();
+  }
+
+  add_to_wishlist (product_id) :Promise<any> {
+    let url : string = `${this.BASE_URL}wishlist/create`;
+    return this.http.post(url, {product_id:product_id},{headers : this.headers}).toPromise();
+  }
+
+  remove_to_wishlist (product_id) :Promise<any> {
+    let url : string = `${this.BASE_URL}wishlist/delete`;
+    return this.http.post(url, {id:product_id},{headers : this.headers}).toPromise();
   }
 
 }

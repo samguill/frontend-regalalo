@@ -5,7 +5,7 @@
           <ul class="pl-0 mb-0" id="b-lightSlider">
             <li data-thumb="assets/images/instagram/home-fashion/instagram-4.jpg">
               <img src="http://via.placeholder.com/1200x1200" *ngIf="data_product.featured_image == null" width="100%" />
-              <img [src]="'http://adminv2.regalaloprueba.com/' + data_product.featured_image" *ngIf="data_product.featured_image !== null" width="100%" />
+              <img [src]="data_product.featured_image" *ngIf="data_product.featured_image !== null" width="100%" />
             </li>
           </ul>
         </div>
@@ -21,7 +21,8 @@
               <div [innerHtml]="data_product.description"></div>
             </div>
             <div class="b-product_single_action text-center clearfix">
-              <button class="text-uppercase pull-left btn" (click)="checkout(data_product)">comprar</button>
+              <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout(data_product)">comprar</button>
+              <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn" [routerLink]="['/register']">ingresar</button>
             </div>
           </div>
         </div>

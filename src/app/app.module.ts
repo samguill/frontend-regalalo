@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoadingBarHttpModule } from '@ngx-loading-bar/http';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { AgmCoreModule } from '@agm/core';
  
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { APP_ROUTING } from './app.routes';
 
@@ -31,6 +33,9 @@ import { ProductDataService } from './services/product-data.service';
 import { CheckoutDataService } from './services/checkout-data.service';
 import { CheckoutService } from './services/checkout.service';
 import { OrdersService } from './services/orders.service';
+import { WishlistService } from './services/wishlist.service';
+import { LoaderService } from './services/loader.service';
+import { loadingInterceptor } from './services/loadingInterceptor';
 
 import { StoreComponent } from './components/store/store.component';
 import { OnlyNumber } from './directives/only-number.directive';
@@ -39,6 +44,9 @@ import { ProductComponent } from './components/product/product.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { LoaderComponent } from './components/loader/loader.component';
+import { QuickSearchFormComponent } from './components/quick-search-form/quick-search-form.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +63,10 @@ import { OrdersComponent } from './components/orders/orders.component';
     ProductComponent,
     SearchFormComponent,
     CheckoutComponent,
-    OrdersComponent
+    OrdersComponent,
+    WishlistComponent,
+    LoaderComponent,
+    QuickSearchFormComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -67,8 +78,9 @@ import { OrdersComponent } from './components/orders/orders.component';
     ReactiveFormsModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
+    NgMasonryGridModule,
     APP_ROUTING,
-    LoadingBarHttpModule,
     NgbModule.forRoot()
   ],
   providers: [
@@ -83,7 +95,14 @@ import { OrdersComponent } from './components/orders/orders.component';
     ProductService,
     CheckoutDataService,
     CheckoutService,
-    OrdersService
+    OrdersService,
+    WishlistService,
+    LoaderService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: loadingInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

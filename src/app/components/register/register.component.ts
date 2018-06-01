@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      email: new FormControl('', Validators.required),
+      username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
 
@@ -39,21 +39,20 @@ export class RegisterComponent implements OnInit {
     this.auth.login(loginData)
       .then((response) => {
         this.loading_login = false;
-        let status = response.json().status;
-        if(status == "ok"){
-          localStorage.setItem('token', response.json().token);
-          this.signinForm.reset();
-          this.auth.setLogin();
-          this.router.navigate(['/profile']);
-        }
-        if(status == "error"){
-          let error_message = response.json().message;
-          swal("Error", error_message, "error");
-        }
+        response = response.json();
+        localStorage.setItem('access_token', response.access_token);
+        localStorage.setItem('refresh_token', response.refresh_token);
+        this.signinForm.reset();
+        this.auth.setLogin();
+        this.router.navigate(['/mi-cuenta']);
       })
       .catch((error) => {
         this.loading_login = false;
-        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+        let message = "Ocurrió un error, inténtalo de nuevo.";
+        if(error.json().error == "invalid_credentials"){
+          message = "Los datos ingresados son incorrectos";
+        }
+        swal("Error", message, "error");
     })
   }
 
@@ -63,16 +62,12 @@ export class RegisterComponent implements OnInit {
     this.auth.register(registerData)
       .then((response) => {
         this.loading_register = false;
-        let status = response.json().status;
-        if(status == "ok"){
-          localStorage.setItem('token', response.json().token);
-          this.registerForm.reset();
-          this.router.navigate(['/profile']);
-        }
-        if(status == "error"){
-          let error_message = response.json().message;
-          swal("Error", error_message, "error");
-        }
+        response = response.json();
+        localStorage.setItem('access_token', response.access_token);
+        localStorage.setItem('refresh_token', response.refresh_token);
+        this.registerForm.reset();
+        this.auth.setLogin();
+        this.router.navigate(['/mi-cuenta']);
       })
       .catch((error) => {
         this.loading_register = false;

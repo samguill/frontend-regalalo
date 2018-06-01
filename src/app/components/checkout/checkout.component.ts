@@ -80,12 +80,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   getDirections(){
-    let token = this.auth.getToken();
-    let decode_token:string = jwtDecode(token);
-    let client: any = decode_token["client"];
-    this.profile_service.directions(token, client.id)
+    this.profile_service.directions()
     .then((response) => {
-      this.client_directions = response.json().order;
+      this.client_directions = response.json().directions;
     })
     .catch((error) => {
       swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
@@ -94,19 +91,19 @@ export class CheckoutComponent implements OnInit {
 
   onDeliveryChange(value){
     this.delivery = value;
-    if(this.delivery == "envio"){
-      let data:any;
+    if (this.delivery === 'envio') {
+      let data: any;
       data = {
         store_branche_id : this.branche.id,
         lat_origin: this.latitude,
         lon_origin: this.longitude
-      }
+      };
       this.check_out_service.delivery_calculate(data)
       .then((response) => {
         this.price_delivery = response.json().prices[0].price;
       })
-      .catch((error)=>{
-        this.delivery == "recoge";
+      .catch((error) => {
+        this.delivery === 'recoge';
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       });
     }else{
@@ -116,10 +113,6 @@ export class CheckoutComponent implements OnInit {
 
   payment(){
     this.loading_payment = true;
-
-    let token = this.auth.getToken();
-    let decode_token:string = jwtDecode(token);
-    let client = decode_token["client"];
     let delivery_post:boolean;
 
     if(this.delivery == "recoge"){
@@ -132,7 +125,6 @@ export class CheckoutComponent implements OnInit {
     data = {
       order : {
         store_id: this.branche.store_id,
-        client_id: client.id,
         sub_total: this.subtotal,
         total: this.total,
         client_direction_id: this.client_direction_id
@@ -145,17 +137,10 @@ export class CheckoutComponent implements OnInit {
         igv: parseFloat(this.total) * 0.18
       }],
       store_branche_id: this.branche.id,
-      destination_client: {
-        contact_person: client.first_name + " " + client.last_name,
-        phone: 98999989,
-        address: this.address,
-        latlon: this.latitude + "," + this.longitude,
-        email: client.email
-      },
       delivery : delivery_post
     };
 
-    this.check_out_service.generate_payment(token, data)
+    this.check_out_service.generate_payment(data)
     .then((response) => {
       this.loading_payment = false;
       this.purchaseVerification = response.json().purchaseVerification;

@@ -5,12 +5,13 @@ import { User } from './../models/user';
 import 'rxjs/add/operator/toPromise';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-export const TOKEN: string = 'token';
+export const TOKEN: string = 'access_token';
 
 @Injectable()
 export class AuthService {
 
-  private BASE_URL : string = 'https://adminv2.regalaloprueba.com/api/client/';
+  private BASE_URL : string = 'https://admin.regalalo.pe/api/client/';
+  //private BASE_URL : string = 'http://regalalo.test/api/client/';
   private headers : Headers = new Headers({'Content-Type': 'application/json'});
 
   private loggedIn = new BehaviorSubject<boolean>(this.isTokenExist());
@@ -49,7 +50,8 @@ export class AuthService {
   }
 
   logout() : void {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
     this.loggedIn.next(false);
   }
 

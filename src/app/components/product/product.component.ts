@@ -14,6 +14,7 @@ import swal from 'sweetalert2';
 export class ProductComponent implements OnInit {
   data_product: any;
   data_branche: any;
+  isloggedIn: boolean = false;
 
   constructor(
     private router: Router,
@@ -21,7 +22,10 @@ export class ProductComponent implements OnInit {
     private activated_route: ActivatedRoute,
     private product_service: ProductService,
     private checkout_data_service: CheckoutDataService) {
-      
+      let access_token = localStorage.getItem("access_token");
+      if(access_token != null){
+        this.isloggedIn = true;
+      }
     }
 
   ngOnInit() {

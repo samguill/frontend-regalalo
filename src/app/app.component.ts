@@ -1,5 +1,6 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { Router, NavigationStart, NavigationCancel, NavigationEnd } from '@angular/router';
+import { LoaderService } from './services/loader.service';
 
 import {
   transition,
@@ -16,11 +17,19 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   loading;
   title = 'app';
   location : any;
 
-  constructor(private router: Router){
+  constructor(private router: Router, private loaderService: LoaderService){
+  }
+
+  showLoader: boolean;
+
+  ngOnInit(): void {
+    this.loaderService.status.subscribe((val: boolean) => {
+      this.showLoader = val;
+    });
   }
 }

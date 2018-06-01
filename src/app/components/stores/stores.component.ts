@@ -36,8 +36,8 @@ export class StoresComponent implements OnInit {
   getStores(){
     this.store_service.stores()
       .then((response) => {
-        if(response.json().status === "ok"){
-          this.stores = response.json().stores;
+        if(response.status === "ok"){
+          this.stores = response.stores;
         }else{
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
         }

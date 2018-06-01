@@ -1,6 +1,48 @@
-<footer class="b-footer_container color-scheme-light hidden -sm-down">
+<footer class="b-footer_container color-scheme-light hidden -sm-down" style="background-image: url('assets/img/footer-bg.jpg')">
   <div class="container b-main_footer">
-
+      <aside class="row clearfix">
+          <div class="b-footer_column col-lg-3 col-md-3 col-sm-6 mb-4">
+            <div>
+                <a [routerLink]="['/']"><img src="assets/img/logo-white.png"  class="logo-footer mb-3" /></a>
+                <p class="text-white text-left">La elección perfecta para encontrar eso que tanto buscas...</p>
+                <div class="b-footer_block_in">
+                  <ul class="b-social-icons text-center">
+                    <li><a href="https://www.facebook.com/regalalo.pe/" target="_blank"><i class="fa fa-facebook mr-1"></i></a></li>
+                    <li><a href="https://twitter.com/RegalaloPE" target="_blank"><i class="fa fa-twitter mr-1"></i></a></li>
+                    <li><a href="https://www.instagram.com/regalalo.pe/" target="_blank"><i class="fa fa-instagram mr-1"></i></a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+          <div class="b-footer_column col-lg-3 col-md-3 col-sm-6 mb-4">
+              <img src="assets/img/24hrs-icon.png"  class="footer-icon mb-4" />
+              <h5 class="title text-white text-uppercase mb-3 pb-2">Servicio al cliente</h5>
+              <ul class="links">
+                <li><a [routerLink]="['/']">Preguntas frecuentes</a></li>
+                <li><a [routerLink]="['/']">Términos y condiciones</a></li>
+                <li><a [routerLink]="['/']">Privacidad y confidencialidad</a></li>
+              </ul>
+          </div>
+          <div class="b-footer_column col-lg-3 col-md-3 col-sm-6 mb-4">
+              <img src="assets/img/marker-icon.png"  class="footer-icon mb-4" />
+              <h5 class="title text-white text-uppercase mb-3 pb-2">Informes</h5>
+              <ul class="links">
+                <li class="text-white">Información sobre el pedido</li>
+                <li class="text-white">[01] 318 7623</li>
+                <li class="text-white">info@regalalo.pe</li>
+              </ul>
+          </div>
+          <div class="b-footer_column col-lg-3 col-md-3 col-sm-6 mb-4">
+              <img src="assets/img/sale-icon.png"  class="footer-icon mb-4" />
+              <h5 class="title text-white text-uppercase mb-3 pb-2">Venta y compra</h5>
+              <ul class="links">
+                <li><a [routerLink]="['/']">Vende con nosotros</a></li>
+                <li><a [routerLink]="['/']">Nuestra pasarela de pagos</a></li>
+                <li><a [routerLink]="['/']">Términos y condiciones de pagos</a></li>
+              </ul>
+          </div>
+          <div class="b-footer_column col-lg-4 col-md-12 col-sm-12 mb-4"></div>
+      </aside>
   </div>
 
   <div class="b-copyrights_wrapper">

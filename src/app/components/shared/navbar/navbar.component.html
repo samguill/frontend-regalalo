@@ -2,30 +2,28 @@
   <div class="b-header b-header_bg">
     <div class="container">
       <div class="b-header_topbar row clearfix">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-          <div class="b-top_bar_left float-md-left text-center text-white">
-            <i class="fa fa-phone-square text-white mr-1"> </i>
-            Teléfono: <a href="tel:+5113187623" class="text-white ml-2">(01) 318 7623</a>
-          </div>
-        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden-sm-down">
           <div class="b-top_bar_right clearfix">
             <div class="b-topbar_menu float-md-right text-center">
               <div class="b-menu_top_bar_container">
                 <ul id="b-menu_top_bar" class="b-menu">
-                  <li *ngIf="isLoggedIn$ | async">
+                  <li><a href="contact-01.html">Contáctanos</a></li>
+                  <li><a href="https://www.facebook.com/regalalo.pe/" target="_blank"><i class="fa fa-facebook mr-1"></i></a></li>
+                  <li><a href="https://twitter.com/RegalaloPE" target="_blank"><i class="fa fa-twitter mr-1"></i></a></li>
+                  <li><a href="https://www.instagram.com/regalalo.pe/" target="_blank"><i class="fa fa-instagram mr-1"></i></a></li>
+                  <!-- <li *ngIf="isLoggedIn$ | async">
                     <a [routerLink]="['mi-cuenta']"><i class="fa fa-user mr-1"></i>Mi cuenta</a>
                   </li>
                   <li *ngIf="(isLoggedIn$ | async)">
-                    <a href="cart-default.html"><i class="fa fa-heart mr-1"></i>Mi lista de deseos</a>
+                    <a [routerLink]="['mi-lista-de-deseos']"><i class="fa fa-heart mr-1"></i>Mi lista de deseos</a>
                   </li>
                   <li *ngIf="(isLoggedIn$ | async)">
                     <a class="link" (click)="salir()"><i class="fa fa-sign-out mr-1"></i>Salir</a>
                   </li>
                   <li *ngIf="!(isLoggedIn$ | async)">
                       <a [routerLink]="['register']">Login / Registro</a>
-                    </li>
-                  <li><a href="contact-01.html">Contáctanos</a></li>
+                    </li>-->
                 </ul>
               </div>   
             </div>
@@ -36,21 +34,47 @@
   </div>
 
   <div class="b-header b-header_main">
-    <div class="container">
+    <div class="container-fluid">
       <div class="clearfix row">
-        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12 hidden-sm-down hidden-md-down">
+
+        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-6">
+          <div class="b-logo text-sm-left text-lg-center text-xl-center">
+            <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" /></a>
+            <div class="welcome-user" *ngIf="(isLoggedIn$ | async)">
+              <span>Bienvenido: </span><span class="orange">MARZIO PÉREZ</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="vertical-divider"><div class="mask"></div></div> -->
+
+        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12 mt-3 hidden-sm-down hidden-md-down">
+          
+          <div class="b-header_search">
+            <app-quick-search-form></app-quick-search-form>
+          </div>
+
           <div class="b-header_nav">
             <div class="b-menu_top_bar_container">
               <div class="b-main_menu menu-stay-left">
                 <ul class="categories pl-0 mb-0 list-unstyled">
-                  <li class="b-has_sub b-dropdown_wrapper from-bottom">
-                    <a [routerLink]="['/']"><span class="top" routerLinkActive="active">Inicio</span></a>
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a [routerLink]="['/']"><span>Inicio</span></a>
                   </li>
-                  <li class="b-has_sub b-dropdown_wrapper from-bottom">
-                    <a [routerLink]="['catalogo-tiendas']" routerLinkActive="active"><span>Tiendas</span></a>
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
+                      <a [routerLink]="['departamentos']"><span class="top">Departamentos</span></a>
+                    </li>
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
+                    <a [routerLink]="['catalogo-tiendas']"><span>Tiendas</span></a>
                   </li>
-                  <li class="b-has_sub b-dropdown_wrapper from-bottom">
-                    <a [routerLink]="['stores']" routerLinkActive="active"><span>Productos</span></a>
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
+                    <a [routerLink]="['vende-con-nosotros']"><span>Vende con nosotros</span></a>
+                  </li>
+                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
+                    <a [routerLink]="['ayuda']"><span>Ayuda</span></a>
+                  </li>
+                  <li *ngIf="(isLoggedIn$ | async)" class="b-has_sub b-dropdown_wrapper from-bottom">
+                    <a href="#" (click)="salir()"><span>Salir</span></a>
                   </li>
                 </ul>
               </div>
@@ -58,19 +82,30 @@
           </div>
         </div>
         
-        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-4 col-xs-6">
-          <div class="b-logo text-sm-left text-lg-center text-xl-center">
-            <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" /></a>
+        <!-- <div class="vertical-divider"><div class="mask"></div></div> -->
+
+        <div class="col-xl-1 col-lg-1 col-mb-1 col-sm-1 col-xs-6 mt-3">
+          <div class="text-sm-left text-lg-center text-xl-center icon-last-menu">
+            <a [routerLink]="['/']"><img src="assets/img/cupon-icon.png" /></a>
+            <span>cupones</span>
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-8 col-xs-6">
+        <!-- <div class="vertical-divider"><div class="mask"></div></div> -->
+
+        <div class="col-xl-1 col-lg-1 col-mb-1 col-sm-1 col-xs-6 mt-3">
+          <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
+            <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
+            <span>cuenta</span>
+          </div>
+          <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
+            <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
+            <span>ingresar</span>
+          </div>
+        </div>
+
+        <!-- <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-8 col-xs-6">
           <div class="b-header_right">
-            <!--<div class="b-header_links hidden-sm-down">
-              <ul class="pl-0 mb-0 list-unstyled">
-                
-              </ul>
-            </div>-->
             <div class="b-search_icon hidden-sm-down">
               <a href="javascript:;" id="b-search_toggle" class="d-inline-block">
                 <i class="icon-magnifier icons"></i>
@@ -83,7 +118,7 @@
               </a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -54,10 +54,10 @@ export class SearchFormComponent implements OnInit {
   getParameters(){
     this.page.parameters()
       .then((response) => {
-        if(response.json().status === "ok"){
-          this.interests = response.json().interests;
-          this.events = response.json().events;
-          this.experiences = response.json().experiences;
+        if(response.status === "ok"){
+          this.interests = response.interests;
+          this.events = response.events;
+          this.experiences = response.experiences;
         }else{
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
         }
@@ -97,6 +97,7 @@ export class SearchFormComponent implements OnInit {
     data["events"] = this.eventsArray.value;
     data["interests"] = this.interestsArray.value;
     data["availability"] = this.availability;
+    data["type"] = "advance";
 
     this.search_data.setData(data);
     this.router.navigate(['/busqueda']);

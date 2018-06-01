@@ -3,36 +3,43 @@
 </div>
 <section class="container">
   <div class="row">
-    <div class="col-md-4">
-      <app-search-form></app-search-form>
-    </div>
-    <div class="col-md-8">
+    <div class="col-md-12">
       <div class="row">
-        <div class="col-md-4" *ngFor="let product of result">
+        <div class="col-md-3" *ngFor="let product of result">
           <div class="b-product_grid_single">
             <div class="b-product_grid_header">
-              <a (click)="product_detail(product)">
-                <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == null" width="100%" />
-                <img [src]="'http://adminv2.regalaloprueba.com/' + product.featured_image" *ngIf="product.featured_image !== null" width="100%" />
-              </a>
+              <h3 class="product-title">
+                <a (click)="product_detail(product)">{{product.name}}</a>
+              </h3>
+              <span *ngIf="product.distance" class="b-distance">A {{ product.distance.toFixed(2) }} km.</span>
               <div class="b-product_grid_action">
-                <a href="#">
-                  <i class="icon-heart icons"></i>
+                <a (click)="add_to_wishlist(product)">
+                  <i [ngClass]="{'fa-circle-o-notch fa-spin': loading}" class="fa"></i>
+                  <i *ngIf="!loading" class="icon-heart icons"></i>
                 </a>
               </div>
             </div>
-            <div class="b-product_grid_info">
-              <h3 class="product-title">
-                <a (click)="product_detail(product)">{{product.name}} <span *ngIf="product.distance" class="b-distance"><br>A {{ product.distance.toFixed(2) }} km.</span></a>
-              </h3>
+            <div class="b-product_grid_info mb-3">
+              <a (click)="product_detail(product)">
+                <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == null" width="100%" />
+                <img [src]="'https://admin.regalalo.pe/' + product.featured_image" *ngIf="product.featured_image !== null" width="100%" />
+              </a>
+            </div>
+            <div class="b-product_grid_footer pt-3">
               <div class="clearfix">
-                <div class="b-product_grid_toggle float-left">
-                  <span class="b-price">S/{{product.price}} - {{product.quantity}} unidades</span>
-                  
-                  <span class="b-add_cart">
-                    <a (click)="product_detail(product)">Ver detalle</a>
-                  </span>
+                <div class="row" *ngIf="product.discount != 0">
+                  <div class="col-md-5">
+                    <span class="regular-price">P. regular:<br> S/{{ product.price }} <span class="zero">.00</span></span>
+                  </div>
+                  <div class="col-md-7">
+                    <span class="new-price">S/.{{ product.discount_price }} <span class="zero">.00</span></span>
+                  </div>
                 </div>
+                <div class="row" *ngIf="product.discount == 0">
+                    <div class="col-md-12">
+                      <span class="new-price">S/.{{ product.price }} <span class="zero">.00</span></span>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>

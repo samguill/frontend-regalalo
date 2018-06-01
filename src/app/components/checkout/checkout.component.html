@@ -26,7 +26,7 @@
                     <div class="row">
                       <div class="col-sm-2 hidden-xs">
                         <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == ''" width="100%" />
-                        <img [src]="'http://adminv2.regalaloprueba.com/' + product.featured_image" *ngIf="product.featured_image !== ''" width="100%" />
+                        <img [src]="product.featured_image" *ngIf="product.featured_image !== ''" width="100%" />
                       </div>
                       <div class="col-sm-10">
                         <h4 class="nomargin">{{product.name}}</h4>

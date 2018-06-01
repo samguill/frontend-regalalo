@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class SearchService {
 
-  private BASE_URL : string = 'https://adminv2.regalaloprueba.com/products/search';
-  private headers : Headers = new Headers({'Content-Type': 'application/json'});
+  private BASE_URL : string = 'https://admin.regalalo.pe/api';
+  //private BASE_URL : string = 'http://regalalo.test/api/';
+  private headers = new HttpHeaders({'Content-Type':'application/json'});
 
-  constructor(private http:Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   search (data:any) : Promise<any> {
-    let url : string = `${this.BASE_URL}`;
-    return this.http.post(url, data, {headers : this.headers}).toPromise();
+    let url : string = `${this.BASE_URL}/products/search`;
+    return this.httpClient.post(url, data, {headers : this.headers}).toPromise();
+  }
+
+  quicksearch(data:any) : Promise<any> {
+    let url : string = `${this.BASE_URL}/quicksearch`;
+    return this.httpClient.post(url, data, {headers : this.headers}).toPromise();
   }
 
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from './../../services/orders.service';
 import { AuthService } from './../../services/auth.service';
-import * as jwtDecode from 'jwt-decode';
 import swal from 'sweetalert2';
 
 @Component({
@@ -21,11 +20,8 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    let token = this.auth.getToken();
-    let decode_token:string = jwtDecode(token);
-    let client: any = decode_token["client"];
     this.loading = true;
-    this.orders_service.list(client.id)
+    this.orders_service.list()
     .then((response)=> {
       this.orders = response.json().data;
       this.loading = false;

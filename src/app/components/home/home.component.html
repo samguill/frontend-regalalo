@@ -1,8 +1,45 @@
-<section class="container">
-  <div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <app-search-form></app-search-form>
+<section class="container-fluid slider">
+  <div class="slide" *ngFor="let slide of slides">
+    <img [src]="slide.image" />
+    <!-- <div class="slide-element" *ngFor="let element of slide.elements">
+      <p>{{element.content}}</p>      
+    </div>-->
+  </div>
+</section>
+
+<section class="container-fluid stores mt-5 mb-5" id="logo-stores">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mt-3 mb-3">
+        <h5 class="title text-uppercase">Tiendas asociadas</h5>
+      </div>
     </div>
   </div>
+  <div>
+    <div class="slick-logo-stores row">
+      <div class="logo-store col-md-3" *ngFor="let store of stores">
+        <a routerLink="/tienda/{{store.slug}}">
+          <img [src]="!store.logo_store ? 'http://via.placeholder.com/337x150' : store.logo_store" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container-fluid mt-5 mb-5" id="offers">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mt-3 mb-3">
+          <h5 class="title text-uppercase">Ofertas para ti</h5>
+        </div>
+      </div>
+    </div>
+    <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 1 }" 
+    [useAnimation]="true"
+    [useImagesLoaded]="true"
+    [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
+      <ng-masonry-grid-item *ngFor="let offer of offers" [routerLink]="['register']"> 
+        <img [src]="offer.image" />
+      </ng-masonry-grid-item>
+    </ng-masonry-grid>
 </section>
