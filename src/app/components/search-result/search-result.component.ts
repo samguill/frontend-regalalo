@@ -92,7 +92,6 @@ export class SearchResultComponent implements OnInit {
       .then((response) => {
         this.loading = false;
         response = response.json();
-        console.log(response);
       })
       .catch((error) => {
         this.loading = false;

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Meta} from '@angular/platform-browser';
 
 import { StoreService } from './../../services/store.service';
+import { ProfileService } from './../../services/profile.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -14,10 +15,12 @@ export class StoreComponent implements OnInit {
 
   products: any;
   store: any;
+  loading:boolean = false;
 
   constructor(
     private activatedRoute:ActivatedRoute,
     private meta:Meta,
+    private profile_service: ProfileService,
     private store_service: StoreService) {
       this.activatedRoute.params.subscribe(id => {
         this.store_service.store_products(id.id)
@@ -40,6 +43,19 @@ export class StoreComponent implements OnInit {
             swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
           })
       });
+    }
+
+    add_to_wishlist(product:any){
+      this.loading = true;
+      this.profile_service.add_to_wishlist(product.id)
+        .then((response) => {
+          this.loading = false;
+          response = response.json();
+        })
+        .catch((error) => {
+          this.loading = false;
+          swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+        });
     }
 
   ngOnInit() {
