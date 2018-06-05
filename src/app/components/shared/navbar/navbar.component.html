@@ -10,20 +10,7 @@
                 <ul id="b-menu_top_bar" class="b-menu">
                   <li><a href="contact-01.html">Contáctanos</a></li>
                   <li><a href="https://www.facebook.com/regalalo.pe/" target="_blank"><i class="fa fa-facebook mr-1"></i></a></li>
-                  <li><a href="https://twitter.com/RegalaloPE" target="_blank"><i class="fa fa-twitter mr-1"></i></a></li>
                   <li><a href="https://www.instagram.com/regalalo.pe/" target="_blank"><i class="fa fa-instagram mr-1"></i></a></li>
-                  <!-- <li *ngIf="isLoggedIn$ | async">
-                    <a [routerLink]="['mi-cuenta']"><i class="fa fa-user mr-1"></i>Mi cuenta</a>
-                  </li>
-                  <li *ngIf="(isLoggedIn$ | async)">
-                    <a [routerLink]="['mi-lista-de-deseos']"><i class="fa fa-heart mr-1"></i>Mi lista de deseos</a>
-                  </li>
-                  <li *ngIf="(isLoggedIn$ | async)">
-                    <a class="link" (click)="salir()"><i class="fa fa-sign-out mr-1"></i>Salir</a>
-                  </li>
-                  <li *ngIf="!(isLoggedIn$ | async)">
-                      <a [routerLink]="['register']">Login / Registro</a>
-                    </li>-->
                 </ul>
               </div>   
             </div>
@@ -41,7 +28,7 @@
           <div class="b-logo text-sm-left text-lg-center text-xl-center">
             <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" /></a>
             <div class="welcome-user" *ngIf="(isLoggedIn$ | async)">
-              <span>Bienvenido: </span><span class="orange">MARZIO PÉREZ</span>
+              <span>Bienvenido: </span><span class="orange">{{client_name}}</span>
             </div>
           </div>
         </div>
@@ -59,10 +46,10 @@
               <div class="b-main_menu menu-stay-left">
                 <ul class="categories pl-0 mb-0 list-unstyled">
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                    <a [routerLink]="['/']"><span>Inicio</span></a>
+                    <a href="http://localhost:4200/"><span>Inicio</span></a>
                   </li>
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
-                      <a [routerLink]="['departamentos']"><span class="top">Departamentos</span></a>
+                      <a [routerLink]="['categorias']"><span class="top">Categorías</span></a>
                     </li>
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['catalogo-tiendas']"><span>Tiendas</span></a>
@@ -79,15 +66,6 @@
                 </ul>
               </div>
             </div>
-          </div>
-        </div>
-        
-        <!-- <div class="vertical-divider"><div class="mask"></div></div> -->
-
-        <div class="col-xl-1 col-lg-1 col-mb-1 col-sm-1 col-xs-6 mt-3">
-          <div class="text-sm-left text-lg-center text-xl-center icon-last-menu">
-            <a [routerLink]="['/']"><img src="assets/img/cupon-icon.png" /></a>
-            <span>cupones</span>
           </div>
         </div>
 

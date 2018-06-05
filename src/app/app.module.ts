@@ -35,6 +35,7 @@ import { CheckoutService } from './services/checkout.service';
 import { OrdersService } from './services/orders.service';
 import { WishlistService } from './services/wishlist.service';
 import { LoaderService } from './services/loader.service';
+import { FaqService } from './services/faq.service';
 import { loadingInterceptor } from './services/loadingInterceptor';
 
 import { StoreComponent } from './components/store/store.component';
@@ -44,9 +45,13 @@ import { ProductComponent } from './components/product/product.component';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { QuickSearchFormComponent } from './components/quick-search-form/quick-search-form.component';
+
+import { OwlModule } from 'ngx-owl-carousel';
+import { FaqComponent } from './components/faq/faq.component';
+import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   declarations: [
@@ -64,15 +69,16 @@ import { QuickSearchFormComponent } from './components/quick-search-form/quick-s
     SearchFormComponent,
     CheckoutComponent,
     OrdersComponent,
-    WishlistComponent,
     LoaderComponent,
-    QuickSearchFormComponent
+    QuickSearchFormComponent,
+    FaqComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyDRlAt4Fftas-0hDsaPdbFW11wnKX1zMW8",
+      apiKey: "AIzaSyBJ0XvtnWS6I60xHgZ7u_rRc8aGFzBYEXQ",
       libraries: ["places"]
     }),
+    AgmDirectionModule,
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -81,7 +87,9 @@ import { QuickSearchFormComponent } from './components/quick-search-form/quick-s
     HttpClientModule,
     NgMasonryGridModule,
     APP_ROUTING,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    OwlModule,
+    Ng4GeoautocompleteModule.forRoot()
   ],
   providers: [
     AuthService,
@@ -97,6 +105,7 @@ import { QuickSearchFormComponent } from './components/quick-search-form/quick-s
     CheckoutService,
     OrdersService,
     WishlistService,
+    FaqService,
     LoaderService,
     {
       provide: HTTP_INTERCEPTORS,

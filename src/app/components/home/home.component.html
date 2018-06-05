@@ -1,9 +1,47 @@
 <section class="container-fluid slider">
-  <div class="slide" *ngFor="let slide of slides">
+  <!--<div class="slide" *ngFor="let slide of slides">
     <img [src]="slide.image" />
-    <!-- <div class="slide-element" *ngFor="let element of slide.elements">
+     <div class="slide-element" *ngFor="let element of slide.elements">
       <p>{{element.content}}</p>      
-    </div>-->
+    </div>
+  </div>-->
+  <div  class="rev_slider_wrapper fullwidthbanner-container" data-alias="classic4export" data-source="gallery">
+      <div id="b-home_01_slider" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
+        <ul>
+          <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
+          data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
+          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-1.jpg"  data-rotate="0" 
+          data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
+           data-title="Intro">
+            <img src="https://admin.regalalo.pe/uploads/slides/slide-1.jpg" data-bgposition="center center" 
+            data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+          </li>
+          <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
+          data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
+          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-2.jpg"  data-rotate="0" 
+          data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
+           data-title="Intro">
+            <img src="https://admin.regalalo.pe/uploads/slides/slide-2.jpg" data-bgposition="center center" 
+            data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+          </li>
+          <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
+          data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
+          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-3.jpg"  data-rotate="0" 
+          data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
+           data-title="Intro">
+            <img src="https://admin.regalalo.pe/uploads/slides/slide-3.jpg" data-bgposition="center center" 
+            data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+          </li>
+          <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
+          data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
+          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-4.jpg"  data-rotate="0" 
+          data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
+           data-title="Intro">
+            <img src="https://admin.regalalo.pe/uploads/slides/slide-4.jpg" data-bgposition="center center" 
+            data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+          </li>
+        </ul>
+      </div>
   </div>
 </section>
 
@@ -11,16 +49,17 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 mt-3 mb-3">
+        <img src="assets/img/badge-icon.png" class="icon-text" />
         <h5 class="title text-uppercase">Tiendas asociadas</h5>
       </div>
     </div>
   </div>
-  <div>
-    <div class="slick-logo-stores row">
-      <div class="logo-store col-md-3" *ngFor="let store of stores">
-        <a routerLink="/tienda/{{store.slug}}">
-          <img [src]="!store.logo_store ? 'http://via.placeholder.com/337x150' : store.logo_store" />
-        </a>
+  <div class="row">
+    <div class="col-md-2" *ngFor="let store of stores;let i = index">
+      <div class="item">
+          <a routerLink="/tienda/{{store.slug}}">
+            <img [src]="!store.logo_store ? 'http://via.placeholder.com/337x150' : store.logo_store" width="100%" />
+          </a>
       </div>
     </div>
   </div>
@@ -30,16 +69,66 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 mt-3 mb-3">
+          <img src="assets/img/gift-icon.png" class="icon-text" />
           <h5 class="title text-uppercase">Ofertas para ti</h5>
         </div>
       </div>
     </div>
-    <ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 1 }" 
-    [useAnimation]="true"
-    [useImagesLoaded]="true"
-    [scrollAnimationOptions]="{ animationEffect: 'effect-4', minDuration : 0.4, maxDuration : 0.7 }">
-      <ng-masonry-grid-item *ngFor="let offer of offers" [routerLink]="['register']"> 
-        <img [src]="offer.image" />
-      </ng-masonry-grid-item>
-    </ng-masonry-grid>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="offer-content">
+          <img [src]="offer1.image" />
+          <div class="offert-text">
+            <h5 class="text-uppercase">{{offer1.title}}</h5>
+            <p>{{offer1.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="offer-content">
+          <img [src]="offer2.image" />
+          <div class="offert-text">
+            <h5 class="text-uppercase">{{offer2.title}}</h5>
+            <p>{{offer2.description}}</p>
+          </div>
+        </div>
+        <div class="offer-content">
+          <img [src]="offer4.image" />
+          <div class="offert-text">
+            <h5 class="text-uppercase">{{offer4.title}}</h5>
+            <p>{{offer4.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="offer-content">
+          <img [src]="offer3.image" />
+          <div class="offert-text">
+            <h5 class="text-uppercase">{{offer3.title}}</h5>
+            <p>{{offer3.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</section>
+
+<section class="container-fluid mt-5 mb-5" id="products">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mt-3 mb-3">
+        <img src="assets/img/sale-icon-dark.png" class="icon-text" />
+        <h5 class="title text-uppercase">Top regalos</h5>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row carousel-products owl-carousel owl-theme">
+      <div *ngFor="let image of images;let i = index">
+        <div class="item">
+          <div class="thumbnail-image"><img [src]="image.image" width="100%" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

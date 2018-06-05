@@ -29,15 +29,15 @@
               <div class="clearfix">
                 <div class="row" *ngIf="product.discount != 0">
                   <div class="col-md-5">
-                    <span class="regular-price">P. regular:<br> S/{{ product.price }} <span class="zero">.00</span></span>
+                    <span class="regular-price">P. regular:<br> S/{{ product.price.toFixed(0) }} <span class="zero">.00</span></span>
                   </div>
                   <div class="col-md-7">
-                    <span class="new-price">S/.{{ product.discount_price }} <span class="zero">.00</span></span>
+                    <span class="new-price">S/{{ product.discount_price.toFixed(0) }} <span class="zero">.00</span></span>
                   </div>
                 </div>
                 <div class="row" *ngIf="product.discount == 0">
                     <div class="col-md-12">
-                      <span class="new-price">S/.{{ product.price }} <span class="zero">.00</span></span>
+                      <span class="new-price">S/{{ product.price.toFixed(0) }} <span class="zero">.00</span></span>
                     </div>
                   </div>
               </div>

@@ -1,18 +1,19 @@
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title">{{data_product.name}}</h1>
+</div>
 <div class="b-product_single pb-5">
     <div class="container">
       <div class="row clearfix">
         <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12">
           <ul class="pl-0 mb-0" id="b-lightSlider">
-            <li data-thumb="assets/images/instagram/home-fashion/instagram-4.jpg">
-              <img src="http://via.placeholder.com/1200x1200" *ngIf="data_product.featured_image == null" width="100%" />
-              <img [src]="data_product.featured_image" *ngIf="data_product.featured_image !== null" width="100%" />
+            <li>
+              <img [src]="!data_product.featured_image ? 'http://via.placeholder.com/1200x1200' : data_product.featured_image" width="100%" />
             </li>
           </ul>
         </div>
         <div class="col-xl-8 col-lg-8 col-mb-8 col-sm-12 col-xs-12">
           <div class="b-product_single_summary">
-            <h1>{{data_product.name}}</h1>
-            <span>{{data_product.sku_code}}</span>
+            <span><b>SKU: </b>{{data_product.sku_code}}</span>
             <p class="b-price">
               <span class="b-amount">
               <span class="b-symbol">S/</span>{{data_product.price}}</span>
@@ -29,37 +30,45 @@
       </div>
     </div>
 </div>
-<div class="b-gray_bg b-product_tabs">
+<div class="b-gray_bg b-product_tabs mb-5">
   <div class="container">
     <div class="row">
-      <ngb-tabset [justify]="center">
-        <ngb-tab title="Descripción">
-          <ng-template ngbTabContent>
-            <div [innerHtml]="data_product.description"></div>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab title="Información Adicional">
-          <ng-template ngbTabContent>
-            <div>
-              <table class="table">
-                <tr>
-                  <td><b>Color</b></td>
-                  <td>Negro, Blanco</td>
-                </tr>
-                <tr>
-                  <td><b>Tamaño</b></td>
-                  <td>15cm x 9cm</td>
-                </tr>
-              </table>
-            </div>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab title="Ubicación de la tienda">
-          <ng-template ngbTabContent>
-            
-          </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
+      <div class="col-md-12">
+        <ngb-tabset [justify]="center">
+          <ngb-tab title="Descripción">
+            <ng-template ngbTabContent>
+              <div [innerHtml]="data_product.description"></div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Información Adicional">
+            <ng-template ngbTabContent>
+              <div>
+                <table class="table">
+                  <tr>
+                    <td><b>Color</b></td>
+                    <td>Negro, Blanco</td>
+                  </tr>
+                  <tr>
+                    <td><b>Tamaño</b></td>
+                    <td>15cm x 9cm</td>
+                  </tr>
+                </table>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab title="Ubicación de la tienda">
+            <ng-template ngbTabContent>
+                <agm-map *ngIf="multiple_directions == true" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="12">
+                    <agm-marker [iconUrl]="client_marker" [latitude]="single_latitude" [longitude]="single_longitude"></agm-marker>
+                    <agm-marker *ngFor="let branch of data_branche" [iconUrl]="store_marker" [latitude]="branch.latitude" [longitude]="branch.longitude"></agm-marker>
+                </agm-map>
+                <agm-map *ngIf="multiple_directions == false" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="14">
+                  <agm-direction *ngIf="directions" [origin]="directions.origin" [destination]="directions.destination" [markerOptions]="marker_options" [renderOptions]="direction_options"></agm-direction>
+                </agm-map>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
     </div>
   </div>
 </div>

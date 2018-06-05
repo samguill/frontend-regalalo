@@ -11,11 +11,15 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
+  client_name: string = "Visitante";
+  client: any;
 
   constructor(private router: Router,private authService: AuthService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn();
+    this.client = JSON.parse(localStorage.getItem("client"));
+    this.client_name = this.client.first_name + " " + this.client.last_name;
   }
 
   salir(){

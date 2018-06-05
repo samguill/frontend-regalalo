@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
         response = response.json();
         localStorage.setItem('access_token', response.access_token);
         localStorage.setItem('refresh_token', response.refresh_token);
+        localStorage.setItem('client', JSON.stringify(response.client));
         this.signinForm.reset();
         this.auth.setLogin();
         this.router.navigate(['/mi-cuenta']);
@@ -65,6 +66,7 @@ export class RegisterComponent implements OnInit {
         response = response.json();
         localStorage.setItem('access_token', response.access_token);
         localStorage.setItem('refresh_token', response.refresh_token);
+        localStorage.setItem('client', JSON.stringify(response.client));
         this.registerForm.reset();
         this.auth.setLogin();
         this.router.navigate(['/mi-cuenta']);

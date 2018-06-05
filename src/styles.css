@@ -588,24 +588,24 @@ button.btn {
 }
 
 .b-product_tabs .nav {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     display: block;
     width: 100%;
-    border-bottom: none;
+    border-bottom: 2px solid #CCC;
+    background: #FFF;
+    padding: 10px;
 }
 
 .b-product_tabs .nav li {
     display: inline-block;
     margin-right: 30px;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #E4E4E4;
 }
 
 .b-product_tabs .nav-tabs .nav-link.active,
 .b-product_tabs .nav-tabs .nav-item.show .nav-link {
-    color: #000;
+    color: #ff5019;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 3px solid #ff5019;
     background-color: transparent;
 }
 
@@ -615,11 +615,13 @@ button.btn {
     display: inline-block;
     font-size: 20px;
     font-weight: 600;
-    color: rgba(0, 0, 0, 0.5);
+    color: #393231;
 }
 
 .b-product_tabs .tab-content {
     width: 100%;
+    padding: 20px;
+    background: #FFF;
 }
 
 .b-product_tabs .tab-content > div {
@@ -911,4 +913,162 @@ ul#b-lightSlider{
 
 .b-product_grid_single h3.product-title a {
     color: #313131;
+}
+
+section#logo-stores h5.title::before,
+section#offers h5.title::before,
+#offers .offer-content .offert-text h5::before,
+section#products h5.title::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background-color: #f05224;
+}
+
+section#logo-stores h5.title,
+section#offers h5.title,
+section#products h5.title {
+    position: relative;
+    padding-top: 10px;
+    min-height: 50px;
+    font-size: 26px;
+}
+
+img.icon-text {
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+}
+
+#offers .col-md-4 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#offers .offer-content {
+    position: relative;
+}
+
+#offers .offer-content .offert-text {
+    position: absolute;
+    top: 40%;
+    padding: 0 100px;
+    color: #FFF;
+}
+
+#offers .offer-content .offert-text h5 {
+    position: relative;
+    padding-top: 10px;
+}
+
+#offers .offer-content .offert-text p {
+    font-size: 18px;
+}
+
+section#faqs div.card-header a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: ease all 0.5s;
+}
+
+section#faqs div.card-header a:hover{
+    color: #FFF;
+    text-decoration: none;
+}
+
+section#faqs div.card-header {
+    background: #f05224;
+    border-radius: 0;
+}
+
+section#faqs ngb-accordion .card {
+    margin-bottom: 10px;
+}
+
+.b-my_account li.list-group-item.active {
+    background: #f05224;
+    border-color: #e44e22;
+}
+
+.b-my_account li.list-group-item:first-child,
+.b-my_account li.list-group-item:last-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.b-my_account li.list-group-item {
+    cursor: pointer;
+}
+
+section#b-my_account .account-box.active {
+    display: block;
+}
+
+section#b-my_account .account-box {
+    display: none;
+}
+
+.direction-box {
+    border: 1px solid #CCC;
+    padding: 10px;
+}
+
+.direction-box .direction-name p {
+    margin-bottom: 0;
+}
+
+.direction-form {
+    margin-top: 20px;
+}
+
+.b-my_account .order-box div.card-header {
+    background: #f05224;
+}
+
+.card-header:first-child {
+    border-radius: 0 !important;
+}
+
+.b-my_account .order-box div.card-header a:hover {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.b-my_account .order-box div.card-header a {
+    color: rgba(255,255,255, 0.8);
+}
+
+.b-my_account .order-box div.card-header::after {
+    font-family: "Fontawesome";
+    color: #FFF;
+    font-size: 15px;
+    -webkit-transition: ease all 0.6s;
+    transition: ease all 0.6s;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    content: '\F0D8';
+}
+
+.b-my_account .order-box div.card-header::after{
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.b-my_account .order-box div.card-header.active::after{
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+input#search_places {
+    padding: .375rem .75rem;
+    height: 38px;
 }

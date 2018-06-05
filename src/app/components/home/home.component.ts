@@ -20,6 +20,12 @@ export class HomeComponent implements OnInit {
   top_gifts: any;
   products: any;
   offers: any;
+  offer1: any;
+  offer2: any;
+  offer3: any;
+  offer4: any;
+
+  images: any;
 
   constructor(
     private router: Router,
@@ -32,7 +38,6 @@ export class HomeComponent implements OnInit {
     this.meta.addTag({
       name: 'description', content: 'Tu regalo ideal'
     });
-    
     this.getElements();
   }
 
@@ -52,12 +57,16 @@ export class HomeComponent implements OnInit {
         localStorage.setItem('longitude', longitude.toString());
       });
     }
-
-    this.offers = [
-        {image: "http://via.placeholder.com/437x450"},
-        {image: "http://via.placeholder.com/437x225"},
-        {image: "http://via.placeholder.com/437x450"},
-        {image: "http://via.placeholder.com/437x225"},
+    
+    this.images = [
+        {image: "http://via.placeholder.com/200x250"},
+        {image: "http://via.placeholder.com/200x250"},
+        {image: "http://via.placeholder.com/200x250"},
+        {image: "http://via.placeholder.com/200x250"},
+        {image: "http://via.placeholder.com/200x250"},
+        {image: "http://via.placeholder.com/200x250"},
+        {image: "http://via.placeholder.com/200x250"},
+        {image: "http://via.placeholder.com/200x250"}
     ];
   }
 
@@ -73,6 +82,11 @@ export class HomeComponent implements OnInit {
         this.slides = response.slides;
         this.top_gifts = response.products;
         this.products = response.products;
+        this.offers = response.offers;
+        this.offer1 = this.offers[0];
+        this.offer2 = this.offers[1];
+        this.offer3 = this.offers[2];
+        this.offer4 = this.offers[3];
       }else{
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       }

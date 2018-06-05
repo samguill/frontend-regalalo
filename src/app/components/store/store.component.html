@@ -10,7 +10,7 @@
                   <a routerLink="/producto/{{product.slug}}">{{product.name}}</a>
                 </h3>
                 <div class="b-product_grid_action">
-                  <a href="#">
+                  <a (click)="add_to_wishlist(product)">
                     <i class="icon-heart icons"></i>
                   </a>
                 </div>

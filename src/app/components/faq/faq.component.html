@@ -1,0 +1,16 @@
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title">Preguntas frecuentes</h1>
+</div>
+<section class="container" id="faqs">
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel [title]="faq.question" *ngFor="let faq of faqs">
+          <ng-template ngbPanelContent>
+            {{faq.answer}}
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
+</section>

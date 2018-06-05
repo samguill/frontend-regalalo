@@ -20,6 +20,11 @@ export class ProfileService {
     return this.http.get(url, {headers : this.headers}).toPromise();
   }
 
+  add_direction(data: any) :Promise<any> {
+    let url : string = `${this.BASE_URL}directions/store`;
+    return this.http.post(url, data,{headers : this.headers}).toPromise();
+  }
+
   wishlist () :Promise<any> {
     let url : string = `${this.BASE_URL}wishlist`;
     return this.http.get(url, {headers : this.headers}).toPromise();
@@ -33,6 +38,11 @@ export class ProfileService {
   remove_to_wishlist (product_id) :Promise<any> {
     let url : string = `${this.BASE_URL}wishlist/delete`;
     return this.http.post(url, {id:product_id},{headers : this.headers}).toPromise();
+  }
+
+  update_profile(data:any) :Promise<any> {
+    let url : string = `${this.BASE_URL}profile/update`;
+    return this.http.post(url, data,{headers : this.headers}).toPromise();
   }
 
 }

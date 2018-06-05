@@ -1,28 +1,180 @@
 <div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title">Mi perfil</h1>
+  <h1 class="b-entry_title">Mi cuenta</h1>
 </div>
 <section id="b-my_account">
   <div class="container b-my_account">
     <div class="row">
-      <ngb-tabset [orientation]="vertical">
-        <ngb-tab>
-          <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
-          <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-            <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-            craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-            cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-            yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-            shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-            sint qui sapiente accusamus tattooed echo park.</p>
-          </ng-template>
-        </ngb-tab>
-        <ngb-tab>
-          <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
-          <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-            <p>Exercitation +1 labore velit</p>
-          </ng-template>
-        </ngb-tab>
-      </ngb-tabset>
+      <div class="col-md-4">
+        <div class="user-menu">
+          <ul class="list-group">
+            <li (click)="change_view('profile')" [class.active]="current_option == 'profile'" class="list-group-item">Datos personales</li>
+            <li (click)="change_view('directions')" [class.active]="current_option == 'directions'" class="list-group-item">Mis direcciones</li>
+            <li (click)="change_view('orders')" [class.active]="current_option == 'orders'" class="list-group-item">Mis órdenes de compra</li>
+            <li (click)="change_view('wishlists')" [class.active]="current_option == 'wishlists'" class="list-group-item">Mi lista de deseos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header"><h5>{{current_title}}</h5></div>
+          <div class="card-body">
+            <div class="card-content">
+              <div [class.active]="current_option == 'profile'" class="account-box personal-data">
+                <form [formGroup]="personalDataForm" (ngSubmit)="update_personal_data()">
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="">Nombres</label>
+                      <input class="form-control" type="text" name="first_name" [formControl]="personalDataForm.controls['first_name']">
+                      <small *ngIf="personalDataForm.controls['first_name'].hasError('required') && personalDataForm.controls['first_name'].touched" class="form-error-msg"> Este campo es requerido </small>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Apellidos</label>
+                      <input class="form-control" type="text" name="last_name" [formControl]="personalDataForm.controls['last_name']">
+                      <small *ngIf="personalDataForm.controls['last_name'].hasError('required') && personalDataForm.controls['last_name'].touched" class="form-error-msg"> Este campo es requerido </small>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label for="">E-mail</label>
+                      <input class="form-control" type="email" name="email" [formControl]="personalDataForm.controls['email']">
+                      <small *ngIf="personalDataForm.controls['email'].hasError('required') && personalDataForm.controls['email'].touched" class="form-error-msg"> Este campo es requerido </small>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Teléfono</label>
+                      <input class="form-control" type="text" name="phone" [formControl]="personalDataForm.controls['phone']">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Contraseña</label>
+                    <input class="form-control" type="password" name="password" [formControl]="personalDataForm.controls['password']">
+                  </div>
+                  <button type="submit" class="btn btn-block btn-login" id="registerbutton" [disabled]="personalDataForm.invalid">
+                    <i [ngClass]="{'fa-circle-o-notch fa-spin': loading_personal_data}" class="fa"></i>
+                    <span *ngIf="!loading_personal_data">Actualizar datos</span>
+                  </button>  
+                </form>
+              </div>
+              <div [class.active]="current_option == 'directions'" class="account-box directions-data">
+                <div class="direction-box" *ngFor="let direction of directions">
+                  <div class="direction-name">
+                    <div class="row no-gutters">
+                      <div class="col-md-1 text-center">
+                        <i class="fa fa-map-marker" style="font-size: 40px; color: #bdbdbd; margin-top: 5px;"></i>
+                      </div>
+                      <div class="col-md-11">
+                        <h3>{{direction.name}}</h3>
+                        <p>{{direction.address}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="direction-form">
+                  <form [formGroup]="directionForm" (ngSubmit)="save_direction()">
+                    <div class="row">
+                      <div class="form-group col-md-4">
+                        <label for="">Nombre</label>
+                        <input class="form-control" type="text" name="name" [formControl]="directionForm.controls['name']">
+                        <small *ngIf="directionForm.controls['name'].hasError('required') && directionForm.controls['name'].touched" class="form-error-msg"> Este campo es requerido </small>
+                      </div>
+                      <div class="form-group col-md-8">
+                        <label for="">Dirección</label>
+                        <ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-block btn-login" id="directionbutton" [disabled]="directionForm.invalid">
+                      <i [ngClass]="{'fa-circle-o-notch fa-spin': loading_direction_data}" class="fa"></i>
+                      <span *ngIf="!loading_direction_data">Agregar dirección</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+              <div [class.active]="current_option == 'orders'" class="account-box orders-data">
+                <div *ngIf="show_loading" class="loading-box text-center"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+                <div class="order-box">
+                  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                    <ngb-panel [title]="'#' + order.order_code" *ngFor="let order of orders">
+                      <ng-template ngbPanelContent>
+                        <div class="row">
+                          <table class="table">
+                            <tr>
+                              <td><b>Tienda: </b>{{order.store.comercial_name}}</td>
+                              <td><b>Estado: </b>
+                                <span [ngSwitch]="order.status">
+                                  <span *ngSwitchCase="'P'">Pendiente</span>
+                                  <span *ngSwitchCase="'A'">Atendida</span>
+                                  <span *ngSwitchCase="'R'">Pago rechazado</span>
+                                  <span *ngSwitchCase="'D'">Delivery pendiente</span>
+                                </span>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><b>Producto: </b> <span *ngFor="let detail of order.orderdetails">{{detail.product.name}}</span></td>
+                              <td><b>Cantidad: </b> <span *ngFor="let detail of order.orderdetails">{{detail.quantity}}</span></td>
+                            </tr>
+                            <tr>
+                              <td><b>Subtotal: </b>S/{{order.sub_total}}</td>
+                              <td><b>Total: </b>S/{{order.total}}</td>
+                            </tr>
+                            <tr>
+                              <td><b>Dirección de envío: </b></td>
+                              <td>{{order.clientdirection.address}}</td>
+                            </tr>
+                            <tr>
+                              <td><b>Dirección de sucursal: </b></td>
+                              <td *ngFor="let detail of order.orderdetails"><div *ngIf="detail.branch.address != null">{{detail.branch.address}}</div><div *ngIf="detail.branch.address == null">Recoger en tienda</div></td>
+                            </tr>
+                            <tr *ngFor="let detail of order.orderdetails">
+                              <td colspan="2">
+                                <div *ngIf="detail.tracking_url != null"><b>URL de Tracking: </b> <a [href]="detail.tracking_url" target="_blank">{{detail.tracking_url}}</a></div>
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </ng-template>
+                    </ngb-panel>
+                  </ngb-accordion>
+                </div>
+              </div>
+
+              <div [class.active]="current_option == 'wishlists'" class="account-box wishlists-data">
+                <div *ngIf="show_loading" class="loading-box text-center"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+                <div class="wishlists-box">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let wish of wishlists">
+                        <td *ngIf="wish.product_id">
+                          <img width="30" [src]="!wish.product.featured_image ? 'http://via.placeholder.com/1200x1200' : wish.product.featured_image" />
+                        </td>
+                        <td *ngIf="wish.product_id">Producto</td>
+                        <td *ngIf="wish.product_id">
+                          <b>{{wish.product.name}}</b><br>
+                          <span class="wish-price">S/{{wish.product.price}}</span>
+                        </td>
+                        <td *ngIf="wish.product_id">
+                          <button class="btn btn-sm btn-danger" (click)="delete_item(wish.id)">Quitar</button>
+                        </td>
+
+                        <td *ngIf="wish.service_id">
+                          <img width="30" [src]="!wish.service.featured_image ? 'http://via.placeholder.com/1200x1200' : wish.service.featured_image" />
+                        </td>
+                        <td *ngIf="wish.service_id">Servicio</td>
+                        <td *ngIf="wish.service_id">
+                          <b>{{wish.service.name}}</b><br>
+                          <span class="wish-price">S/{{wish.service.price}}</span>
+                        </td>
+                        <td *ngIf="wish.service_id">
+                          <button class="btn btn-sm btn-danger" (click)="delete_item(wish.id)">Quitar</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

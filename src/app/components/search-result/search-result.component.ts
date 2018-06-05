@@ -54,7 +54,7 @@ export class SearchResultComponent implements OnInit {
       .then((response)=> {
         let status = response.status;
         if(status == "ok"){
-          this.result = response.data.data;
+          this.result = response.data.items.data;
         }
         if(status == "error"){
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
