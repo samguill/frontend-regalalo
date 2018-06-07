@@ -43,8 +43,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit() {
-    if (!!App && App.hasOwnProperty('homeSlider')) {
-      App.homeSlider();
+    if (!!App && App.hasOwnProperty('HomeSlider')) {
+      App.HomeSlider();
     }
   }
 
