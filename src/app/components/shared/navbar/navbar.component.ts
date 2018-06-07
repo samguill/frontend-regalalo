@@ -19,7 +19,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn();
     this.client = JSON.parse(localStorage.getItem("client"));
-    this.client_name = this.client.first_name + " " + this.client.last_name;
+    if(this.client){
+      this.client_name = this.client.first_name + " " + this.client.last_name;
+    }
   }
 
   salir(){

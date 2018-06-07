@@ -83,10 +83,10 @@ export class HomeComponent implements OnInit {
         this.top_gifts = response.products;
         this.products = response.products;
         this.offers = response.offers;
-        this.offer1 = this.offers[0];
-        this.offer2 = this.offers[1];
-        this.offer3 = this.offers[2];
-        this.offer4 = this.offers[3];
+        this.offer1 = response.offers[0];
+        this.offer2 = response.offers[1];
+        this.offer3 = response.offers[2];
+        this.offer4 = response.offers[3];
       }else{
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       }
