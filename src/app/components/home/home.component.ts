@@ -1,5 +1,5 @@
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
@@ -7,13 +7,14 @@ import { PageService } from './../../services/page.service';
 import swal from 'sweetalert2';
 import * as $ from 'jquery';
 import 'slick-carousel/slick/slick';
+declare const App: any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   slides: any;
   stores: any;
@@ -39,6 +40,12 @@ export class HomeComponent implements OnInit {
       name: 'description', content: 'Tu regalo ideal'
     });
     this.getElements();
+  }
+  
+  ngAfterViewInit() {
+    if (!!App && App.hasOwnProperty('homeSlider')) {
+      App.homeSlider();
+    }
   }
 
   ngOnInit() {

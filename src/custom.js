@@ -4,7 +4,7 @@ var App = (function(window){
     var _this = null;
     var cacheCollection = {};
 
-    return{
+    return {
         init : function(){
             this.HeaderFixOnScroll();
             this.Carousel();
