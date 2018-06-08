@@ -4,9 +4,7 @@ import { CheckoutDataService } from './../../services/checkout-data.service';
 import { Router, ActivatedRoute, Route } from '@angular/router';
 
 import { FormControl } from '@angular/forms';
-import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
-import * as jwtDecode from 'jwt-decode';
 import swal from 'sweetalert2';
 
 import { AuthService } from './../../services/auth.service';

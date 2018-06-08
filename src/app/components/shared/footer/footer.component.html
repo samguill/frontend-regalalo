@@ -1,14 +1,14 @@
 <footer class="b-footer_container color-scheme-light hidden -sm-down" style="background-image: url('assets/img/footer-bg.jpg')">
   <div class="container b-main_footer">
       <aside class="row clearfix">
-          <div class="b-footer_column col-lg-3 col-md-3 col-sm-6 mb-4">
+          <div class="b-footer_column col-lg-2 col-md-3 col-sm-6 mb-4">
             <div>
                 <a [routerLink]="['/']"><img src="assets/img/logo-white.png"  class="logo-footer mb-3" /></a>
                 <p class="text-white text-left">La elección perfecta para encontrar eso que tanto buscas...</p>
                 <div class="b-footer_block_in">
-                  <ul class="b-social-icons text-center">
-                    <li><a href="https://www.facebook.com/regalalo.pe/" target="_blank"><i class="fa fa-facebook mr-1"></i></a></li>
-                    <li><a href="https://www.instagram.com/regalalo.pe/" target="_blank"><i class="fa fa-instagram mr-1"></i></a></li>
+                  <ul class="b-social-icons">
+                    <li><a href="https://www.facebook.com/regalalo.pe/" target="_blank"><img src="assets/img/fb-icon.png"></a></li>
+                    <li><a href="https://www.instagram.com/regalalo.pe/" target="_blank"><img src="assets/img/insta-icon.png"></a></li>
                   </ul>
                 </div>
             </div>
@@ -18,11 +18,12 @@
               <h5 class="title text-white text-uppercase mb-3 pb-2">Servicio al cliente</h5>
               <ul class="links">
                 <li><a [routerLink]="['/faq']">Preguntas frecuentes</a></li>
-                <li><a [routerLink]="['/']">Términos y condiciones</a></li>
-                <li><a [routerLink]="['/']">Privacidad y confidencialidad</a></li>
+                <li *ngFor="let servicio of servicios">
+                  <a routerLink="/page/{{servicio.slug}}">{{servicio.title}}</a>
+                </li>
               </ul>
           </div>
-          <div class="b-footer_column col-lg-3 col-md-3 col-sm-6 mb-4">
+          <div class="b-footer_column col-lg-2 col-md-3 col-sm-6 mb-4">
               <img src="assets/img/marker-icon.png"  class="footer-icon mb-4" />
               <h5 class="title text-white text-uppercase mb-3 pb-2">Informes</h5>
               <ul class="links">
@@ -36,19 +37,40 @@
               <h5 class="title text-white text-uppercase mb-3 pb-2">Venta y compra</h5>
               <ul class="links">
                 <li><a [routerLink]="['/']">Vende con nosotros</a></li>
-                <li><a [routerLink]="['/']">Nuestra pasarela de pagos</a></li>
-                <li><a [routerLink]="['/']">Términos y condiciones de pagos</a></li>
+                <li *ngFor="let venta of ventas">
+                  <a routerLink="/page/{{venta.slug}}">{{venta.title}}</a>
+                </li>
               </ul>
           </div>
-          <div class="b-footer_column col-lg-4 col-md-12 col-sm-12 mb-4"></div>
+          <div class="b-footer_column col-lg-2 col-md-3 col-sm-6 mb-4">
+              <img src="assets/img/ssl-verified.png"  class="mb-4 verified-icon" />
+              <div>
+                <img src="assets/img/claims-icon.png"  class="calim-icon footer-icon mb-2" />
+                <p class="text-white text-center">Libro de<br>Reclamaciones</p>
+              </div>
+          </div>
       </aside>
   </div>
 
   <div class="b-copyrights_wrapper">
     <div class="container">
-      <div class="d-footer_bar">
-        <div class="text-center">
-          Regalalo.pe <i class="fa fa-copyright"></i> Copyright 2018. All Right Reserved.
+      <div class="row d-footer_bar">
+        <div class="col-md-6 text-left">Regalalo.pe <i class="fa fa-copyright"></i> Copyright 2018. All Right Reserved.</div>
+        <div class="col-md-6 text-right">
+          <ul class="cards">
+            <li>
+              <img src="assets/img/card-visa.png">
+            </li>
+            <li>
+              <img src="assets/img/card-master.png">
+            </li>
+            <li>
+              <img src="assets/img/card-american-express.png">
+            </li>
+            <li>
+              <img src="assets/img/card-dinners.png">
+            </li>
+          </ul>
         </div>
       </div>
     </div>

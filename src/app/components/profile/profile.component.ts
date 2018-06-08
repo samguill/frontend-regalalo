@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.client = JSON.parse(localStorage.getItem("client"));
+    this.client = JSON.parse(sessionStorage.getItem("client"));
     this.directions = this.client.directions;
     
     this.personalDataForm = new FormGroup({

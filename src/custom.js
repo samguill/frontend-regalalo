@@ -1,4 +1,3 @@
-var j = jQuery.noConflict();
 var App = (function(window){
     "use strict";
     var _this = null;
@@ -7,44 +6,20 @@ var App = (function(window){
     return{
         init : function(){
             this.HeaderFixOnScroll();
-            this.Carousel();
             this.HomeSlider();
         },
 
         HeaderFixOnScroll: function(){
-            j(window).scroll(function(){
-                var sticky = j("body"),
-                scroll = j(window).scrollTop();
+            $(window).scroll(function(){
+                var sticky = $("body"),
+                scroll = $(window).scrollTop();
 
                 if(scroll >= 250) sticky.addClass('b-header_fixed');
                 else sticky.removeClass('b-header_fixed');
             })
         },
-
-        Carousel: function(){
-            if(j(".carousel-products").length > 0){
-                j(".carousel-products").owlCarousel({
-                    loop:true,
-                    margin: 10,
-                    nav: false,
-                    dots: true,
-                    responsive:{
-                        0:{
-                            items:2
-                        },
-                        600:{
-                            items:4
-                        },
-                        1000:{
-                            items:5
-                        }
-                    }
-                });
-            }
-        },
-
         HomeSlider: function(){
-            j("#b-home_01_slider").show().revolution({
+            jQuery("#b-home_01_slider").show().revolution({
                 sliderType:"standard",
                 jsFileLocation:"revolution/js/",
                 sliderLayout:"fullwidth",
@@ -108,7 +83,7 @@ var App = (function(window){
 
 })(window);
 
-j(document).ready(function($){
+$(document).ready(function($){
     App.init();
-    j('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
 });

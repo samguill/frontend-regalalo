@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Headers, Http } from '@angular/http';
 
 @Injectable()
 export class PageService {
@@ -9,7 +10,7 @@ export class PageService {
   //private BASE_URL : string = 'http://regalalo.test/api/';
   private headers = new HttpHeaders({'Content-Type':'application/json'});
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private http: Http) { }
 
   parameters () : Promise<any> {
     let url : string = `${this.BASE_URL}search-parameters`;
@@ -25,6 +26,16 @@ export class PageService {
     let api : string = 'AIzaSyDRlAt4Fftas-0hDsaPdbFW11wnKX1zMW8';
     let url : string = 'https://www.googleapis.com/geolocation/v1/geolocate?key=' + api;
     return this.httpClient.post(url,{considerIp:true} ,{headers : this.headers}).toPromise();
+  }
+
+  pages() : Promise<any> {
+    let url : string = `${this.BASE_URL}pages`;
+    return this.http.get(url).toPromise();
+  }
+
+  page(slug) : Promise<any> {
+    let url : string = `${this.BASE_URL}page/` + slug;
+    return this.httpClient.get(url, {headers : this.headers}).toPromise();
   }
 
 }

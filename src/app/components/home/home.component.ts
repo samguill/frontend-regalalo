@@ -1,5 +1,5 @@
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
@@ -7,14 +7,15 @@ import { PageService } from './../../services/page.service';
 import swal from 'sweetalert2';
 import * as $ from 'jquery';
 import 'slick-carousel/slick/slick';
+import { NguCarousel } from '@ngu/carousel';
+declare const App: any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent implements OnInit, AfterViewInit {
   slides: any;
   stores: any;
   top_gifts: any;
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
   offer4: any;
 
   images: any;
+  public carouselOne: NguCarousel;
 
   constructor(
     private router: Router,
@@ -39,6 +41,13 @@ export class HomeComponent implements OnInit {
       name: 'description', content: 'Tu regalo ideal'
     });
     this.getElements();
+  }
+
+  ngAfterViewInit(): void {
+    if (!!App && App.hasOwnProperty('HomeSlider')) {
+      App.HomeSlider();
+      App.Carousel();
+    }
   }
 
   ngOnInit() {
@@ -57,18 +66,21 @@ export class HomeComponent implements OnInit {
         localStorage.setItem('longitude', longitude.toString());
       });
     }
-    
-    this.images = [
-        {image: "http://via.placeholder.com/200x250"},
-        {image: "http://via.placeholder.com/200x250"},
-        {image: "http://via.placeholder.com/200x250"},
-        {image: "http://via.placeholder.com/200x250"},
-        {image: "http://via.placeholder.com/200x250"},
-        {image: "http://via.placeholder.com/200x250"},
-        {image: "http://via.placeholder.com/200x250"},
-        {image: "http://via.placeholder.com/200x250"}
-    ];
+    this.carouselOne = {
+      grid: {xs: 1, sm: 1, md: 2, lg: 4, all: 0},
+      slide: 1,
+      speed: 400,
+      interval: 4000,
+      point: {
+        visible: true
+      },
+      load: 2,
+      touch: false,
+      loop: true,
+      custom: 'banner'
+    }
   }
+  
 
   ngOnDestroy(){
     

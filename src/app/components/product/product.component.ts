@@ -5,7 +5,6 @@ import { ProductDataService } from './../../services/product-data.service';
 import { ProductService } from './../../services/product.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
 import swal from 'sweetalert2';
-
 import { AgmCoreModule, AgmMarker } from '@agm/core'; 
 
 @Component({
@@ -48,7 +47,7 @@ export class ProductComponent implements OnInit {
     private activated_route: ActivatedRoute,
     private product_service: ProductService,
     private checkout_data_service: CheckoutDataService) {
-      let access_token = localStorage.getItem("access_token");
+      let access_token = sessionStorage.getItem("access_token");
       if(access_token != null){
         this.isloggedIn = true;
       }

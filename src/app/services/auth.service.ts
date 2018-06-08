@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   getToken(): string {
-    return localStorage.getItem(TOKEN);
+    return sessionStorage.getItem(TOKEN);
   }
 
   isTokenExist(): boolean {
@@ -50,9 +50,9 @@ export class AuthService {
   }
 
   logout() : void {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    localStorage.removeItem('client');
+    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('refresh_token');
+    sessionStorage.removeItem('client');
     this.loggedIn.next(false);
   }
 

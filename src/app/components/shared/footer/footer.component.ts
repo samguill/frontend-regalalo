@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageService } from './../../../services/page.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  pages: any;
+  servicios: any;
+  ventas:any;
+  constructor(private pageService: PageService) {
+    this.pageService.pages()
+      .then((response)=> {
+        response = response.json();
+        if(response.status == "ok"){
+          this.servicios = response.pages.filter(it => it["position"] == "footer-servicio-cliente");
+          this.ventas = response.pages.filter(it => it["position"] == "footer-venta-compra");
+        }
+      })
+      .catch((error)=> {
+        this.pages = [];
+      })
+  }
 
   ngOnInit() {
+    
   }
 
 }

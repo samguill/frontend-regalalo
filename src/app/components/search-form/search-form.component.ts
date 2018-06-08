@@ -45,7 +45,7 @@ export class SearchFormComponent implements OnInit {
       interests: this.fb.array([])
     });
 
-    let client_search = JSON.parse(localStorage.getItem('search'));
+    let client_search = JSON.parse(sessionStorage.getItem('search'));
   }
 
   ngOnInit() {

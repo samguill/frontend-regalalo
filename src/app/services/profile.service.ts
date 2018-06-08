@@ -6,7 +6,7 @@ export class ProfileService {
 
   private BASE_URL : string = 'https://admin.regalalo.pe/api/client/';
   //private BASE_URL : string = 'http://regalalo.test/api/client/';
-  private headers : Headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('access_token')});
+  private headers : Headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + sessionStorage.getItem('access_token')});
 
   constructor(private http:Http) { }
 
@@ -23,11 +23,6 @@ export class ProfileService {
   add_direction(data: any) :Promise<any> {
     let url : string = `${this.BASE_URL}directions/store`;
     return this.http.post(url, data,{headers : this.headers}).toPromise();
-  }
-
-  wishlist () :Promise<any> {
-    let url : string = `${this.BASE_URL}wishlist`;
-    return this.http.get(url, {headers : this.headers}).toPromise();
   }
 
   add_to_wishlist (product_id) :Promise<any> {

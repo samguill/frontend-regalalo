@@ -6,7 +6,7 @@ export class OrdersService {
 
   private BASE_URL : string = 'https://admin.regalalo.pe/api/';
   //private BASE_URL : string = 'http://regalalo.test/api/';
-  private headers : Headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('access_token')});
+  private headers : Headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + sessionStorage.getItem('access_token')});
 
   constructor(private http:Http) { }
 

@@ -58,7 +58,7 @@
     <div class="col-md-2" *ngFor="let store of stores;let i = index">
       <div class="item">
           <a routerLink="/tienda/{{store.slug}}">
-            <img [src]="!store.logo_store ? 'http://via.placeholder.com/337x150' : store.logo_store" width="100%" />
+            <img [src]="!store.logo_store ? 'https://via.placeholder.com/337x150' : store.logo_store" width="100%" />
           </a>
       </div>
     </div>
@@ -77,35 +77,35 @@
     <div class="row">
       <div class="col-md-4">
         <div class="offer-content">
-          <img [src]="offer1.image" />
+          <img src="https://admin.regalalo.pe/uploads/offers/adventure-2018-06.jpg" />
           <div class="offert-text">
-            <h5 class="text-uppercase">{{offer1.title}}</h5>
-            <p>{{offer1.description}}</p>
+            <h5 class="text-uppercase">AVENTURA</h5>
+            <p>Prepárate para la aventura</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="offer-content">
-          <img [src]="offer2.image" />
+          <img src="https://admin.regalalo.pe/uploads/offers/accesories-2018-06.jpg" />
           <div class="offert-text">
-            <h5 class="text-uppercase">{{offer2.title}}</h5>
-            <p>{{offer2.description}}</p>
+            <h5 class="text-uppercase">ACCESORIOS DE MODA</h5>
+            <p>El estilo siempre está en los detalles</p>
           </div>
         </div>
         <div class="offer-content">
-          <img [src]="offer4.image" />
+          <img src="https://admin.regalalo.pe/uploads/offers/sports-2018-06.jpg" />
           <div class="offert-text">
-            <h5 class="text-uppercase">{{offer4.title}}</h5>
-            <p>{{offer4.description}}</p>
+            <h5 class="text-uppercase">DEPORTE</h5>
+            <p>Si quieres algo, entrena para ello.</p>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="offer-content">
-          <img [src]="offer3.image" />
+          <img src="https://admin.regalalo.pe/uploads/offers/special-details-2018-06.jpg" />
           <div class="offert-text">
-            <h5 class="text-uppercase">{{offer3.title}}</h5>
-            <p>{{offer3.description}}</p>
+            <h5 class="text-uppercase">DETALLES ESPECIALES</h5>
+            <p>Eso que buscabas para esa persona especial...</p>
           </div>
         </div>
       </div>
@@ -123,12 +123,49 @@
     </div>
   </div>
   <div class="container">
-    <div class="row carousel-products owl-carousel owl-theme">
-      <div *ngFor="let image of images;let i = index">
-        <div class="item">
-          <div class="thumbnail-image"><img [src]="image.image" width="100%" /></div>
-        </div>
-      </div>
+    <div class="row">
+      <ngu-carousel [inputs]="carouselOne">
+          <ngu-item NguCarouselItem *ngFor="let product of products;let i = index">
+              <div class="b-product_grid_single">
+                  <div class="b-product_grid_header">
+                    <h3 class="product-title">
+                      <a routerLink="/producto/{{product.slug}}">{{product.name}}</a>
+                    </h3>
+                    <div class="b-product_grid_action">
+                      <a (click)="add_to_wishlist(product)">
+                        <i class="icon-heart icons"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="b-product_grid_info mb-3">
+                    <a routerLink="/producto/{{product.slug}}">
+                      <div class="product-image">
+                        <div class="image" [ngStyle]="{'background-image': 'url(' +  product.featured_image + ')'}"></div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="b-product_grid_footer pt-3">
+                    <div class="clearfix">
+                      <div class="row" *ngIf="product.discount != 0">
+                        <div class="col-md-5">
+                          <span class="regular-price">P. regular:<br> S/{{ product.price }} <span class="zero">.00</span></span>
+                        </div>
+                        <div class="col-md-7">
+                          <span class="new-price">S/.{{ product.discount_price }} <span class="zero">.00</span></span>
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="product.discount == 0">
+                          <div class="col-md-12">
+                            <span class="new-price">S/.{{ product.price }} <span class="zero">.00</span></span>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+          </ngu-item>
+          <button NguCarouselPrev class='leftRs'>&lt;</button>
+          <button NguCarouselNext class='rightRs'>&gt;</button>
+      </ngu-carousel>
     </div>
   </div>
 </section>

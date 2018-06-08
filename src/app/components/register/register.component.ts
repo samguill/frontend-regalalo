@@ -40,9 +40,9 @@ export class RegisterComponent implements OnInit {
       .then((response) => {
         this.loading_login = false;
         response = response.json();
-        localStorage.setItem('access_token', response.access_token);
-        localStorage.setItem('refresh_token', response.refresh_token);
-        localStorage.setItem('client', JSON.stringify(response.client));
+        sessionStorage.setItem('access_token', response.access_token);
+        sessionStorage.setItem('refresh_token', response.refresh_token);
+        sessionStorage.setItem('client', JSON.stringify(response.client));
         this.signinForm.reset();
         this.auth.setLogin();
         this.router.navigate(['/mi-cuenta']);
@@ -64,9 +64,9 @@ export class RegisterComponent implements OnInit {
       .then((response) => {
         this.loading_register = false;
         response = response.json();
-        localStorage.setItem('access_token', response.access_token);
-        localStorage.setItem('refresh_token', response.refresh_token);
-        localStorage.setItem('client', JSON.stringify(response.client));
+        sessionStorage.setItem('access_token', response.access_token);
+        sessionStorage.setItem('refresh_token', response.refresh_token);
+        sessionStorage.setItem('client', JSON.stringify(response.client));
         this.registerForm.reset();
         this.auth.setLogin();
         this.router.navigate(['/mi-cuenta']);

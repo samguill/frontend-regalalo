@@ -5,8 +5,7 @@
   <div class="row">
       <div class="col-md-3" *ngFor="let store of stores">
         <a routerLink="/tienda/{{store.slug}}">
-          <img src="http://via.placeholder.com/400x200" *ngIf="store.logo_store == null" width="100%" />
-          <img [src]="store.logo_store" *ngIf="store.logo_store !== null" width="100%" />
+          <img [src]="!store.logo_store ? 'https://via.placeholder.com/337x150' : store.logo_store" width="100%" />
         </a>
         <p class="text-center">{{store.comercial_name}}</p>
       </div>

@@ -52,6 +52,10 @@ import { OwlModule } from 'ngx-owl-carousel';
 import { FaqComponent } from './components/faq/faq.component';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { AgmDirectionModule } from 'agm-direction';
+import { NguCarouselModule } from '@ngu/carousel';
+import 'hammerjs';
+import { PageComponent } from './components/page/page.component';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -71,7 +75,9 @@ import { AgmDirectionModule } from 'agm-direction';
     OrdersComponent,
     LoaderComponent,
     QuickSearchFormComponent,
-    FaqComponent
+    FaqComponent,
+    PageComponent,
+    SearchFilterPipe
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -89,7 +95,8 @@ import { AgmDirectionModule } from 'agm-direction';
     APP_ROUTING,
     NgbModule.forRoot(),
     OwlModule,
-    Ng4GeoautocompleteModule.forRoot()
+    Ng4GeoautocompleteModule.forRoot(),
+    NguCarouselModule
   ],
   providers: [
     AuthService,

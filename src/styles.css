@@ -1,6 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Helvetica Neue Std';
+    src: url('./assets/fonts/HelveticaNeueLTStd-Lt.otf') format('opentype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica Neue Std Black';
+    src: url('./assets/fonts/HelveticaNeueLTStd-XBlkCn.otf') format('opentype');
+    font-style: normal;
+    font-weight: bold;
+}
+
 body {
-    font-family: "Karla", "sans-serif" !important;
+    font-family: 'Helvetica Neue Std' !important;
     font-size: 14px !important;
     font-weight: normal !important;
     line-height: 1.2 !important;
@@ -109,6 +123,7 @@ header#b-header {
 .b-topbar_menu ul {
     padding: 0;
     margin: 0;
+    list-style: none;
 }
 
 .b-topbar_menu ul > li {
@@ -129,6 +144,12 @@ header#b-header {
 
 .mr-1 {
     margin-right: 0.25rem !important;
+}
+
+.b-topbar_menu ul > li a img {
+    height: 30px;
+    top: 3px;
+    position: inherit;
 }
 
 .b-topbar_menu ul > li a::after {
@@ -447,7 +468,6 @@ button.btn-login {
 }
 
 .b-product_grid_single {
-    margin-bottom: 40px;
     position: relative;
 }
 
@@ -704,6 +724,8 @@ button.btn {
 .b-main_menu > ul > li.active a span {
     padding-bottom: 5px;
     border-bottom: 5px solid #f05224;
+    color: #f05224;
+    font-weight: bold;
 }
 
 .icon-last-menu img {
@@ -716,22 +738,24 @@ button.btn {
 
 .b-header_search .input-group-prepend {
     position: absolute;
-    top: 0;
+    top: -4px;
     left: 0px;
     z-index: 5;
-    height: 100%;
+    width: 45px;
+    height: 45px;
 }
 
 .b-header_search .input-group-text {
     background: #4c4c4c;
     color: #FFF;
     border-radius: 50% !important;
-    max-width: 38px;
+    width: 45px;
+    padding: 0px 5px;
 }
 
 .b-header_search input {
     border-radius: 20px !important;
-    padding-left: 40px;
+    padding-left: 50px;
     box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.2), 0 -1px 1px #FFF, 0 1px 0 #FFF;
 }
 
@@ -808,7 +832,7 @@ section.slider .slide img {
 }
 
 img.logo-footer {
-    height: 80px;
+    width: 100%;
 }
 
 img.footer-icon {
@@ -855,7 +879,6 @@ footer .b-footer_column h5::before {
 }
 
 .b-product_grid_single {
-    margin-bottom: 40px;
     position: relative;
     padding: 15px;
     background: #FFF;
@@ -1071,4 +1094,95 @@ section#b-my_account .account-box {
 input#search_places {
     padding: .375rem .75rem;
     height: 38px;
+}
+
+.d-footer_bar ul.cards {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.d-footer_bar ul.cards li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.d-footer_bar ul.cards li img {
+    max-height: 25px;
+}
+
+.b-footer_container .b-social-icons img {
+    height: 30px;
+}
+
+.b-header_search .input-group-text img {
+    height: 28px;
+}
+
+.b-header_search input#phrase::placeholder {
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.b-header_search input#phrase::-webkit-input-placeholder {
+    color: #CCC;
+    text-transform: uppercase;
+}
+
+.b-header_search input#phrase::-moz-placeholder {
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.b-header_search input#phrase:-ms-input-placeholder {
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+.b-header_search input#phrase:-moz-placeholder {
+    color: #ccc;
+    text-transform: uppercase;
+}
+
+img.verified-icon {
+    max-height: 70px;
+    display: block;
+    margin: 0 auto;
+}
+
+img.calim-icon {
+    display: block;
+    margin: 0 auto;
+}
+
+.b-product_grid_single .product-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.b-product_grid_single .product-image .image {
+    width: 100%;
+    height: 100%;
+    background-color: #b5b5b5;
+    background-position: center;
+    background-size: cover;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+}
+
+.b-product_grid_single:hover .image {
+    transform: scale(1.2);
+}
+
+.ngucarousel-items ngu-item.item {
+    padding: 0 10px;
+}
+
+.ngucarousel button.leftRs,
+.ngucarousel button.rightRs {
+    visibility: hidden;
+    display: none !important;
 }

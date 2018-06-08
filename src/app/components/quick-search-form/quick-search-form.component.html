@@ -3,7 +3,7 @@
     <label class="sr-only" for="inlineFormInputGroup">Buscar</label>
     <div class="input-group">
       <div class="input-group-prepend">
-        <div class="input-group-text"><i class="icon-magnifier icons"></i></div>
+        <div class="input-group-text"><img src="assets/img/search-icon.png" /></div>
       </div>
       <input type="text" name="phrase" [formControl]="searchForm.controls['phrase']" class="form-control" id="phrase" placeholder="Departamento, tienda, producto, regalo...">
       <small *ngIf="searchForm.controls['phrase'].hasError('required') && searchForm.controls['phrase'].touched" class="form-error-msg"> Ingresa al menos una palabra </small>

@@ -5,6 +5,7 @@ import { StoresComponent } from './components/stores/stores.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StoreComponent } from './components/store/store.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { PageComponent } from './components/page/page.component';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrdersComponent } from './components/orders/orders.component';
@@ -25,6 +26,7 @@ const APP_ROUTES: Routes = [
     { path : 'mis-pedidos', component : OrdersComponent, canActivate : [AuthGuard] },
     { path: 'tienda/:id', component: StoreComponent, data: {state: 'stores'} },
     { path: 'producto/:id', component: ProductComponent },
+    { path: 'page/:id', component: PageComponent },
     { path: 'checkout', component: CheckoutComponent },
     { path: '**', pathMatch: 'full', redirectTo: '' },
   ];
