@@ -796,8 +796,9 @@ section.slider .slide img {
     position: relative;
 }
 
-.slick-logo-stores .logo-store img {
-    width: 100%;
+section#logo-brands,
+section#offers {
+    background: #FFF;
 }
 
 .b-footer_container .b-social-icons {
@@ -938,7 +939,7 @@ ul#b-lightSlider{
     color: #313131;
 }
 
-section#logo-stores h5.title::before,
+section#logo-brands h5.title::before,
 section#offers h5.title::before,
 #offers .offer-content .offert-text h5::before,
 section#products h5.title::before {
@@ -951,7 +952,7 @@ section#products h5.title::before {
     background-color: #f05224;
 }
 
-section#logo-stores h5.title,
+section#logo-brands h5.title,
 section#offers h5.title,
 section#products h5.title {
     position: relative;
@@ -1185,4 +1186,14 @@ img.calim-icon {
 .ngucarousel button.rightRs {
     visibility: hidden;
     display: none !important;
+}
+
+img.marker-icon-header {
+    float: left;
+    height: 55px;
+    margin-right: 10px;
+}
+
+section#logo-brands .ngucarouselPointDefault {
+    display: none;
 }

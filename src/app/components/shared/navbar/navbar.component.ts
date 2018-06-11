@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
   client_name: string = "Visitante";
+  direction: string = "";
   client: any;
 
   constructor(private router: Router,private authService: AuthService) { }
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
     if(this.client){
       this.client_name = this.client.first_name + " " + this.client.last_name;
     }
+    this.direction = localStorage.getItem("address");
   }
 
   salir(){

@@ -1,10 +1,4 @@
 <section class="container-fluid slider">
-  <!--<div class="slide" *ngFor="let slide of slides">
-    <img [src]="slide.image" />
-     <div class="slide-element" *ngFor="let element of slide.elements">
-      <p>{{element.content}}</p>      
-    </div>
-  </div>-->
   <div  class="rev_slider_wrapper fullwidthbanner-container" data-alias="classic4export" data-source="gallery">
       <div id="b-home_01_slider" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
         <ul>
@@ -45,27 +39,27 @@
   </div>
 </section>
 
-<section class="container-fluid stores mt-5 mb-5" id="logo-stores">
+<section class="container-fluid stores pt-5 pb-5" id="logo-brands">
   <div class="container">
     <div class="row">
       <div class="col-md-12 mt-3 mb-3">
         <img src="assets/img/badge-icon.png" class="icon-text" />
-        <h5 class="title text-uppercase">Tiendas asociadas</h5>
+        <h5 class="title text-uppercase">Marcas asociadas</h5>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2" *ngFor="let store of stores;let i = index">
-      <div class="item">
-          <a routerLink="/tienda/{{store.slug}}">
-            <img [src]="!store.logo_store ? 'https://via.placeholder.com/337x150' : store.logo_store" width="100%" />
-          </a>
-      </div>
-    </div>
+    <ngu-carousel [inputs]="carouselTwo">
+        <ngu-item NguCarouselItem *ngFor="let brand of brands;let i = index">
+          <img [src]="!brand.image ? 'https://via.placeholder.com/337x150' : brand.image" width="100%" />
+        </ngu-item>
+        <button NguCarouselPrev class='leftRs'>&lt;</button>
+        <button NguCarouselNext class='rightRs'>&gt;</button>
+    </ngu-carousel>
   </div>
 </section>
 
-<section class="container-fluid mt-5 mb-5" id="offers">
+<section class="container-fluid pt-5 pb-5" id="offers">
     <div class="container">
       <div class="row">
         <div class="col-md-12 mt-3 mb-3">

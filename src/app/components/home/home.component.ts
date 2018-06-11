@@ -1,5 +1,5 @@
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
@@ -8,11 +8,13 @@ import swal from 'sweetalert2';
 import * as $ from 'jquery';
 import 'slick-carousel/slick/slick';
 import { NguCarousel } from '@ngu/carousel';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 declare const App: any;
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
@@ -25,9 +27,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   offer2: any;
   offer3: any;
   offer4: any;
+  brands: any;
 
   images: any;
   public carouselOne: NguCarousel;
+  public carouselTwo: NguCarousel;
 
   constructor(
     private router: Router,
@@ -79,6 +83,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
       loop: true,
       custom: 'banner'
     }
+
+    this.carouselTwo = {
+      grid: {xs: 1, sm: 1, md: 2, lg: 6, all: 0},
+      slide: 1,
+      speed: 400,
+      interval: 4000,
+      point: {
+        visible: true
+      },
+      load: 2,
+      touch: false,
+      loop: true,
+      custom: 'banner'
+    }
   }
   
 
@@ -94,11 +112,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.slides = response.slides;
         this.top_gifts = response.products;
         this.products = response.products;
-        this.offers = response.offers;
-        this.offer1 = response.offers[0];
-        this.offer2 = response.offers[1];
-        this.offer3 = response.offers[2];
-        this.offer4 = response.offers[3];
+        this.brands = response.brands;
       }else{
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       }
