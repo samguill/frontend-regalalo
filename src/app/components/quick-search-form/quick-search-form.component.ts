@@ -31,8 +31,14 @@ export class QuickSearchFormComponent implements OnInit {
       name: this.searchForm.value.phrase,
       type: "quick"
     };
-    this.search_data.setData(this.searchData);
+    this.search_data.sendData(this.searchData);
     this.router.navigate(['/busqueda']);
+    /*if(this.router.url == "/busqueda"){
+      
+    }else{
+      this.search_data.setData(this.searchData);
+      this.router.navigate(['/busqueda']);
+    }*/
   }
 
 }

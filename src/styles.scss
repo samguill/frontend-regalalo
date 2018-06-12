@@ -13,6 +13,11 @@
     font-weight: bold;
 }
 
+@import "assets/scss/bootstrap/bootstrap";
+@import "assets/scss/header";
+@import "assets/scss/sidemenu";
+@import "assets/scss/footer";
+
 body {
     font-family: 'Helvetica Neue Std' !important;
     font-size: 14px !important;
@@ -104,11 +109,6 @@ header#b-header {
 
 .b-header_fixed .b-header_main .b-menu_top_bar_container .b-main_menu {
     padding-top: 0;
-}
-
-.b-header_fixed .b-header_main .b-header_right {
-    height: 65px;
-    line-height: 65px;
 }
 
 .b-top_bar_left {
@@ -239,7 +239,7 @@ header#b-header {
 .b-header_right {
     display: table;
     height: 96px;
-    line-height: 96px;
+    line-height: 40px;
     float: right;
 }
 
@@ -1197,3 +1197,6 @@ img.marker-icon-header {
 section#logo-brands .ngucarouselPointDefault {
     display: none;
 }
+
+
+  

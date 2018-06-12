@@ -7,6 +7,7 @@ var App = (function(window){
         init : function(){
             this.HeaderFixOnScroll();
             this.HomeSlider();
+            this.MobileNavToggle();
         },
 
         HeaderFixOnScroll: function(){
@@ -78,7 +79,25 @@ var App = (function(window){
                     }
                 },
             });
-        }
+        },
+        MobileNavToggle: function(){
+            $("#b-nav_icon").on('click', function(event) {
+              $("body").toggleClass('mobile-menu-open');
+              return false;
+            });
+            $(document).on('click', function(e) { 
+              if (!$(e.target).is('.b-main_menu-wrapper, .b-main_menu-wrapper *')) {
+                  $("body").removeClass('mobile-menu-open');
+              }
+            });
+            $(document).on('click', ".b-main_menu-wrapper ul li.has-sub > a", function(event) {
+              $(this).parent().find(".dropdown-inner").slideToggle("slow");
+              return false;
+            });
+            $(document).on('click', ".b-main_menu-wrapper > ul > li > a", function(event){
+                $("body").removeClass('mobile-menu-open');
+            });
+        },
     }
 
 })(window);

@@ -1,6 +1,6 @@
 import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Route } from '@angular/router';
+import { Router, ActivatedRoute, Route, NavigationEnd } from '@angular/router';
 
 import { SearchDataService } from './../../services/search-data.service';
 import { SearchService } from './../../services/search.service';
@@ -16,6 +16,7 @@ import swal from 'sweetalert2';
 export class SearchResultComponent implements OnInit {
   result: any;
   loading:boolean = false;
+  reload: boolean = false;
 
   constructor(
     private router: Router,
@@ -25,28 +26,29 @@ export class SearchResultComponent implements OnInit {
     private profile_service: ProfileService,
     private product_data_service: ProductDataService) {
       let data_search: any;
-      this.search_data.searchData.subscribe(value => (value == null || value == undefined) ? data_search = [] : data_search = value);
-      let latitude = localStorage.getItem('latitude');
-      let longitude = localStorage.getItem('longitude');
-      
-      if(data_search.length == 0){
-        if(latitude != null && longitude != null){
-          data_search = {"latitude": latitude, "longitude":longitude};
+      this.search_data.$getSubject.subscribe(value => {
+        data_search = value;
+        let latitude = localStorage.getItem('latitude');
+        let longitude = localStorage.getItem('longitude');
+        if(data_search.length == 0){
+          if(latitude != null && longitude != null){
+            data_search = {"latitude": latitude, "longitude":longitude};
+          }
+        }else{
+          if(latitude != null && longitude != null){
+            data_search["latitude"] = latitude;
+            data_search["longitude"] = longitude;
+          }
         }
-      }else{
-        if(latitude != null && longitude != null){
-          data_search["latitude"] = latitude;
-          data_search["longitude"] = longitude;
+        if(data_search.type == "quick"){
+          this.quickSearch(data_search);
+        }else if(data_search.type == "advance"){
+          this.advanceSearch(data_search);
+        }else{
+          this.advanceSearch(data_search);
         }
-      }
 
-      if(data_search.type == "quick"){
-        this.quickSearch(data_search);
-      }else if(data_search.type == "advance"){
-        this.advanceSearch(data_search);
-      }else{
-        this.advanceSearch(data_search);
-      }
+      });
   }
 
   quickSearch(data:any){
@@ -100,6 +102,10 @@ export class SearchResultComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(){
+    this.search_data.resetObserver();
   }
 
 }

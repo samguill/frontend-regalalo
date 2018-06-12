@@ -3,7 +3,7 @@
     <div class="container">
       <div class="b-header_topbar row clearfix">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"></div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 hidden-sm-down">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="b-top_bar_right clearfix">
             <div class="b-topbar_menu float-md-right text-center">
               <div class="b-menu_top_bar_container">
@@ -32,7 +32,7 @@
     <div class="container-fluid">
       <div class="clearfix row">
 
-        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-3 col-xs-6">
+        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-6">
           <div class="b-logo text-sm-left text-lg-center text-xl-center">
             <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" /></a>
             <div class="welcome-user" *ngIf="(isLoggedIn$ | async)">
@@ -43,7 +43,7 @@
 
         <!-- <div class="vertical-divider"><div class="mask"></div></div> -->
 
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12 mt-3 hidden-sm-down hidden-md-down">
+        <div class="col-xl-5 col-lg-5 col-mb-6 col-sm-12 col-xs-12 mt-3 hidden-sm-down hidden-md-down">
           
           <div class="b-header_search">
             <app-quick-search-form></app-quick-search-form>
@@ -56,18 +56,18 @@
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <a [routerLink]="['/']"><span class="top">Inicio</span></a>
                   </li>
-                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
-                      <a [routerLink]="['categorias']"><span class="top">Categorías</span></a>
-                    </li>
+                  <!--<li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
+                    <a [routerLink]="['categorias']"><span class="top">Categorías</span></a>
+                  </li>-->
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['catalogo-tiendas']"><span>Tiendas</span></a>
                   </li>
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['vende-con-nosotros']"><span>Vende con nosotros</span></a>
                   </li>
-                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
+                  <!--<li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['ayuda']"><span>Ayuda</span></a>
-                  </li>
+                  </li>-->
                   <li *ngIf="(isLoggedIn$ | async)" class="b-has_sub b-dropdown_wrapper from-bottom">
                     <a href="#" (click)="salir()"><span>Salir</span></a>
                   </li>
@@ -78,23 +78,30 @@
         </div>
 
         <!-- <div class="vertical-divider"><div class="mask"></div></div> -->
-
-        <div class="col-xl-1 col-lg-1 col-mb-1 col-sm-1 col-xs-6 mt-3">
-          <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
-            <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
-            <span>cuenta</span>
-          </div>
-          <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
-            <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
-            <span>ingresar</span>
+        <div class="col-xl-4 col-lg-4 col-mb-3 col-sm-6 col-xs-6">
+          <div class="b-header_right">
+            <div class="b-header_links">
+                <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
+                    <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
+                    <span class="hidden-sm-down">cuenta</span>
+                  </div>
+                  <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
+                    <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
+                    <span class="hidden-sm-down">ingresar</span>
+                  </div>
+            </div>
+            <div class="b-header_links hidden-sm-down">
+              <img src="assets/img/marker-icon-header.png" class="marker-icon-header" />
+              <p style="padding-top: 15px;">{{direction}}</p>
+            </div>
+            <div class="hidden-lg-up">
+              <i class="icon-menu icons b-nav_icon" id="b-nav_icon"></i>
+            </div>
           </div>
         </div>
 
-        <div class="col-xl-2 col-lg-2 col-mb-2 col-sm-2 col-xs-6 mt-3">
-          <img src="assets/img/marker-icon-header.png" class="marker-icon-header" />
-          <p style="padding-top: 15px;">{{direction}}</p>
-        </div>
-
+        
+        
       </div>
     </div>
   </div>
