@@ -4,34 +4,18 @@
         <ul>
           <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
           data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
-          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-1.jpg"  data-rotate="0" 
+          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-5.jpg"  data-rotate="0" 
           data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
            data-title="Intro">
-            <img src="https://admin.regalalo.pe/uploads/slides/slide-1.jpg" data-bgposition="center center" 
+            <img src="https://admin.regalalo.pe/uploads/slides/slide-5.jpg" data-bgposition="center center" 
             data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
           </li>
           <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
           data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
-          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-2.jpg"  data-rotate="0" 
+          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-6.jpg"  data-rotate="0" 
           data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
            data-title="Intro">
-            <img src="https://admin.regalalo.pe/uploads/slides/slide-2.jpg" data-bgposition="center center" 
-            data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-          </li>
-          <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
-          data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
-          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-3.jpg"  data-rotate="0" 
-          data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
-           data-title="Intro">
-            <img src="https://admin.regalalo.pe/uploads/slides/slide-3.jpg" data-bgposition="center center" 
-            data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-          </li>
-          <li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" 
-          data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"
-          data-thumb="https://admin.regalalo.pe/uploads/slides/slide-4.jpg"  data-rotate="0" 
-          data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"
-           data-title="Intro">
-            <img src="https://admin.regalalo.pe/uploads/slides/slide-4.jpg" data-bgposition="center center" 
+            <img src="https://admin.regalalo.pe/uploads/slides/slide-6.jpg" data-bgposition="center center" 
             data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
           </li>
         </ul>
@@ -145,7 +129,7 @@
                           <span class="regular-price">P. regular:<br> S/{{ product.price }} <span class="zero">.00</span></span>
                         </div>
                         <div class="col-md-7">
-                          <span class="new-price">S/.{{ product.discount_price }} <span class="zero">.00</span></span>
+                          <span class="new-price">S/.{{ product.discount_price.toFixed(0)}} <span class="zero">.00</span></span>
                         </div>
                       </div>
                       <div class="row" *ngIf="product.discount == 0">

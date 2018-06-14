@@ -34,7 +34,8 @@
                       </div>
                     </div>
                   </td>
-                  <td data-th="Precio">S/{{product.price}}</td>
+                  <td data-th="Precio" *ngIf="product.discount == 0">S/{{product.price}}</td>
+                  <td data-th="Precio" *ngIf="product.discount != 0">S/{{product.discount_price.toFixed(0)}}</td>
                   <td data-th="Cantidad">
                     <input class="form-control text-center" value="1" [(ngModel)]="quantity" OnlyNumber="true">
                   </td>
@@ -53,7 +54,7 @@
               <tbody>
                 <tr>
                   <td style="width:30%"><b>Subtotal</b></td>
-                  <td style="width:70%">S/{{ (product.price * quantity).toFixed(2) }}</td>
+                  <td style="width:70%">S/{{ ( (product.discount != 0 ? product.discount_price.toFixed(0) : product.price) * quantity).toFixed(2) }}</td>
                 </tr>
                 <tr>
                   <td style="width:30%"><b>Envío</b></td>
@@ -71,7 +72,7 @@
                 <tr *ngIf="delivery == 'envio'">
                   <td style="width:30%; vertical-align: middle;"><b>Dirección de envío</b></td>
                   <td style="width:70%">
-                      <select class="form-control" [(ngModel)]="client_direction_id">
+                      <select class="form-control" [(ngModel)]="client_direction_id" (change)="calculate_delivery($event.target.value)">
                           <option value="">Seleccione una dirección...</option>
                           <option *ngFor="let direction of client_directions" [value]="direction.id">
                             {{direction.name}}
@@ -85,7 +86,7 @@
                 </tr>
                 <tr>
                   <td style="width:30%"><b>Total</b></td>
-                  <td style="width:70%">S/{{ (product.price * quantity) + price_delivery }}</td>
+                  <td style="width:70%">S/{{ ((product.discount != 0 ? product.discount_price.toFixed(0) : product.price) * quantity) + price_delivery }}</td>
                 </tr>
                 <tr>
                   <td colspan="2">

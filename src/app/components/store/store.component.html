@@ -3,7 +3,7 @@
   </div>
   <section class="container mb-5">
     <div class="row">
-      <div class="col-md-3" *ngFor="let product of products">
+      <div class="col-md-3 mb-4" *ngFor="let product of products">
         <div class="b-product_grid_single">
           <div class="b-product_grid_header">
             <h3 class="product-title">
@@ -29,7 +29,7 @@
                   <span class="regular-price">P. regular:<br> S/{{ product.price }} <span class="zero">.00</span></span>
                 </div>
                 <div class="col-md-7">
-                  <span class="new-price">S/.{{ product.discount_price }} <span class="zero">.00</span></span>
+                  <span class="new-price">S/.{{ product.discount_price.toFixed(0) }} <span class="zero">.00</span></span>
                 </div>
               </div>
               <div class="row" *ngIf="product.discount == 0">

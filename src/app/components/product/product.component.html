@@ -15,8 +15,11 @@
           <div class="b-product_single_summary">
             <span><b>SKU: </b>{{data_product.sku_code}}</span>
             <p class="b-price">
-              <span class="b-amount">
-              <span class="b-symbol">S/</span>{{data_product.price}}</span>
+              <span class="b-amount" *ngIf="data_product.discount != 0">
+              <span class="b-symbol">S/</span>{{data_product.discount_price.toFixed(0)}}</span>
+
+              <span class="b-amount" *ngIf="data_product.discount == 0">
+                <span class="b-symbol">S/</span>{{data_product.price}}</span>
             </p>
             <div class="b-produt_description text-left">
               <div [innerHtml]="data_product.description"></div>

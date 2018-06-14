@@ -70,43 +70,47 @@ export class CheckoutComponent implements OnInit {
     this.address = localStorage.getItem('address');
     this.latitude = localStorage.getItem('latitude');
     this.longitude = localStorage.getItem('longitude');
-    this.subtotal = this.product.price * this.quantity;
-    this.total = (this.product.price * this.quantity) + this.price_delivery;
+    this.subtotal = (this.product.discount != 0 ? this.product.discount_price.toFixed(0) : this.product.price) * this.quantity;
+    this.total = ((this.product.discount != 0 ? this.product.discount_price.toFixed(0) : this.product.price) * this.quantity) + this.price_delivery;
 
     this.searchControl = new FormControl();
-    this.getDirections();
-  }
-
-  getDirections(){
-    this.profile_service.directions()
-    .then((response) => {
-      this.client_directions = response.json().directions;
-    })
-    .catch((error) => {
-      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
-    });
+    
+    let client = JSON.parse(sessionStorage.getItem("client"));
+    this.client_directions = client.directions;
   }
 
   onDeliveryChange(value){
     this.delivery = value;
-    if (this.delivery === 'envio') {
-      let data: any;
+    if (this.delivery !== 'envio') {
+      this.price_delivery = 0;
+    }
+  }
+
+  calculate_delivery(direction_id){
+    this.loading_payment = true;
+    let data: any;
+    if(this.branche.length > 0){
+      data = {
+        store_branche_id : this.branche[0].id,
+        client_direction_id: direction_id
+      };
+    }else{
       data = {
         store_branche_id : this.branche.id,
-        lat_origin: this.latitude,
-        lon_origin: this.longitude
+        client_direction_id: direction_id
       };
-      this.check_out_service.delivery_calculate(data)
+    }
+    
+    this.check_out_service.delivery_calculate(data)
       .then((response) => {
         this.price_delivery = response.json().prices[0].price;
+        this.loading_payment = false;
       })
       .catch((error) => {
         this.delivery === 'recoge';
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+        this.loading_payment = false;
       });
-    }else{
-      this.price_delivery = 0;
-    }
   }
 
   payment(){
@@ -130,7 +134,7 @@ export class CheckoutComponent implements OnInit {
       orderdetails: [{
         product_id: this.product.id,
         quantity: this.quantity,
-        price: this.product.price,
+        price: (this.product.discount != 0 ? this.product.discount_price.toFixed(0) : this.product.price),
         price_delivery: this.price_delivery,
         igv: parseFloat(this.total) * 0.18
       }],
