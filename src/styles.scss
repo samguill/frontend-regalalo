@@ -17,6 +17,7 @@
 @import "assets/scss/header";
 @import "assets/scss/sidemenu";
 @import "assets/scss/footer";
+@import "assets/scss/blog";
 
 body {
     font-family: 'Helvetica Neue Std' !important;
@@ -126,12 +127,12 @@ header#b-header {
     list-style: none;
 }
 
-.b-topbar_menu ul > li {
+/*.b-topbar_menu ul > li {
     position: relative;
     margin-left: -2px;
     display: inline-block;
     line-height: 30px;
-}
+}*/
 
 .b-topbar_menu ul > li a {
     color: #fff;
@@ -974,6 +975,10 @@ img.icon-text {
 
 #offers .offer-content {
     position: relative;
+}
+
+#offers .offer-content img {
+    width: 100%;
 }
 
 #offers .offer-content .offert-text {

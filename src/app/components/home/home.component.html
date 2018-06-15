@@ -54,38 +54,46 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div class="offer-content">
-          <img src="https://admin.regalalo.pe/uploads/offers/adventure-2018-06.jpg" />
-          <div class="offert-text">
-            <h5 class="text-uppercase">Outdoor</h5>
-            <p>Prepárate para la aventura</p>
+        <a routerLink="/oferta/outdoor">
+          <div class="offer-content">
+            <img src="https://admin.regalalo.pe/uploads/offers/adventure-2018-06.jpg" />
+            <div class="offert-text">
+              <h5 class="text-uppercase">Outdoor</h5>
+              <p>Prepárate para la aventura</p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-md-4">
-        <div class="offer-content">
-          <img src="https://admin.regalalo.pe/uploads/offers/accesories-2018-06.jpg" />
-          <div class="offert-text">
-            <h5 class="text-uppercase">ACCESORIOS DE MODA</h5>
-            <p>El estilo siempre está en los detalles</p>
+        <a routerLink="/oferta/accesorios-de-moda">
+          <div class="offer-content">
+            <img src="https://admin.regalalo.pe/uploads/offers/accesories-2018-06.jpg" />
+            <div class="offert-text">
+              <h5 class="text-uppercase">ACCESORIOS DE MODA</h5>
+              <p>El estilo siempre está en los detalles</p>
+            </div>
           </div>
-        </div>
-        <div class="offer-content">
-          <img src="https://admin.regalalo.pe/uploads/offers/sports-2018-06.jpg" />
-          <div class="offert-text">
-            <h5 class="text-uppercase">DEPORTE</h5>
-            <p>Si quieres algo, entrena para ello.</p>
+        </a>
+        <a routerLink="/oferta/deporte">
+          <div class="offer-content">
+            <img src="https://admin.regalalo.pe/uploads/offers/sports-2018-06.jpg" />
+            <div class="offert-text">
+              <h5 class="text-uppercase">DEPORTE</h5>
+              <p>Si quieres algo, entrena para ello.</p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
       <div class="col-md-4">
-        <div class="offer-content">
-          <img src="https://admin.regalalo.pe/uploads/offers/special-details-2018-06.jpg" />
-          <div class="offert-text">
-            <h5 class="text-uppercase">DETALLES ESPECIALES</h5>
-            <p>Eso que buscabas para esa persona especial...</p>
+        <a routerLink="/oferta/detalles-especiales">
+          <div class="offer-content">
+            <img src="https://admin.regalalo.pe/uploads/offers/special-details-2018-06.jpg" />
+            <div class="offert-text">
+              <h5 class="text-uppercase">DETALLES ESPECIALES</h5>
+              <p>Eso que buscabas para esa persona especial...</p>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
     
@@ -101,7 +109,7 @@
     </div>
   </div>
   <div class="container">
-    <div class="row">
+    
       <ngu-carousel [inputs]="carouselOne">
           <ngu-item NguCarouselItem *ngFor="let product of products;let i = index">
               <div class="b-product_grid_single">
@@ -144,6 +152,6 @@
           <button NguCarouselPrev class='leftRs'>&lt;</button>
           <button NguCarouselNext class='rightRs'>&gt;</button>
       </ngu-carousel>
-    </div>
+    
   </div>
 </section>

@@ -1,3 +1,4 @@
+import { OfferComponent } from './components/offer/offer.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
@@ -14,11 +15,18 @@ import { SearchResultComponent } from './components/search-result/search-result.
 import { ProductComponent } from './components/product/product.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
+import { BlogComponent } from './components/blog/blog.component';
+import { PostComponent } from './components/post/post.component';
+
+
 import { AuthGuard } from './services/auth.guard';
 
 const APP_ROUTES: Routes = [
     { path : '', component : HomeComponent },
     { path : 'catalogo-tiendas', component : StoresComponent, data: { state: 'stores' } },
+    { path : 'blog', component : BlogComponent},
+    { path : 'post/:id', component : PostComponent},
+    { path : 'oferta/:id', component : OfferComponent},
     { path : 'register', component : RegisterComponent, data: { state: 'register' } },
     { path: 'busqueda', component: SearchResultComponent},
     { path: 'faq', component: FaqComponent},

@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
     this.carouselTwo = {
-      grid: {xs: 1, sm: 1, md: 2, lg: 6, all: 0},
+      grid: {xs: 3, sm: 3, md: 3, lg: 6, all: 0},
       slide: 1,
       speed: 400,
       interval: 4000,

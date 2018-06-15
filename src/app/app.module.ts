@@ -36,6 +36,7 @@ import { OrdersService } from './services/orders.service';
 import { WishlistService } from './services/wishlist.service';
 import { LoaderService } from './services/loader.service';
 import { FaqService } from './services/faq.service';
+import { BlogService } from './services/blog.service';
 import { loadingInterceptor } from './services/loadingInterceptor';
 
 import { StoreComponent } from './components/store/store.component';
@@ -56,6 +57,9 @@ import { NguCarouselModule } from '@ngu/carousel';
 import 'hammerjs';
 import { PageComponent } from './components/page/page.component';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { BlogComponent } from './components/blog/blog.component';
+import { PostComponent } from './components/post/post.component';
+import { OfferComponent } from './components/offer/offer.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +81,10 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
     QuickSearchFormComponent,
     FaqComponent,
     PageComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    BlogComponent,
+    PostComponent,
+    OfferComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -113,6 +120,7 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
     OrdersService,
     WishlistService,
     FaqService,
+    BlogService,
     LoaderService,
     {
       provide: HTTP_INTERCEPTORS,
