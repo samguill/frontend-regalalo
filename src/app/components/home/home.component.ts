@@ -1,7 +1,7 @@
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Http } from '@angular/http';
 import { PageService } from './../../services/page.service';
 import swal from 'sweetalert2';
@@ -45,6 +45,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       name: 'description', content: 'Tu regalo ideal'
     });
     this.getElements();
+    if(event instanceof NavigationEnd){
+      (<any>window).ga('set', 'page', event.urlAfterRedirects);
+      (<any>window).ga('send', 'pageview');
+    }
   }
 
   ngAfterViewInit(): void {

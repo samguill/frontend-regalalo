@@ -43,7 +43,8 @@ a {
 }
 
 .b-wrapper{
-    background: #e7e7e7;
+    //background: #e7e7e7;
+    background: #fff;
 }
 
 header#b-header {
@@ -139,8 +140,6 @@ header#b-header {
     text-transform: uppercase;
     font-size: 12px;
     position: relative;
-    padding-top: 1px;
-    padding-bottom: 1px;
 }
 
 .mr-1 {
@@ -149,7 +148,6 @@ header#b-header {
 
 .b-topbar_menu ul > li a img {
     height: 30px;
-    top: 3px;
     position: inherit;
 }
 
@@ -744,6 +742,7 @@ button.btn {
     z-index: 5;
     width: 45px;
     height: 45px;
+    cursor: pointer;
 }
 
 .b-header_search .input-group-text {
@@ -984,7 +983,7 @@ img.icon-text {
 #offers .offer-content .offert-text {
     position: absolute;
     top: 40%;
-    padding: 0 100px;
+    padding: 0 50px;
     color: #FFF;
 }
 
@@ -1126,27 +1125,27 @@ input#search_places {
 }
 
 .b-header_search input#phrase::placeholder {
-    color: #ccc;
+    color: #e0e0e0;
     text-transform: uppercase;
 }
 
 .b-header_search input#phrase::-webkit-input-placeholder {
-    color: #CCC;
+    color: #e0e0e0;
     text-transform: uppercase;
 }
 
 .b-header_search input#phrase::-moz-placeholder {
-    color: #ccc;
+    color: #e0e0e0;
     text-transform: uppercase;
 }
 
 .b-header_search input#phrase:-ms-input-placeholder {
-    color: #ccc;
+    color: #e0e0e0;
     text-transform: uppercase;
 }
 
 .b-header_search input#phrase:-moz-placeholder {
-    color: #ccc;
+    color: #e0e0e0;
     text-transform: uppercase;
 }
 
@@ -1203,5 +1202,6 @@ section#logo-brands .ngucarouselPointDefault {
     display: none;
 }
 
-
-  
+.ngucarousel-items ngu-item.item .b-product_grid_single h3.product-title a {
+    font-size: 14px;
+}

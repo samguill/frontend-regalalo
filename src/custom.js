@@ -62,11 +62,11 @@ var App = (function(window){
                         }
                     },
                     bullets: {
-                        enable:false,
-                        hide_onmobile:true,
+                        enable:true,
+                        hide_onmobile:false,
                         hide_under:600,
-                        style:"zeus",
-                        hide_onleave:true,
+                        style:"ares",
+                        hide_onleave:false,
                         hide_delay:200,
                         hide_delay_mobile:1200,
                         direction:"horizontal",
@@ -74,7 +74,7 @@ var App = (function(window){
                         v_align:"bottom",
                         h_offset:0,
                         v_offset:30,
-                        space:5,
+                        space:10,
                         tmp:'<span class="tp-bullet-img-wrap">  <span class="tp-bullet-image"></span></span><span class="tp-bullet-title">{{title}}</span>'
                     }
                 },

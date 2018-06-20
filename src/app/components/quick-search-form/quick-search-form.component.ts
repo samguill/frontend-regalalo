@@ -27,8 +27,7 @@ export class QuickSearchFormComponent implements OnInit {
 
   search(){
     this.searchData = {
-      description: this.searchForm.value.phrase,
-      name: this.searchForm.value.phrase,
+      searchtext: this.searchForm.value.phrase,
       type: "quick"
     };
     this.search_data.sendData(this.searchData);

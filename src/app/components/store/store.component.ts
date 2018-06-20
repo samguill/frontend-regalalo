@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import {Meta} from '@angular/platform-browser';
 
 import { StoreService } from './../../services/store.service';
@@ -27,7 +27,14 @@ export class StoreComponent implements OnInit {
           .then((response)=> {
             this.products = response.products;
             this.store = response.store;
-
+            if(this.store.analytics_id != null ){
+              if(event instanceof NavigationEnd){
+                //(<any>window).ga('create', this.store.analytics_id, 'auto');
+                (<any>window).ga('set', 'page', event.urlAfterRedirects);
+                (<any>window).ga('send', 'pageview');
+                (<any>window).gtag('config', this.store.analytics_id);
+              }
+            }
             if(this.store.meta_title !== ""){
               this.meta.addTag({
                 name: 'title', content: this.store.meta_title
