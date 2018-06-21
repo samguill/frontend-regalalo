@@ -28,11 +28,12 @@ export class StoreComponent implements OnInit {
             this.products = response.products;
             this.store = response.store;
             if(this.store.analytics_id != null ){
+              console.log(this.store.analytics_id);
               if(event instanceof NavigationEnd){
                 //(<any>window).ga('create', this.store.analytics_id, 'auto');
-                (<any>window).ga('set', 'page', event.urlAfterRedirects);
+                //(<any>window).ga('set', 'page', event.urlAfterRedirects);                
+                (<any>window).ga('create', this.store.analytics_id, 'auto');
                 (<any>window).ga('send', 'pageview');
-                (<any>window).gtag('config', this.store.analytics_id);
               }
             }
             if(this.store.meta_title !== ""){
