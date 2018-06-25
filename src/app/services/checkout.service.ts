@@ -28,4 +28,16 @@ export class CheckoutService {
     return this.http.post(url, data, {headers : this.headers}).toPromise();
   }
 
+  integracion_delivery_calculate (data:any) : Promise<any> {
+    let url : string = `${this.BASE_URL}integration/orders/calculatedelivery`;
+    return this.http.post(url, data, {headers : this.headers}).toPromise();
+  }
+
+  integracion_generate_payment(data:any): Promise<any> {
+    let access_token = sessionStorage.getItem('access_token');
+    this.headers.append('Authorization', 'Bearer ' + access_token);
+    let url : string = `${this.BASE_URL}integration/orders/generate`;
+    return this.http.post(url, data, {headers : this.headers}).toPromise();
+  }
+
 }

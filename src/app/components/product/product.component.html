@@ -25,7 +25,7 @@
               <div [innerHtml]="data_product.description"></div>
             </div>
             <div class="b-product_single_action text-center clearfix">
-              <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout(data_product)">comprar</button>
+              <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout()">comprar</button>
               <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn" [routerLink]="['/register']">ingresar</button>
             </div>
           </div>

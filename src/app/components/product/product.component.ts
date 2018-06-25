@@ -57,7 +57,6 @@ export class ProductComponent implements OnInit {
     this.product_data_service.productData.subscribe(
       value => (value == null || value == undefined) ? this.data_product = "" : this.data_product = value
     );
-    console.log(this.data_product);
 
     if(this.data_product == ""){
       let data:any = [];
@@ -112,9 +111,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  checkout(product:any){
+  checkout(){
     let data = {
-      product: product,
+      product: this.data_product,
       branche: this.data_branche
     }
     this.checkout_data_service.setData(data);

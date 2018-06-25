@@ -65,7 +65,12 @@ export class CheckoutComponent implements OnInit {
     this.checkout_data_service.productData.subscribe(
       value => (value == null || value == undefined) ? this.data_checkout = "" : this.data_checkout = value
     );
+
     this.branche = this.data_checkout.branche;
+    if(this.branche.length > 0){
+      this.branche = this.branche[0];
+    }
+    
     this.product = this.data_checkout.product;
     this.address = localStorage.getItem('address');
     this.latitude = localStorage.getItem('latitude');
@@ -91,7 +96,7 @@ export class CheckoutComponent implements OnInit {
     let data: any;
     if(this.branche.length > 0){
       data = {
-        store_branche_id : this.branche[0].id,
+        store_branche_id : this.branche.id,
         client_direction_id: direction_id
       };
     }else{
@@ -141,7 +146,6 @@ export class CheckoutComponent implements OnInit {
       store_branche_id: this.branche.id,
       delivery : delivery_post
     };
-
     this.check_out_service.generate_payment(data)
     .then((response) => {
       this.loading_payment = false;

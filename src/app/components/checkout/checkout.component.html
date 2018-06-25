@@ -25,8 +25,7 @@
                   <td data-th="Producto">
                     <div class="row">
                       <div class="col-sm-2 hidden-xs">
-                        <img src="http://via.placeholder.com/1200x1200" *ngIf="product.featured_image == ''" width="100%" />
-                        <img [src]="product.featured_image" *ngIf="product.featured_image !== ''" width="100%" />
+                        <img [src]="!product.featured_image ? 'https://via.placeholder.com/1200x1200' : product.featured_image" width="100%" />
                       </div>
                       <div class="col-sm-10">
                         <h4 class="nomargin">{{product.name}}</h4>
@@ -115,7 +114,7 @@
                           <input type="hidden" name="purchaseVerification" [(ngModel)]="purchaseVerification" />
                           <input type="hidden" name="purchaseCurrencyCode" value="604" />
                           <input type="hidden" name="language" value="SP" />
-                          <input *ngIf="payment_generated" type="button" class="text-uppercase pull-left btn btn-block btn-primary" onclick="javascript:AlignetVPOS2.openModal('https://integracion.alignetsac.com/', '2')" value="Pagar">
+                          <input *ngIf="payment_generated" type="button" class="text-uppercase pull-left btn btn-block btn-primary" onclick="javascript:AlignetVPOS2.openModal('', '2')" value="Pagar">
                         </form>
                     </div>
                   </td>
