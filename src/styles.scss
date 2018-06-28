@@ -236,10 +236,11 @@ header#b-header {
 }
 
 .b-header_right {
-    display: table;
-    height: 96px;
-    line-height: 40px;
+    display: inline-flex;
+    /*height: 96px;*/
+    line-height: 10px;
     float: right;
+    padding-top: 10px;
 }
 
 .b-header_right > div {
@@ -248,8 +249,9 @@ header#b-header {
 }
 
 .b-header_right .b-header_links {
-    border-right: 2px solid #f5f5f5;
-    padding-right: 35px;
+    /*border-right: 2px solid #f5f5f5;*/
+    padding-right: 0;
+    /*display: inline-block;*/
 }
 
 .mb-0 {
@@ -728,7 +730,7 @@ button.btn {
 }
 
 .icon-last-menu img {
-    max-width: 55px;
+    max-width: 45px;
 }
 
 .icon-last-menu span {
@@ -1187,15 +1189,17 @@ img.calim-icon {
 }
 
 .ngucarousel button.leftRs,
-.ngucarousel button.rightRs {
+.ngucarousel button.rightRs,
+.ngucarouselPointDefault {
     visibility: hidden;
     display: none !important;
 }
 
 img.marker-icon-header {
     float: left;
-    height: 55px;
+    height: 40px;
     margin-right: 10px;
+    margin-left: 15px;
 }
 
 section#logo-brands .ngucarouselPointDefault {
@@ -1204,4 +1208,20 @@ section#logo-brands .ngucarouselPointDefault {
 
 .ngucarousel-items ngu-item.item .b-product_grid_single h3.product-title a {
     font-size: 14px;
+}
+
+.b-product_tabs .tab-content img {
+    max-height: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+.logout-btn {
+    color: #f05224;
+    font-size: 12px;
+}
+
+.b-header_main .container-fluid .clearfix > div {
+    padding-left: 0;
+    padding-right: 0;
 }

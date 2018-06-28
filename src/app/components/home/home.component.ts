@@ -1,3 +1,4 @@
+import { UserLocationService } from './../../services/user-location.service';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import {Meta} from '@angular/platform-browser';
@@ -28,15 +29,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
   offer3: any;
   offer4: any;
   brands: any;
+  products_1:any;
+  products_2:any;
 
   images: any;
   public carouselOne: NguCarousel;
   public carouselTwo: NguCarousel;
+  public carouselTree: NguCarousel;
 
   constructor(
     private router: Router,
     private meta:Meta,
     private page: PageService,
+    private user_location_service:UserLocationService,
     private http: Http) {
     this.meta.addTag({
       name: 'author', content: 'Regalalo'
@@ -67,6 +72,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         if(address){ }else{
           this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + "," + longitude + "&sensor=false")
           .subscribe(data => {
+            this.user_location_service.sendData(data.json().results[0]['formatted_address']);
             localStorage.setItem('address', data.json().results[0]['formatted_address']);
           });
         }
@@ -75,6 +81,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
       });
     }
     this.carouselOne = {
+      grid: {xs: 1, sm: 1, md: 2, lg: 4, all: 0},
+      slide: 1,
+      speed: 400,
+      interval: 4000,
+      point: {
+        visible: true
+      },
+      load: 2,
+      touch: false,
+      loop: true,
+      custom: 'banner'
+    }
+
+    this.carouselTree = {
       grid: {xs: 1, sm: 1, md: 2, lg: 4, all: 0},
       slide: 1,
       speed: 400,
@@ -115,7 +135,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.stores = response.stores;
         this.slides = response.slides;
         this.top_gifts = response.products;
-        this.products = response.products;
+        this.products_1 = response.first_10_products;
+        this.products_2 = response.before_10_products;
         this.brands = response.brands;
       }else{
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");

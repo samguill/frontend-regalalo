@@ -85,7 +85,7 @@
                 </tr>
                 <tr>
                   <td style="width:30%"><b>Total</b></td>
-                  <td style="width:70%">S/{{ ((product.discount != 0 ? product.discount_price.toFixed(0) : product.price) * quantity) + price_delivery }}</td>
+                  <td style="width:70%">S/{{ ((product.discount != 0 ? product.discount_price.toFixed(2) : product.price.toFixed(2)) * quantity) + price_delivery }}</td>
                 </tr>
                 <tr>
                   <td colspan="2">

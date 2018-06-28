@@ -16,13 +16,12 @@
             <span><b>SKU: </b>{{data_product.sku_code}}</span>
             <p class="b-price">
               <span class="b-amount" *ngIf="data_product.discount != 0">
-              <span class="b-symbol">S/</span>{{data_product.discount_price.toFixed(0)}}</span>
+              <span class="b-symbol">S/</span>{{data_product.discount_price.toFixed(2)}}</span>
 
               <span class="b-amount" *ngIf="data_product.discount == 0">
-                <span class="b-symbol">S/</span>{{data_product.price}}</span>
+                <span class="b-symbol">S/</span>{{data_product.price.toFixed(2)}}</span>
             </p>
             <div class="b-produt_description text-left">
-              <div [innerHtml]="data_product.description"></div>
             </div>
             <div class="b-product_single_action text-center clearfix">
               <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout()">comprar</button>

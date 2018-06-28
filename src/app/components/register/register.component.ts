@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { AuthService } from './../../services/auth.service';
+import { UserNameService } from './../../services/user-name.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   loading_register:boolean = false;
 
   constructor( private router: Router,
-    private auth: AuthService) { }
+    private auth: AuthService, private user_name_service:UserNameService) { }
 
   ngOnInit() {
     this.signinForm = new FormGroup({
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
       .then((response) => {
         this.loading_login = false;
         response = response.json();
+        this.user_name_service.sendData(response.client.first_name);
         sessionStorage.setItem('access_token', response.access_token);
         sessionStorage.setItem('refresh_token', response.refresh_token);
         sessionStorage.setItem('client', JSON.stringify(response.client));
@@ -64,12 +66,12 @@ export class RegisterComponent implements OnInit {
       .then((response) => {
         this.loading_register = false;
         response = response.json();
-        sessionStorage.setItem('access_token', response.access_token);
-        sessionStorage.setItem('refresh_token', response.refresh_token);
-        sessionStorage.setItem('client', JSON.stringify(response.client));
+        //sessionStorage.setItem('access_token', response.access_token);
+        //sessionStorage.setItem('refresh_token', response.refresh_token);
+        //sessionStorage.setItem('client', JSON.stringify(response.client));
         this.registerForm.reset();
-        this.auth.setLogin();
-        this.router.navigate(['/mi-cuenta']);
+        //this.auth.setLogin();
+        //this.router.navigate(['/mi-cuenta']);
       })
       .catch((error) => {
         this.loading_register = false;

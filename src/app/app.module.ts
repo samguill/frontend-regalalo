@@ -27,6 +27,8 @@ import { PageService } from './services/page.service';
 import { StoreService } from './services/store.service';
 import { AuthGuard } from './services/auth.guard';
 import { ProfileService } from './services/profile.service';
+import { UserNameService } from './services/user-name.service';
+import { UserLocationService } from './services/user-location.service';
 import { SearchDataService } from './services/search-data.service';
 import { SearchService } from './services/search.service';
 import { ProductDataService } from './services/product-data.service';
@@ -60,6 +62,8 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { BlogComponent } from './components/blog/blog.component';
 import { PostComponent } from './components/post/post.component';
 import { OfferComponent } from './components/offer/offer.component';
+import { UserNameComponent } from './components/shared/user-name/user-name.component';
+import { UserLocationComponent } from './components/shared/user-location/user-location.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +88,9 @@ import { OfferComponent } from './components/offer/offer.component';
     SearchFilterPipe,
     BlogComponent,
     PostComponent,
-    OfferComponent
+    OfferComponent,
+    UserNameComponent,
+    UserLocationComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -122,6 +128,8 @@ import { OfferComponent } from './components/offer/offer.component';
     FaqService,
     BlogService,
     LoaderService,
+    UserNameService,
+    UserLocationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: loadingInterceptor,
