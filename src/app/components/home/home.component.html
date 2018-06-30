@@ -197,3 +197,44 @@
     </ngu-carousel>
   </div>
 </section>
+
+<section class="container pt-3 mb-3" id="posts">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mt-3 mb-3">
+        <h5 class="title text-uppercase">Últimos artículos</h5>
+      </div>
+    </div>
+  </div>
+  <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-6 col-xs-12" *ngFor="let post of posts;let i = index">
+            <div class="b-blog_grid_single">
+                <div class="b-blog_single_header">
+                  <div class="b-blog_img_wrap">
+                    <a routerLink="/post/{{post.slug}}">
+                      <img [src]="post.featured_image" class="img-fluid d-block" [alt]="post.title">
+                    </a>
+                  </div>
+                  <div class="b-post_categories">
+                    <div class="b-post_categorie_list"><span>{{post.category.title}}</span></div>
+                  </div>
+                </div>
+                <div class="b-blog_single_info">
+                  <h3 class="b-entry_title">
+                    <a routerLink="/post/{{post.slug}}" rel="bookmark">{{post.title}}</a>
+                  </h3>
+                  <div class="b-blog_single_content">
+                    <p class="text-justify">{{post.summary}}</p>
+                  </div>
+                  <div class="b-read_more mt-3 text-center">
+                    <a routerLink="/post/{{post.slug}}">Leer más</a>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -10,7 +10,7 @@
             <div class="b-blog_single_header">
               <div class="b-blog_img_wrap">
                 <a routerLink="/post/{{post.slug}}">
-                  <img [src]="post.featured_image" class="img-fluid d-block" alt="">
+                  <img [src]="post.featured_image" class="img-fluid d-block" [alt]="post.title">
                 </a>
               </div>
               <div class="b-post_categories">
@@ -22,7 +22,7 @@
                 <a routerLink="/post/{{post.slug}}" rel="bookmark">{{post.title}}</a>
               </h3>
               <div class="b-blog_single_content">
-                <p>{{post.summary}}</p>
+                <p class="text-justify">{{post.summary}}</p>
               </div>
               <div class="b-read_more mt-3 text-center">
                 <a routerLink="/post/{{post.slug}}">Leer más</a>

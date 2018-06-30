@@ -71,12 +71,13 @@
                 <tr *ngIf="delivery == 'envio'">
                   <td style="width:30%; vertical-align: middle;"><b>Dirección de envío</b></td>
                   <td style="width:70%">
-                      <select class="form-control" [(ngModel)]="client_direction_id" (change)="calculate_delivery($event.target.value)">
+                      <select class="form-control direction-select" [(ngModel)]="client_direction_id" (change)="calculate_delivery($event.target.value)">
                           <option value="">Seleccione una dirección...</option>
                           <option *ngFor="let direction of client_directions" [value]="direction.id">
                             {{direction.name}}
                           </option>
                       </select>
+                      <button class="btn btn-primary btn-plus-direction" data-toggle="tooltip" data-placement="top" title="Agregar dirección" (click)="openModal(content)"><i class="fa fa-plus"></i></button>
                   </td>
                 </tr>
                 <tr *ngIf="delivery == 'envio'">
@@ -127,3 +128,32 @@
     </div>
   </div>
 </section>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Nueva dirección</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="directionForm" (ngSubmit)="save_direction()">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label for="">Nombre</label>
+            <input class="form-control" type="text" name="name" [formControl]="directionForm.controls['name']">
+            <small *ngIf="directionForm.controls['name'].hasError('required') && directionForm.controls['name'].touched" class="form-error-msg"> Este campo es requerido </small>
+          </div>
+          <div class="form-group col-md-12">
+            <label for="">Dirección</label>
+            <ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback1($event)"></ng4geo-autocomplete>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-block btn-login" id="directionbutton" [disabled]="directionForm.invalid">
+          <i [ngClass]="{'fa-circle-o-notch fa-spin': loading_direction_data}" class="fa"></i>
+          <span *ngIf="!loading_direction_data">Agregar dirección</span>
+        </button>
+      </form>
+    </div>
+  </ng-template>
+  

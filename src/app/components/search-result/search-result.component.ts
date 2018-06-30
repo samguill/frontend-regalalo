@@ -49,6 +49,16 @@ export class SearchResultComponent implements OnInit {
         }
 
       });
+      
+      if(!data_search){
+        data_search = "";
+        let latitude = localStorage.getItem('latitude');
+        let longitude = localStorage.getItem('longitude');
+        if(latitude != null && longitude != null){
+          data_search = {"latitude": latitude, "longitude":longitude};
+        }
+        this.quickSearch(data_search);
+      }
   }
 
   quickSearch(data:any){
@@ -106,6 +116,50 @@ export class SearchResultComponent implements OnInit {
 
   ngOnDestroy(){
     this.search_data.resetObserver();
+  }
+
+  filter_data(filter_type:string){
+    switch(filter_type){
+      case 'min-max-price':
+        this.filter_min_max_price();
+      break;
+      case 'max-min-price':
+        this.filter_max_min_price();
+      break;
+      case 'closest':
+        this.filter_closest();
+      break;
+      case 'alphabetical':
+        this.alphabetical();
+      break;
+    }
+  }
+
+  filter_min_max_price(){
+    console.log("Menor a mayor precio");
+    
+  }
+
+  filter_max_min_price(){
+    console.log("Mayor a menor precio");
+  }
+
+  filter_closest(){
+    this.result.sort(function(a,b){
+      if(a.distance && b.distance){
+        a = a.distance.toFixed(0);
+        b = b.distance.toFixed(0);
+        return a < b ? -1 : a > b ? 1 : 0;
+      }
+    });
+  }
+
+  alphabetical(){
+    this.result.sort(function(a,b){
+      a = a.name.toLowerCase();
+      b = b.name.toLowerCase();
+      return a < b ? -1 : a > b ? 1 : 0;
+    });
   }
 
 }

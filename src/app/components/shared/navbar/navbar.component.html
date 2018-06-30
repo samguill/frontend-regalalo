@@ -34,7 +34,7 @@
 
         <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-6">
           <div class="b-logo text-sm-left text-lg-center text-xl-center">
-            <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" /></a>
+            <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" alt="Regálalo" /></a>
             <div class="welcome-user" *ngIf="(isLoggedIn$ | async)">
               <span>Bienvenido: </span><app-user-name></app-user-name>
             </div>
@@ -62,9 +62,9 @@
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['catalogo-tiendas']"><span>Tiendas</span></a>
                   </li>
-                  <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
+                  <!-- <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['vende-con-nosotros']"><span>Vende aquí</span></a>
-                  </li>
+                  </li> -->
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['blog']"><span>Blog</span></a>
                   </li>

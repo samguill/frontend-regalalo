@@ -18,6 +18,7 @@
 @import "assets/scss/sidemenu";
 @import "assets/scss/footer";
 @import "assets/scss/blog";
+@import "assets/scss/shop";
 
 body {
     font-family: 'Helvetica Neue Std' !important;
@@ -1224,4 +1225,15 @@ section#logo-brands .ngucarouselPointDefault {
 .b-header_main .container-fluid .clearfix > div {
     padding-left: 0;
     padding-right: 0;
+}
+
+.direction-select{
+    width: 85% !important;
+    float: left;
+    margin-right: 10px;
+}
+
+.btn-plus-direction{
+    line-height: 20px !important;
+    padding-top: 10px !important;
 }

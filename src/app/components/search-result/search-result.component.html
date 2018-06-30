@@ -2,6 +2,35 @@
   <h1 class="b-entry_title">Resultado de búsqueda</h1>
 </div>
 <section class="container">
+  <div class="row clearfix b-shop_head">
+    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
+      <nav class="b-shop_breadcrumb">
+        <a [routerLink]="['/']">Inicio</a>
+        <span> Resultados de búsqueda</span>
+      </nav>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
+      <div class="b-filter_button d-inline-block">
+        <a href="javascript:;" class="b-open_filters">Filtrar búsqueda</a>
+      </div>
+    </div>
+  </div>
+  <div class="b-filters_area mt-2">
+    <div class="b-filters_inner_area">
+      <div class="row clearfix">
+        <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+          <h5 class="b-filter_title">Ordenar por</h5>
+          <div class="row">
+            <div class="col-md-3"><a (click)="filter_data('min-max-price')">De menor a mayor precio</a></div>
+            <div class="col-md-3"><a (click)="filter_data('max-min-price')">De mayor a menor precio</a></div>
+            <div class="col-md-3"><a (click)="filter_data('closest')">Más cercanos</a></div>
+            <div class="col-md-3"><a (click)="filter_data('alphabetical')">Orden alfabético</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-12">
       <div class="row">
@@ -11,6 +40,7 @@
               <h3 class="product-title">
                 <a (click)="product_detail(product)">{{product.name}}</a>
               </h3>
+              <span *ngIf="product.distance">A {{product.distance.toFixed(0)}}km</span>
               <div class="b-product_grid_action">
                 <a (click)="add_to_wishlist(product)">
                   <i class="icon-heart icons"></i>

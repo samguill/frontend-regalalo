@@ -8,6 +8,7 @@ var App = (function(window){
             this.HeaderFixOnScroll();
             this.HomeSlider();
             this.MobileNavToggle();
+            this.FilterToggle();
         },
 
         HeaderFixOnScroll: function(){
@@ -98,6 +99,12 @@ var App = (function(window){
                 $("body").removeClass('mobile-menu-open');
             });
         },
+        FilterToggle: function(){
+            $(".b-open_filters").on("click", function(){
+              $(this).toggleClass('b-btn_open');
+              $(".b-filters_area").slideToggle('');
+            });
+        }
     }
 
 })(window);

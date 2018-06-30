@@ -105,7 +105,7 @@ export class ProfileComponent implements OnInit {
         response = response.json();
         if(response.status == "ok"){
           swal("Éxito", "Tus datos se han actualizado con éxito.", "success");
-          localStorage.setItem('client', JSON.stringify(response.data));
+          sessionStorage.setItem('client', JSON.stringify(response.data));
         }
       })
       .catch((error) => {
@@ -160,7 +160,7 @@ export class ProfileComponent implements OnInit {
         if(response.status == "ok"){
           this.loading_direction_data = false;
           swal("Éxito", "La dirección se ha guardado con éxito.", "success");
-          localStorage.setItem('client', JSON.stringify(response.data));
+          sessionStorage.setItem('client', JSON.stringify(response.data));
           this.directions.push(this.new_direction);
         }
       })

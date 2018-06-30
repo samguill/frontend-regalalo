@@ -2,13 +2,13 @@ import { ElementRef, NgZone, OnInit, ViewChild, Component } from '@angular/core'
 import { CheckoutService } from './../../services/checkout.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
 import { Router, ActivatedRoute, Route } from '@angular/router';
-
-import { FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import swal from 'sweetalert2';
 
 import { AuthService } from './../../services/auth.service';
 import { ProfileService } from './../../services/profile.service';
+import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-checkout',
@@ -32,6 +32,7 @@ export class CheckoutComponent implements OnInit {
   longitude;
   searchControl: FormControl;
   loading_payment:boolean = false;
+  modalReference: NgbModalRef;
 
   purchaseVerification: string;
   acquirerId: string;
@@ -45,12 +46,17 @@ export class CheckoutComponent implements OnInit {
   userCommerce: string;
   userCodePayme: string;
 
+  directionForm: FormGroup;
+  loading_direction_data:boolean = false;
+  new_direction: any = {};
+
   payment_generated:boolean = false;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
   
   constructor(
+    private modalService: NgbModal,
     private router: Router,
     private auth: AuthService,
     private mapsAPILoader: MapsAPILoader,
@@ -58,7 +64,6 @@ export class CheckoutComponent implements OnInit {
     private check_out_service: CheckoutService,
     private checkout_data_service: CheckoutDataService,
     private profile_service: ProfileService) {
-
   }
 
   ngOnInit() {
@@ -82,6 +87,10 @@ export class CheckoutComponent implements OnInit {
     
     let client = JSON.parse(sessionStorage.getItem("client"));
     this.client_directions = client.directions;
+
+    this.directionForm = new FormGroup({
+      name: new FormControl('', Validators.required)
+    });
   }
 
   onDeliveryChange(value){
@@ -166,6 +175,42 @@ export class CheckoutComponent implements OnInit {
       this.loading_payment = false;
       swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     });
+  }
+
+  openModal(content){
+    this.modalService.open(content).result.then((result) => {
+    });
+  }
+
+  autoCompleteCallback1(selectedData:any) {
+    this.new_direction = {
+      address: selectedData.data.description,
+      latitude: selectedData.data.geometry.location.lat,
+      longitude: selectedData.data.geometry.location.lng
+    }
+	}
+
+  save_direction(){
+    this.new_direction["name"] = this.directionForm.value.name;
+    this.loading_direction_data = true;
+    this.profile_service.add_direction(this.new_direction)
+      .then((response) => {
+        response = response.json();
+        if(response.status == "ok"){
+          this.loading_direction_data = false;
+          swal("Éxito", "La dirección se ha guardado con éxito.", "success");
+          sessionStorage.setItem('client', JSON.stringify(response.data));
+          let client = response.data;
+          let directions = client.directions;
+          let last = directions[directions.length -1];
+          this.client_directions.push({id:last.id, name:last.name});
+          this.directionForm.reset();
+        }
+      })
+      .catch((error) => {
+        this.loading_direction_data = false;
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+      });
   }
 
 }

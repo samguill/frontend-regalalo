@@ -10,6 +10,7 @@ import * as $ from 'jquery';
 import 'slick-carousel/slick/slick';
 import { NguCarousel } from '@ngu/carousel';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ProfileService } from './../../services/profile.service';
 declare const App: any;
 
 @Component({
@@ -31,6 +32,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   brands: any;
   products_1:any;
   products_2:any;
+  posts:any;
+  loading:boolean = false;
 
   images: any;
   public carouselOne: NguCarousel;
@@ -41,6 +44,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private router: Router,
     private meta:Meta,
     private page: PageService,
+    private profile_service: ProfileService,
     private user_location_service:UserLocationService,
     private http: Http) {
     this.meta.addTag({
@@ -138,6 +142,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.products_1 = response.first_10_products;
         this.products_2 = response.before_10_products;
         this.brands = response.brands;
+        this.posts = response.posts;
       }else{
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       }
@@ -145,5 +150,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
     .catch((error) => {
       swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     });
+  }
+
+  add_to_wishlist(product:any){
+    this.loading = true;
+    this.profile_service.add_to_wishlist(product.id)
+      .then((response) => {
+        this.loading = false;
+        response = response.json();
+      })
+      .catch((error) => {
+        this.loading = false;
+        swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
+      });
   }
 }
