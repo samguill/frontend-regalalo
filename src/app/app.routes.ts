@@ -17,7 +17,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 
 import { BlogComponent } from './components/blog/blog.component';
 import { PostComponent } from './components/post/post.component';
-
+import { RegisterStoreComponent } from './components/register-store/register-store.component';
 
 import { AuthGuard } from './services/auth.guard';
 
@@ -28,6 +28,7 @@ const APP_ROUTES: Routes = [
     { path : 'post/:id', component : PostComponent},
     { path : 'oferta/:id', component : OfferComponent},
     { path : 'register', component : RegisterComponent, data: { state: 'register' } },
+    { path : 'vende-con-nosotros', component : RegisterStoreComponent, data: { state: 'vende-con-nosotros' } },
     { path: 'busqueda', component: SearchResultComponent},
     { path: 'faq', component: FaqComponent},
     { path : 'mi-cuenta', component : ProfileComponent, canActivate : [AuthGuard] },

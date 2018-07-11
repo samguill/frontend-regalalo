@@ -64,6 +64,7 @@ import { PostComponent } from './components/post/post.component';
 import { OfferComponent } from './components/offer/offer.component';
 import { UserNameComponent } from './components/shared/user-name/user-name.component';
 import { UserLocationComponent } from './components/shared/user-location/user-location.component';
+import { RegisterStoreComponent } from './components/register-store/register-store.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { UserLocationComponent } from './components/shared/user-location/user-lo
     PostComponent,
     OfferComponent,
     UserNameComponent,
-    UserLocationComponent
+    UserLocationComponent,
+    RegisterStoreComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
