@@ -1189,11 +1189,45 @@ img.calim-icon {
     padding: 0 10px;
 }
 
-.ngucarousel button.leftRs,
-.ngucarousel button.rightRs,
 .ngucarouselPointDefault {
     visibility: hidden;
     display: none !important;
+}
+
+.ngucarousel button.rightRs {
+    position: absolute;
+    right: 0;
+    top: 30%;
+    height: 100px;
+}
+
+.ngucarousel button.leftRs {
+    position: absolute;
+    left: 0;
+    top: 30%;
+    height: 100px;
+}
+
+.ngucarousel button {
+    background: #ff5019;
+    color: #FFF;
+    opacity: 0;
+    transition: ease all 0.3s;
+}
+
+.ngucarousel:hover button {
+    opacity: 1;
+}
+
+.ngucarousel button:focus {
+    outline: none;
+    border: 1px solid #d84415;
+}
+
+section#logo-brands .ngucarousel button.leftRs,
+section#logo-brands .ngucarousel button.rightRs {
+    display: none !important;
+    visibility: hidden;
 }
 
 img.marker-icon-header {
