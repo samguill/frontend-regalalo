@@ -9,36 +9,42 @@
           <ul id="progressbar">
             <li class="active">Datos de la empresa</li>
             <li>Representante Legal</li>
-            <li>Datos para realizar abonos</li>
+            <li>Contacto Comercial</li>
+            <li>Déjanos un mensaje</li>
           </ul>
-          <fieldset>
+          <fieldset [formGroup]="step_1_Form">
             <h3 class="fs-subtitle">Ingrese los datos principales de la empresa</h3>
-            <input class="form-control" type="text" name="email" placeholder="Razón social" />
-            <input class="form-control" type="text" name="email" placeholder="Nombre comercial" />
-            <input class="form-control" type="text" name="email" placeholder="RUC" />
-            <input class="form-control" type="text" name="email" placeholder="Domicilio legal" />
-            <input class="form-control" type="text" name="email" placeholder="Giro comercial" />
-            <input type="button" name="next" class="next action-button" value="Siguiente" />
+            <input class="form-control" type="text" name="business_name" placeholder="Razón social" [formControl]="step_1_Form.controls['business_name']" />
+            <input class="form-control" type="text" name="comercial_name" placeholder="Nombre comercial" [formControl]="step_1_Form.controls['comercial_name']" />
+            <input class="form-control" type="text" name="ruc" placeholder="RUC" [formControl]="step_1_Form.controls['ruc']" />
+            <input class="form-control" type="text" name="legal_address" placeholder="Domicilio legal" [formControl]="step_1_Form.controls['legal_address']" />
+            <input class="form-control" type="text" name="business_turn" placeholder="Giro comercial" [formControl]="step_1_Form.controls['business_turn']" />
+            <button type="button" name="next" class="btn next btn-block btn-primary" [disabled]="step_1_Form.invalid">Siguiente</button>
           </fieldset>
 
-          <fieldset>
-            <h3 class="fs-subtitle">Ingrese los datos del contacto comercial</h3>
-            <input class="form-control" type="text" name="email" placeholder="Nombres y Apellidos" />
-            <input class="form-control" type="text" name="email" placeholder="Documento de identidad" />
-            <input class="form-control" type="text" name="email" placeholder="Correo electrónico" />
-            <input class="form-control" type="text" name="email" placeholder="Teléfono de contacto" />
-            <input type="button" name="previous" class="previous action-button" value="Anterior" />
-            <input type="button" name="next" class="next action-button" value="Siguiente" />
+          <fieldset [formGroup]="step_2_Form">
+              <h3 class="fs-subtitle">Ingrese los datos del Representante Legal</h3>
+              <input class="form-control" type="text" name="name" placeholder="Nombres y Apellidos" [formControl]="step_2_Form.controls['name']" />
+              <input class="form-control" type="text" name="document_number" placeholder="Documento de identidad" [formControl]="step_2_Form.controls['document_number']" />
+              <input class="form-control" type="text" name="phone" placeholder="Teléfono" [formControl]="step_2_Form.controls['phone']" />
+              <button type="button" name="next" class="btn next btn-block btn-primary" [disabled]="step_2_Form.invalid">Siguiente</button>
+            </fieldset>
+
+          <fieldset [formGroup]="step_3_Form">
+            <h3 class="fs-subtitle">Ingrese los datos del Contacto Comercial</h3>
+            <input class="form-control" type="text" name="name" placeholder="Nombres y Apellidos" [formControl]="step_3_Form.controls['name']" />
+            <input class="form-control" type="text" name="document_number" placeholder="Documento de identidad" [formControl]="step_3_Form.controls['document_number']" />
+            <input class="form-control" type="text" name="email" placeholder="Correo electrónico" [formControl]="step_3_Form.controls['email']" />
+            <input class="form-control" type="text" name="phone" placeholder="Teléfono de contacto" [formControl]="step_3_Form.controls['phone']" />
+            <button type="button" name="next" class="btn next btn-block btn-primary" [disabled]="step_3_Form.invalid">Siguiente</button>
           </fieldset>
 
-          <fieldset>
+          <fieldset [formGroup]="step_4_Form">
             <h3 class="fs-subtitle">Déjanos un mensaje</h3>
-            <input class="form-control" type="text" name="email" placeholder="Banco" />
-            <input class="form-control" type="text" name="email" placeholder="Nombre que figura el estado de cuenta" />
-            <input class="form-control" type="text" name="email" placeholder="Número de cuenta bancaria" />
-            <input class="form-control" type="text" name="email" placeholder="Código de cuenta interbancario CCI" />
-            <input type="button" name="previous" class="previous action-button" value="Anterior" />
-            <input type="submit" name="submit" class="submit action-button" value="Finalizar registro" />
+            <textarea class="form-control" rows="3" placeholder="Escribe un mensaje" [formControl]="step_4_Form.controls['message']"></textarea>
+            <button type="submit" name="submit" class="btn btn-block btn-primary" (click)="register_store()">
+                <i [ngClass]="{'fa-circle-o-notch fa-spin': loading}" class="fa"></i>
+                <span *ngIf="!loading">Finalizar registro</span></button>
           </fieldset>
         </form>
       </div>

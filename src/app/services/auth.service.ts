@@ -56,4 +56,9 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
+  register_store(data:any){
+    let URL = "https://admin.regalalo.pe/api/store/register";
+    return this.http.post(URL, data, {headers: this.headers}).toPromise();
+  }
+
 }

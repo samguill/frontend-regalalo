@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   stores: any;
   top_gifts: any;
   products: any;
+  featured_products: any;
   offers: any;
   offer1: any;
   offer2: any;
@@ -145,6 +146,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.products_2 = response.before_10_products;
         this.brands = response.brands;
         this.posts = response.posts;
+        this.featured_products = response.featured_products;
       }else{
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
       }

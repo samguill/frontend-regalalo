@@ -1213,6 +1213,7 @@ img.calim-icon {
     color: #FFF;
     opacity: 0;
     transition: ease all 0.3s;
+    cursor: pointer;
 }
 
 .ngucarousel:hover button {
@@ -1277,7 +1278,8 @@ form.multi-step-form {
     width: 750px;
 	margin: 0 auto;
 	text-align: center;
-	position: relative;
+    position: relative;
+    z-index: 1;
 }
 
 form.multi-step-form fieldset {
@@ -1331,10 +1333,10 @@ form.multi-step-form .action-button:focus {
 }
 #progressbar li {
 	list-style-type: none;
-	color: white;
+	color: #ff4f19;
 	text-transform: uppercase;
-	font-size: 9px;
-	width: 33.33%;
+	font-size: 12px;
+	width: 25%;
 	float: left;
 	position: relative;
 }
@@ -1348,7 +1350,8 @@ form.multi-step-form .action-button:focus {
 	font-size: 12px;
 	background: #ff5019;
 	border-radius: 3px;
-	margin: 0 auto 5px auto;
+    margin: 0 auto 5px auto;
+    color: #FFF;
 }
 
 #progressbar li:after {
@@ -1369,4 +1372,9 @@ form.multi-step-form .action-button:focus {
 #progressbar li.active:after{
 	background: #ffa002;
 	color: white;
+}
+
+.characteristics .characteristic {
+    max-width: 200px;
+    text-align: left;
 }

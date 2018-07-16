@@ -24,6 +24,17 @@
             <div class="b-produt_description text-left">
             </div>
             <div class="b-product_single_action text-center clearfix">
+              <div class="characteristics" *ngIf="isloggedIn">
+                <div class="characteristic" *ngFor="let characteristic of data_product.productcharacteristicsdetail">
+                  <div class="form-group">
+                    <label>{{characteristic.characteristic.name}}</label>
+                    <select class="form-control">
+                      <option>Seleccionar...</option>
+                      <option *ngFor="let value of characteristic.product_characteristic_values.split(',')" value="value">{{value}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
               <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout()">comprar</button>
               <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn" [routerLink]="['/register']">ingresar</button>
             </div>
@@ -47,12 +58,20 @@
               <div>
                 <table class="table">
                   <tr>
-                    <td><b>Color</b></td>
-                    <td>Negro, Blanco</td>
+                    <td><b>SKU</b></td>
+                    <td>{{data_product.sku_code}}</td>
                   </tr>
                   <tr>
-                    <td><b>Tamaño</b></td>
-                    <td>15cm x 9cm</td>
+                    <td><b>Ventar por</b></td>
+                    <td>{{data_product.product_presentation}}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Vendido por</b></td>
+                    <td>{{data_product.store.comercial_name}}</td>
+                  </tr>
+                  <tr *ngFor="let characteristic of data_product.productcharacteristicsdetail">
+                    <td><b>{{characteristic.characteristic.name}}</b></td>
+                    <td>{{characteristic.product_characteristic_values}}</td>
                   </tr>
                 </table>
               </div>

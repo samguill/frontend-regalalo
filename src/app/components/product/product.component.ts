@@ -82,9 +82,12 @@ export class ProductComponent implements OnInit {
       this.data_product["featured_image"] = "https://admin.regalalo.pe/" + this.data_product.featured_image;
       this.data_branche = this.getStoreBrancheData(this.data_product.store_branche_id);
     }
+    console.log(this.data_product);
   }
 
   getDataBySlug(slug:string){
+    /*let data = {};
+    data["slug"] = slug;*/
     this.product_service.detail(slug)
     .then((response)=> {
       this.data_product = response.json().data;

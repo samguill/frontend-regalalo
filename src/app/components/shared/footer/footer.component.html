@@ -36,7 +36,7 @@
               <img src="assets/img/sale-icon.png"  class="footer-icon mb-4" />
               <h5 class="title text-white text-uppercase mb-3 pb-2">Venta y compra</h5>
               <ul class="links">
-                <li><a [routerLink]="['/']">Vende con nosotros</a></li>
+                <li><a [routerLink]="['/vende-con-nosotros']">Vende con nosotros</a></li>
                 <li *ngFor="let venta of ventas">
                   <a routerLink="/page/{{venta.slug}}">{{venta.title}}</a>
                 </li>
