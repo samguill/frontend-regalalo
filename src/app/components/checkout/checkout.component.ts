@@ -19,6 +19,7 @@ export class CheckoutComponent implements OnInit {
   data_checkout: any;
   product: any;
   branche: any;
+  characteristics: any = [];
   is_delivery: boolean = false;
   total;
   subtotal;
@@ -72,11 +73,8 @@ export class CheckoutComponent implements OnInit {
     );
 
     this.branche = this.data_checkout.branche;
-    if(this.branche.length > 0){
-      this.branche = this.branche[0];
-    }
-    
     this.product = this.data_checkout.product;
+    this.characteristics = this.data_checkout.order_characteristics;
     this.address = localStorage.getItem('address');
     this.latitude = localStorage.getItem('latitude');
     this.longitude = localStorage.getItem('longitude');
@@ -150,7 +148,8 @@ export class CheckoutComponent implements OnInit {
         quantity: this.quantity,
         price: (this.product.discount != 0 ? this.product.discount_price.toFixed(0) : this.product.price),
         price_delivery: this.price_delivery,
-        igv: parseFloat(this.total) * 0.18
+        igv: parseFloat(this.total) * 0.18,
+        order_detail_characteristics: this.characteristics
       }],
       store_branche_id: this.branche.id,
       delivery : delivery_post

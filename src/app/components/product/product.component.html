@@ -1,5 +1,5 @@
 <div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title">{{data_product.name}}</h1>
+  <h1 class="b-entry_title">{{product_name}}</h1>
 </div>
 <div class="b-product_single pb-5">
     <div class="container">
@@ -7,35 +7,36 @@
         <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12">
           <ul class="pl-0 mb-0" id="b-lightSlider">
             <li>
-              <img [src]="!data_product.featured_image ? 'https://via.placeholder.com/1200x1200' : data_product.featured_image" width="100%" [alt]='data_product.title' />
+              <img [src]="!featured_image ? 'https://via.placeholder.com/1200x1200' : featured_image" width="100%" [alt]='product_name' />
             </li>
           </ul>
         </div>
         <div class="col-xl-8 col-lg-8 col-mb-8 col-sm-12 col-xs-12">
           <div class="b-product_single_summary">
-            <span><b>SKU: </b>{{data_product.sku_code}}</span>
+            <span><b>SKU: </b>{{sku_code}}</span>
             <p class="b-price">
-              <span class="b-amount" *ngIf="data_product.discount != 0">
-              <span class="b-symbol">S/</span>{{data_product.discount_price.toFixed(2)}}</span>
+              <span class="b-amount" *ngIf="discount != 0">
+              <span class="b-symbol">S/</span>{{discount_price}}</span>
 
-              <span class="b-amount" *ngIf="data_product.discount == 0">
-                <span class="b-symbol">S/</span>{{data_product.price.toFixed(2)}}</span>
+              <span class="b-amount" *ngIf="discount == 0">
+                <span class="b-symbol">S/</span>{{price}}</span>
             </p>
             <div class="b-produt_description text-left">
             </div>
             <div class="b-product_single_action text-center clearfix">
               <div class="characteristics" *ngIf="isloggedIn">
-                <div class="characteristic" *ngFor="let characteristic of data_product.productcharacteristicsdetail">
+                <div class="characteristic" *ngFor="let characteristic of characteristics; let i = index">
                   <div class="form-group">
                     <label>{{characteristic.characteristic.name}}</label>
-                    <select class="form-control">
+                    <select class="form-control" name="characteristic[i]" (change)="getCharacteristic(i, $event)">
                       <option>Seleccionar...</option>
-                      <option *ngFor="let value of characteristic.product_characteristic_values.split(',')" value="value">{{value}}</option>
+                      <option *ngFor="let value of characteristic.product_characteristic_values.split(',')" [value]="value">{{value}}</option>
                     </select>
                   </div>
                 </div>
               </div>
-              <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout()">comprar</button>
+              <p *ngIf="!store_open" style="text-align: left; color: red; margin-bottom: 0;">Establecimiento cerrado</p>
+              <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout()" [disabled]="!store_open">comprar</button>
               <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn" [routerLink]="['/register']">ingresar</button>
             </div>
           </div>
@@ -50,7 +51,7 @@
         <ngb-tabset [justify]="center">
           <ngb-tab title="Descripción">
             <ng-template ngbTabContent>
-              <div [innerHtml]="data_product.description"></div>
+              <div [innerHtml]="description"></div>
             </ng-template>
           </ngb-tab>
           <ngb-tab title="Información Adicional">
@@ -59,7 +60,7 @@
                 <table class="table">
                   <tr>
                     <td><b>SKU</b></td>
-                    <td>{{data_product.sku_code}}</td>
+                    <td>{{sku_code}}</td>
                   </tr>
                   <tr>
                     <td><b>Ventar por</b></td>
@@ -69,7 +70,7 @@
                     <td><b>Vendido por</b></td>
                     <td>{{data_product.store.comercial_name}}</td>
                   </tr>
-                  <tr *ngFor="let characteristic of data_product.productcharacteristicsdetail">
+                  <tr *ngFor="let characteristic of characteristics">
                     <td><b>{{characteristic.characteristic.name}}</b></td>
                     <td>{{characteristic.product_characteristic_values}}</td>
                   </tr>

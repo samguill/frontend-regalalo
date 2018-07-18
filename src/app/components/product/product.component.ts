@@ -19,10 +19,21 @@ import { AgmCoreModule, AgmMarker } from '@agm/core';
 export class ProductComponent implements OnInit {
   data_product: any;
   data_branche: any;
+  data_slug: string;
+  product_name: string;
   isloggedIn: boolean = false;
   multiple_directions: boolean = false;
+  store_open: boolean;
   client_marker: string = "assets/img/client-marker.png";
   store_marker: string = "assets/img/store-marker.png";
+  discount;
+  price;
+  discount_price;
+  featured_image: string;
+  sku_code;
+  description;
+  characteristics: any = [];
+  order_characteristics: any = [];
 
   single_latitude: number = parseFloat(localStorage.getItem('latitude'));
   single_longitude: number = parseFloat(localStorage.getItem('longitude'));
@@ -55,58 +66,57 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.product_data_service.productData.subscribe(
-      value => (value == null || value == undefined) ? this.data_product = "" : this.data_product = value
+      value => (value == null || value == undefined) ? this.data_slug = "" : this.data_slug = value.slug
     );
 
-    if(this.data_product == ""){
-      let data:any = [];
-      let slug:string = "";
+    if(this.data_slug == ""){
       this.activated_route.params.subscribe(params => {
-        slug = params["id"];
-        let latitude = localStorage.getItem('latitude');
-        let longitude = localStorage.getItem('longitude');
-        if(latitude && longitude){
-          data = {
-            slug:slug,
-            latitude:latitude,
-            longitude:longitude
-          }
-        }else{
-          data = {
-            slug:slug
-          }
-        }
-        this.getDataBySlug(data);
+        this.data_slug = params["id"];
+        this.getDataBySlug(this.data_slug);
       });
     }else{
-      this.data_product["featured_image"] = "https://admin.regalalo.pe/" + this.data_product.featured_image;
-      this.data_branche = this.getStoreBrancheData(this.data_product.store_branche_id);
+      this.getDataBySlug(this.data_slug);
     }
-    console.log(this.data_product);
   }
 
   getDataBySlug(slug:string){
-    /*let data = {};
-    data["slug"] = slug;*/
-    this.product_service.detail(slug)
+    let latitude = localStorage.getItem('latitude');
+    let longitude = localStorage.getItem('longitude');
+    let data:any;
+    if(latitude && longitude){
+      this.multiple_directions = false;
+      data = {
+        slug:slug,
+        latitude:latitude,
+        longitude:longitude
+      }
+    }else{
+      this.multiple_directions = true;
+      data = {
+        slug:slug
+      }
+    }
+    this.product_service.detail(data)
     .then((response)=> {
       this.data_product = response.json().data;
+      this.discount = this.data_product.discount;
+      this.price = this.data_product.price.toFixed(2);
+      this.featured_image = this.data_product.featured_image;
+      this.sku_code = this.data_product.sku_code;
+      this.description = this.data_product.description;
+      if(this.discount != 0){
+        this.discount_price = this.data_product.discount_price.toFixed(2);
+      }
+      this.product_name = this.data_product.name;
       this.data_branche = this.data_product.store.branches;
-      this.multiple_directions = true;
-    })
-    .catch((error)=>{
-      swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
-    });
-  }
-
-  getStoreBrancheData(store_branche_id){
-    this.product_service.branche(store_branche_id)
-    .then((response) => {
-      this.data_branche = response.json().data;
-      this.multiple_directions = false;
-      this.directions = {
-        origin: { lat: this.single_latitude, lng: this.single_longitude },
-        destination: { lat: this.data_branche.latitude, lng: this.data_branche.longitude }
+      this.characteristics = this.data_product.productcharacteristicsdetail;
+      this.store_open = this.data_branche[0].open;
+      console.log(this.store_open);
+      if(latitude && longitude){
+        this.directions = {
+          origin: { lat: this.single_latitude, lng: this.single_longitude },
+          destination: { lat: this.data_branche[0].latitude, lng: this.data_branche[0].longitude }
+        }
       }
     })
     .catch((error)=>{
@@ -117,10 +127,20 @@ export class ProductComponent implements OnInit {
   checkout(){
     let data = {
       product: this.data_product,
-      branche: this.data_branche
+      branche: this.data_branche[0],
+      order_characteristics: this.order_characteristics
     }
     this.checkout_data_service.setData(data);
     this.router.navigate(['/checkout']);
+  }
+
+  getCharacteristic(index, e){
+    let characteristic = this.characteristics[index].characteristic["name"];
+    let value = e.target.value;
+    let obj = {};
+    obj["characteristic"] = characteristic;
+    obj["value"] = value;
+    this.order_characteristics.push(obj);
   }
 
 }
