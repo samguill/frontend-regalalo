@@ -17,6 +17,13 @@
 		}
 	}
 }
+.b-filters_inner_area a {
+	cursor: pointer;
+	&:hover{
+		color: #f05224 !important;
+	}
+}
+
 .b-shop_breadcrumb{
 	margin-bottom: 10px; color: #9E9E9E;
 	a{

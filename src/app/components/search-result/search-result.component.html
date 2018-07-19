@@ -33,8 +33,16 @@
 
   <div class="row">
     <div class="col-md-12">
+      <div class="row" *ngIf="stores?.length > 0">
+          <div class="col-md-3 mb-3" *ngFor="let store of stores">
+              <a routerLink="/tienda/{{store.slug}}">
+                <img [src]="!store.logo_store ? 'https://via.placeholder.com/337x150' : 'https://admin.regalalo.pe/'+store.logo_store" width="100%" [alt]="store.comercial_name" />
+              </a>
+              <p class="text-center">{{store.comercial_name}}</p>
+          </div>
+      </div>
       <div class="row">
-        <div class="col-md-3 mb-3" *ngFor="let product of result">
+        <div class="col-md-3 mb-3" *ngFor="let product of products">
           <div class="b-product_grid_single">
             <div class="b-product_grid_header">
               <h3 class="product-title">

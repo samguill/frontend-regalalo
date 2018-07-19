@@ -7,6 +7,7 @@ import { SearchService } from './../../services/search.service';
 import { ProductDataService } from './../../services/product-data.service';
 import { ProfileService } from './../../services/profile.service';
 import swal from 'sweetalert2';
+declare const App: any;
 
 @Component({
   selector: 'app-search-result',
@@ -14,7 +15,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  result: any;
+  products: any;
+  stores:any;
   loading:boolean = false;
   reload: boolean = false;
 
@@ -66,7 +68,12 @@ export class SearchResultComponent implements OnInit {
       .then((response)=> {
         let status = response.status;
         if(status == "ok"){
-          this.result = response.data.items.data;
+          this.products = response.data.items.data;
+          this.stores = response.data.stores.data;
+          if(this.stores.length > 0){
+            this.stores.filter(item => item.logo_store != "");
+            console.log(this.stores);
+          }
         }
         if(status == "error"){
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
@@ -82,7 +89,7 @@ export class SearchResultComponent implements OnInit {
       .then((response)=> {
         let status = response.status;
         if(status == "ok"){
-          this.result = response.data.data;
+          this.products = response.data.data;
         }
         if(status == "error"){
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
@@ -118,6 +125,12 @@ export class SearchResultComponent implements OnInit {
     this.search_data.resetObserver();
   }
 
+  ngAfterViewInit(): void {
+    if (!!App && App.hasOwnProperty('FilterToggle')) {
+      App.FilterToggle();
+    }
+  }
+
   filter_data(filter_type:string){
     switch(filter_type){
       case 'min-max-price':
@@ -145,7 +158,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   filter_closest(){
-    this.result.sort(function(a,b){
+    this.products.sort(function(a,b){
       if(a.distance && b.distance){
         a = a.distance.toFixed(0);
         b = b.distance.toFixed(0);
@@ -155,7 +168,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   alphabetical(){
-    this.result.sort(function(a,b){
+    this.products.sort(function(a,b){
       a = a.name.toLowerCase();
       b = b.name.toLowerCase();
       return a < b ? -1 : a > b ? 1 : 0;

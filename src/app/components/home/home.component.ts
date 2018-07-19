@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   public carouselOne: NguCarousel;
   public carouselTwo: NguCarousel;
   public carouselTree: NguCarousel;
+  public carouselFour: NguCarousel;
 
   constructor(
     private router: Router,
@@ -117,6 +118,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.carouselTwo = {
       grid: {xs: 3, sm: 3, md: 3, lg: 6, all: 0},
+      slide: 1,
+      speed: 400,
+      interval: 4000,
+      point: {
+        visible: true
+      },
+      load: 2,
+      touch: false,
+      loop: true,
+      custom: 'banner'
+    }
+
+    this.carouselFour = {
+      grid: {xs: 1, sm: 1, md: 1, lg: 3, all: 0},
       slide: 1,
       speed: 400,
       interval: 4000,

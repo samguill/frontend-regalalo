@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { AuthService } from './../../services/auth.service';
 import { UserNameService } from './../../services/user-name.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,9 @@ export class RegisterComponent implements OnInit {
   loading_register:boolean = false;
 
   constructor( private router: Router,
-    private auth: AuthService, private user_name_service:UserNameService) { }
+    private auth: AuthService,
+    private user_name_service:UserNameService,
+    private location:Location) { }
 
   ngOnInit() {
     this.signinForm = new FormGroup({
@@ -47,7 +50,8 @@ export class RegisterComponent implements OnInit {
         sessionStorage.setItem('client', JSON.stringify(response.client));
         this.signinForm.reset();
         this.auth.setLogin();
-        this.router.navigate(['/mi-cuenta']);
+        this.location.back();
+        //this.router.navigate(['/mi-cuenta']);
       })
       .catch((error) => {
         this.loading_login = false;

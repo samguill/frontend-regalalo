@@ -27,7 +27,7 @@ var App = (function(window){
                 jsFileLocation:"revolution/js/",
                 sliderLayout:"fullwidth",
                 dottedOverlay:"none",
-                delay:9000,
+                delay:4500,
                 navigation: {
                     keyboardNavigation:"off",
                     keyboard_direction: "horizontal",

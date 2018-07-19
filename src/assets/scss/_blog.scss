@@ -55,7 +55,7 @@
 	.b-blog_single_info{
 		h3.b-entry_title{
 			
-			a{font-family: "Helvetica Neue Std"; font-weight: 400; color: #1B1919; font-size: 22px; line-height: 1.2; letter-spacing: .3px; margin-bottom: 15px; &:hover{color: #f05223;}}
+			a{font-family: "Helvetica Neue Std"; font-weight: 400; color: #1B1919; font-size: 22px; line-height: 1.2; letter-spacing: .3px; margin-bottom: 15px; &:hover{color: #f05223; text-decoration: none;}}
 		}
 		p{
 			line-height: 1.7; margin-bottom: 0; color: #4C4C4C; 
@@ -64,6 +64,7 @@
 	}
 	.b-blog_grid_single{
 		margin-bottom: 50px;
+		padding: 15px;
 		&:hover{
 			.b-blog_img_wrap{ a{@include transform_scale(1.1); opacity: 0.6;} }
 		}
@@ -166,6 +167,14 @@
 		.b-blog_img_wrap{
 			display: block;
 			img{width: 100%;}
+		}
+		.b-blog_single_info {
+			h3.b-entry_title {
+				line-height: 1;
+				margin-top: 10px;
+				min-height: 55px;
+				font-size: 1.4rem;
+			}
 		}
 	}	
 }

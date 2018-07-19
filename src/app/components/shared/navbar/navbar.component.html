@@ -83,7 +83,7 @@
                 <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
                     <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
                     <span class="hidden-sm-down" style="width: 100%; display: block; line-height: 40px;">cuenta</span>
-                    <a class="logout-btn" *ngIf="(isLoggedIn$ | async)" href="#" (click)="salir()"><span>Salir</span></a>
+                    <a class="logout-btn" *ngIf="(isLoggedIn$ | async)" (click)="salir()"><span>Salir</span></a>
                   </div>
                   <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
                     <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
