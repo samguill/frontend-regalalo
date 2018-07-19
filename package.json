@@ -26,6 +26,7 @@
     "@ngu/carousel": "^1.4.8",
     "@ngx-loading-bar/http": "^1.6.0",
     "agm-direction": "^0.5.4",
+    "angular2-infinite-scroll": "^0.3.5",
     "animate.css": "^3.6.1",
     "bootstrap": "^4.0.0",
     "circular-json": "^0.5.3",

@@ -70,10 +70,6 @@ export class SearchResultComponent implements OnInit {
         if(status == "ok"){
           this.products = response.data.items.data;
           this.stores = response.data.stores.data;
-          if(this.stores.length > 0){
-            this.stores.filter(item => item.logo_store != "");
-            console.log(this.stores);
-          }
         }
         if(status == "error"){
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
@@ -173,6 +169,10 @@ export class SearchResultComponent implements OnInit {
       b = b.name.toLowerCase();
       return a < b ? -1 : a > b ? 1 : 0;
     });
+  }
+
+  onScroll () {
+    console.log('scrolled!!')
   }
 
 }

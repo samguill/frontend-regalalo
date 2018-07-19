@@ -41,7 +41,9 @@
               <p class="text-center">{{store.comercial_name}}</p>
           </div>
       </div>
-      <div class="row">
+      <div class="row" infinite-scroll [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="300"
+      (scrolled)="onScroll()">
         <div class="col-md-3 mb-3" *ngFor="let product of products">
           <div class="b-product_grid_single">
             <div class="b-product_grid_header">

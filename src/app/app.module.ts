@@ -65,6 +65,7 @@ import { OfferComponent } from './components/offer/offer.component';
 import { UserNameComponent } from './components/shared/user-name/user-name.component';
 import { UserLocationComponent } from './components/shared/user-location/user-location.component';
 import { RegisterStoreComponent } from './components/register-store/register-store.component';
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { RegisterStoreComponent } from './components/register-store/register-sto
     NgbModule.forRoot(),
     OwlModule,
     Ng4GeoautocompleteModule.forRoot(),
-    NguCarouselModule
+    NguCarouselModule,
+    InfiniteScrollModule
   ],
   providers: [
     AuthService,
