@@ -2,6 +2,19 @@
   <h1 class="b-entry_title">Resultado de búsqueda</h1>
 </div>
 <section class="container">
+    <div class="mb-5" *ngIf="stores?.length > 0">
+      <ngu-carousel [inputs]="carouselTwo">
+        <ngu-item NguCarouselItem *ngFor="let store of stores">
+          <a routerLink="/tienda/{{store.slug}}">
+            <img [src]="!store.logo_store ? 'https://via.placeholder.com/337x150' : 'https://admin.regalalo.pe/'+store.logo_store" width="100%" [alt]="store.comercial_name" />
+          </a>
+          <p class="text-center">{{store.comercial_name}}</p>
+        </ngu-item>
+        <button NguCarouselPrev class='leftRs'>&lt;</button>
+        <button NguCarouselNext class='rightRs'>&gt;</button>
+      </ngu-carousel>
+    </div>
+
   <div class="row clearfix b-shop_head">
     <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
       <nav class="b-shop_breadcrumb">
@@ -15,6 +28,7 @@
       </div>
     </div>
   </div>
+
   <div class="b-filters_area mt-2">
     <div class="b-filters_inner_area">
       <div class="row clearfix">
@@ -33,16 +47,8 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="row" *ngIf="stores?.length > 0">
-          <div class="col-md-3 mb-3" *ngFor="let store of stores">
-              <a routerLink="/tienda/{{store.slug}}">
-                <img [src]="!store.logo_store ? 'https://via.placeholder.com/337x150' : 'https://admin.regalalo.pe/'+store.logo_store" width="100%" [alt]="store.comercial_name" />
-              </a>
-              <p class="text-center">{{store.comercial_name}}</p>
-          </div>
-      </div>
-      <div class="row" infinite-scroll [infiniteScrollDistance]="2"
-      [infiniteScrollThrottle]="300"
+      <div class="row" infinite-scroll [infiniteScrollDistance]="5"
+      [infiniteScrollThrottle]="500"
       (scrolled)="onScroll()">
         <div class="col-md-3 mb-3" *ngFor="let product of products">
           <div class="b-product_grid_single">
@@ -82,6 +88,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-12 fetch-loader text-center mb-3" *ngIf="fetch_loading">
+          <div class="message">Cargando...</div>
+          <div class="dots"><div class="center"></div></div>
         </div>
       </div>
     </div>
