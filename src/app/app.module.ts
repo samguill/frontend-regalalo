@@ -39,6 +39,7 @@ import { WishlistService } from './services/wishlist.service';
 import { LoaderService } from './services/loader.service';
 import { FaqService } from './services/faq.service';
 import { BlogService } from './services/blog.service';
+import { BrandService } from './services/brand.service';
 import { loadingInterceptor } from './services/loadingInterceptor';
 
 import { StoreComponent } from './components/store/store.component';
@@ -66,6 +67,7 @@ import { UserNameComponent } from './components/shared/user-name/user-name.compo
 import { UserLocationComponent } from './components/shared/user-location/user-location.component';
 import { RegisterStoreComponent } from './components/register-store/register-store.component';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+import { BrandComponent } from './components/brand/brand.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,8 @@ import { InfiniteScrollModule } from 'angular2-infinite-scroll';
     OfferComponent,
     UserNameComponent,
     UserLocationComponent,
-    RegisterStoreComponent
+    RegisterStoreComponent,
+    BrandComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -131,6 +134,7 @@ import { InfiniteScrollModule } from 'angular2-infinite-scroll';
     WishlistService,
     FaqService,
     BlogService,
+    BrandService,
     LoaderService,
     UserNameService,
     UserLocationService,

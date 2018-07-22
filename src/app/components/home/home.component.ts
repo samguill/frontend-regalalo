@@ -120,7 +120,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       grid: {xs: 3, sm: 3, md: 3, lg: 6, all: 0},
       slide: 1,
       speed: 400,
-      interval: 4000,
+      interval: 5000,
       point: {
         visible: true
       },

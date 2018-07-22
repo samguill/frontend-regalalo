@@ -1,47 +1,13 @@
 <div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title">Resultado de búsqueda</h1>
+  <h1 class="b-entry_title">Productos de la marca</h1>
 </div>
 <section class="container">
-    <div class="mb-5" *ngIf="stores?.length > 0">
-      <ngu-carousel [inputs]="carouselTwo">
-        <ngu-item NguCarouselItem *ngFor="let store of stores">
-          <a routerLink="/tienda/{{store.slug}}">
-            <img [src]="!store.logo_store ? 'https://via.placeholder.com/337x150' : 'https://admin.regalalo.pe/'+store.logo_store" width="100%" [alt]="store.comercial_name" />
-          </a>
-          <p class="text-center">{{store.comercial_name}}</p>
-        </ngu-item>
-        <button NguCarouselPrev class='leftRs'>&lt;</button>
-        <button NguCarouselNext class='rightRs'>&gt;</button>
-      </ngu-carousel>
-    </div>
-
   <div class="row clearfix b-shop_head">
     <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12">
       <nav class="b-shop_breadcrumb">
         <a [routerLink]="['/']">Inicio</a>
-        <span> Resultados de búsqueda</span>
+        <span> Productos de la marca</span>
       </nav>
-    </div>
-    <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-6 col-xs-12 text-right">
-      <div class="b-filter_button d-inline-block">
-        <a href="javascript:;" class="b-open_filters">Filtrar búsqueda</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="b-filters_area mt-2">
-    <div class="b-filters_inner_area">
-      <div class="row clearfix">
-        <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
-          <h5 class="b-filter_title">Ordenar por</h5>
-          <div class="row">
-            <div class="col-md-3"><a (click)="filter_data('min-max-price')">De menor a mayor precio</a></div>
-            <div class="col-md-3"><a (click)="filter_data('max-min-price')">De mayor a menor precio</a></div>
-            <div class="col-md-3"><a (click)="filter_data('closest')">Más cercanos</a></div>
-            <div class="col-md-3"><a (click)="filter_data('alphabetical')">Orden alfabético</a></div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -54,9 +20,8 @@
           <div class="b-product_grid_single">
             <div class="b-product_grid_header">
               <h3 class="product-title">
-                <a routerLink="/producto/{{product.slug}}">{{product.name}}</a>
+                <a routerLink="/producto/{{product.slug}}">{{ (product.name.length > 40) ? (product.name | slice:0:45) + '...' : (product.name) }}</a>
               </h3>
-              <span *ngIf="product.distance">A {{product.distance.toFixed(0)}}km</span>
               <div class="b-product_grid_action">
                 <a (click)="add_to_wishlist(product)">
                   <i class="icon-heart icons"></i>
@@ -66,7 +31,7 @@
             <div class="b-product_grid_info mb-3">
               <a routerLink="/producto/{{product.slug}}">
                 <div class="product-image">
-                  <div class="image" [ngStyle]="{'background-image': 'url(https://admin.regalalo.pe/' +  product.featured_image + ')'}"></div>
+                  <div class="image" [ngStyle]="{'background-image': 'url(' +  product.featured_image + ')'}"></div>
                 </div>
               </a>
             </div>

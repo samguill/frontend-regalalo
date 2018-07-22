@@ -51,7 +51,9 @@
   <div class="row">
     <ngu-carousel [inputs]="carouselTwo">
         <ngu-item NguCarouselItem *ngFor="let brand of brands;let i = index">
-          <img [src]="!brand.image ? 'https://via.placeholder.com/337x150' : brand.image" width="100%" />
+          <a routerLink="/marca/{{brand.slug}}">
+            <img [src]="!brand.image ? 'https://via.placeholder.com/337x150' : brand.image" width="100%" />
+          </a>
         </ngu-item>
         <button NguCarouselPrev class='leftRs'>&lt;</button>
         <button NguCarouselNext class='rightRs'>&gt;</button>
