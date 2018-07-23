@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { AgmCoreModule } from '@agm/core';
+import { ImageZoomModule } from 'angular2-image-zoom';
  
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -40,6 +41,7 @@ import { LoaderService } from './services/loader.service';
 import { FaqService } from './services/faq.service';
 import { BlogService } from './services/blog.service';
 import { BrandService } from './services/brand.service';
+import { ServiceService } from './services/service.service';
 import { loadingInterceptor } from './services/loadingInterceptor';
 
 import { StoreComponent } from './components/store/store.component';
@@ -68,6 +70,7 @@ import { UserLocationComponent } from './components/shared/user-location/user-lo
 import { RegisterStoreComponent } from './components/register-store/register-store.component';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { BrandComponent } from './components/brand/brand.component';
+import { ServiceComponent } from './components/service/service.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +99,8 @@ import { BrandComponent } from './components/brand/brand.component';
     UserNameComponent,
     UserLocationComponent,
     RegisterStoreComponent,
-    BrandComponent
+    BrandComponent,
+    ServiceComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -116,7 +120,8 @@ import { BrandComponent } from './components/brand/brand.component';
     OwlModule,
     Ng4GeoautocompleteModule.forRoot(),
     NguCarouselModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    ImageZoomModule
   ],
   providers: [
     AuthService,
@@ -135,6 +140,7 @@ import { BrandComponent } from './components/brand/brand.component';
     FaqService,
     BlogService,
     BrandService,
+    ServiceService,
     LoaderService,
     UserNameService,
     UserLocationService,

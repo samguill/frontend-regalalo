@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Route } from '@angular/router';
-
-import { ProductService } from './../../services/product.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
+import { ServiceService } from './../../services/service.service';
 import swal from 'sweetalert2';
 import { AgmCoreModule, AgmMarker } from '@agm/core'; 
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
+  selector: 'app-service',
+  templateUrl: './service.component.html',
+  styleUrls: ['./service.component.scss'],
   styles: [`agm-map {
     height: 300px;
     width: 100%;
   }`]
 })
-export class ProductComponent implements OnInit {
-  data_product: any;
+export class ServiceComponent implements OnInit {
+
+  data_service: any;
   data_branche: any;
   data_slug: string;
-  product_name: string;
+  service_name: string;
   isloggedIn: boolean = false;
   multiple_directions: boolean = false;
   store_open: boolean;
@@ -52,10 +52,9 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  constructor(
-    private router: Router,
+  constructor(private router: Router,
+    private service:ServiceService,
     private activated_route: ActivatedRoute,
-    private product_service: ProductService,
     private checkout_data_service: CheckoutDataService) {
       let access_token = sessionStorage.getItem("access_token");
       if(access_token != null){
@@ -87,21 +86,21 @@ export class ProductComponent implements OnInit {
         slug:slug
       }
     }
-    this.product_service.detail(data)
+    this.service.detail(data)
     .then((response)=> {
-      this.data_product = response.json().data;
-      this.discount = this.data_product.discount;
-      this.price = this.data_product.price.toFixed(2);
-      this.featured_image = this.data_product.featured_image;
-      this.images = this.data_product.productimages;
-      this.sku_code = this.data_product.sku_code;
-      this.description = this.data_product.description;
+      this.data_service = response.json().data;
+      this.discount = this.data_service.discount;
+      this.price = this.data_service.price.toFixed(2);
+      this.images = this.data_service.serviceimages;
+      this.featured_image = this.data_service.featured_image;
+      this.sku_code = this.data_service.sku_code;
+      this.description = this.data_service.description;
       if(this.discount != 0){
-        this.discount_price = this.data_product.discount_price.toFixed(2);
+        this.discount_price = this.data_service.discount_price.toFixed(2);
       }
-      this.product_name = this.data_product.name;
-      this.data_branche = this.data_product.store.branches;
-      this.characteristics = this.data_product.productcharacteristicsdetail;
+      this.service_name = this.data_service.name;
+      this.data_branche = this.data_service.store.branches;
+      //this.characteristics = this.data_service.productcharacteristicsdetail;
       this.store_open = this.data_branche[0].open;
       if(latitude && longitude){
         this.directions = {
@@ -117,10 +116,10 @@ export class ProductComponent implements OnInit {
 
   checkout(){
     let data = {
-      item: this.data_product,
+      item: this.data_service,
       branche: this.data_branche[0],
-      item_type: "product",
-      order_characteristics: this.order_characteristics
+      item_type: "service"
+      //order_characteristics: this.order_characteristics
     }
     this.checkout_data_service.setData(data);
     this.router.navigate(['/checkout']);
@@ -133,10 +132,6 @@ export class ProductComponent implements OnInit {
     obj["characteristic"] = characteristic;
     obj["value"] = value;
     this.order_characteristics.push(obj);
-  }
-
-  set_featured_image(data){
-    this.featured_image = data;
   }
 
 }

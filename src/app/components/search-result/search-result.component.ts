@@ -18,7 +18,7 @@ declare const App: any;
   styleUrls: ['./search-result.component.css']
 })
 export class SearchResultComponent implements OnInit {
-  products: any;
+  items: any;
   stores:any;
   loading:boolean = false;
   reload: boolean = false;
@@ -81,12 +81,11 @@ export class SearchResultComponent implements OnInit {
       .then((response)=> {
         let status = response.status;
         if(status == "ok"){
-          this.products = response.data.items.data;
+          this.items = response.data.items.data;
           this.stores = response.data.stores.data;
           this.last_page = response.data.items.last_page;
           this.last_page_url = response.data.items.last_page_url;
           this.next_page_url = response.data.items.next_page_url;
-          console.log(this.products);
         }
         if(status == "error"){
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
@@ -115,7 +114,7 @@ export class SearchResultComponent implements OnInit {
           let json_arr = Object.keys(json_data).map(function(key){
             return json_data[key];
           });
-          Array.prototype.push.apply(this.products, json_arr);
+          Array.prototype.push.apply(this.items, json_arr);
           this.next_page_url = response.data.items.next_page_url;
         }
         if(status == "error"){
@@ -134,7 +133,7 @@ export class SearchResultComponent implements OnInit {
       .then((response)=> {
         let status = response.status;
         if(status == "ok"){
-          this.products = response.data.data;
+          this.items = response.data.data;
         }
         if(status == "error"){
           swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
@@ -216,7 +215,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   filter_closest(){
-    this.products.sort(function(a,b){
+    this.items.sort(function(a,b){
       if(a.distance && b.distance){
         a = a.distance.toFixed(0);
         b = b.distance.toFixed(0);
@@ -226,7 +225,7 @@ export class SearchResultComponent implements OnInit {
   }
 
   alphabetical(){
-    this.products.sort(function(a,b){
+    this.items.sort(function(a,b){
       a = a.name.toLowerCase();
       b = b.name.toLowerCase();
       return a < b ? -1 : a > b ? 1 : 0;

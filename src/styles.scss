@@ -1435,3 +1435,25 @@ a.logout-btn {
     border: 8px solid #ff5900;
     animation: dots 1.5s 0.6s linear infinite;
   }
+
+ul.item-images {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.item-images li {
+    margin-bottom: 10px;
+}
+
+ul.item-images a {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #CCC;
+    transition: ease all 0.3s;
+}
+
+ul.item-images a:hover {
+    border: 1px solid #f05224;
+}

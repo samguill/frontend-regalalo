@@ -12,6 +12,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ProductComponent } from './components/product/product.component';
+import { ServiceComponent } from './components/service/service.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 
 import { BlogComponent } from './components/blog/blog.component';
@@ -37,6 +38,7 @@ const APP_ROUTES: Routes = [
     { path : 'mis-pedidos', component : OrdersComponent, canActivate : [AuthGuard] },
     { path: 'tienda/:id', component: StoreComponent, data: {state: 'stores'} },
     { path: 'producto/:id', component: ProductComponent },
+    { path: 'servicio/:id', component: ServiceComponent },
     { path: 'page/:id', component: PageComponent },
     { path: 'checkout', component: CheckoutComponent },
     { path: '**', pathMatch: 'full', redirectTo: '' },

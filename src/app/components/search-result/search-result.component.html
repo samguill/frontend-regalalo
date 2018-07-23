@@ -50,39 +50,45 @@
       <div class="row" infinite-scroll [infiniteScrollDistance]="5"
       [infiniteScrollThrottle]="500"
       (scrolled)="onScroll()">
-        <div class="col-md-3 mb-3" *ngFor="let product of products">
+        <div class="col-md-3 mb-3" *ngFor="let item of items">
           <div class="b-product_grid_single">
             <div class="b-product_grid_header">
               <h3 class="product-title">
-                <a routerLink="/producto/{{product.slug}}">{{product.name}}</a>
+                <a *ngIf="item.type == 'products'" routerLink="/producto/{{item.slug}}">{{item.name}}</a>
+                <a *ngIf="item.type == 'services'" routerLink="/servicio/{{item.slug}}">{{item.name}}</a>
               </h3>
-              <span *ngIf="product.distance">A {{product.distance.toFixed(0)}}km</span>
+              <span *ngIf="item.distance">A {{item.distance.toFixed(0)}}km</span>
               <div class="b-product_grid_action">
-                <a (click)="add_to_wishlist(product)">
+                <a (click)="add_to_wishlist(item)">
                   <i class="icon-heart icons"></i>
                 </a>
               </div>
             </div>
             <div class="b-product_grid_info mb-3">
-              <a routerLink="/producto/{{product.slug}}">
+              <a *ngIf="item.type == 'products'" routerLink="/producto/{{item.slug}}">
                 <div class="product-image">
-                  <div class="image" [ngStyle]="{'background-image': 'url(https://admin.regalalo.pe/' +  product.featured_image + ')'}"></div>
+                  <div class="image" [ngStyle]="{'background-image': 'url(https://admin.regalalo.pe/' +  item.featured_image + ')'}"></div>
+                </div>
+              </a>
+              <a *ngIf="item.type == 'services'" routerLink="/servicio/{{item.slug}}">
+                <div class="product-image">
+                  <div class="image" [ngStyle]="{'background-image': 'url(https://admin.regalalo.pe/' +  item.featured_image + ')'}"></div>
                 </div>
               </a>
             </div>
             <div class="b-product_grid_footer pt-3">
               <div class="clearfix">
-                <div class="row" *ngIf="product.discount != 0">
+                <div class="row" *ngIf="item.discount != 0">
                   <div class="col-md-5">
-                    <span class="regular-price">P. regular:<br> S/{{ product.price.toFixed(2) }}</span>
+                    <span class="regular-price">P. regular:<br> S/{{ item.price.toFixed(2) }}</span>
                   </div>
                   <div class="col-md-7">
-                    <span class="new-price">S/{{ product.discount_price.toFixed(2) }}</span>
+                    <span class="new-price">S/{{ item.discount_price.toFixed(2) }}</span>
                   </div>
                 </div>
-                <div class="row" *ngIf="product.discount == 0">
+                <div class="row" *ngIf="item.discount == 0">
                   <div class="col-md-12">
-                    <span class="new-price">S/{{ product.price.toFixed(2) }}</span>
+                    <span class="new-price">S/{{ item.price.toFixed(2) }}</span>
                   </div>
                 </div>
               </div>
