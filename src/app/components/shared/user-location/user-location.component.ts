@@ -18,6 +18,7 @@ export class UserLocationComponent implements OnInit {
       this.client_direction = local_data;
     }else{
       this.user_location_service.$getSubject.subscribe(value => {
+        console.log(value);
         this.client_direction = value;
       });
     }

@@ -1,104 +1,113 @@
-<div class="b-page_title b-page_title_default text-center">
-  <h1 class="b-entry_title">{{product_name}}</h1>
-</div>
-<div class="b-product_single pb-5">
-    <div class="container">
-      <div class="row clearfix">
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
-          <div class="row">
-            <div class="col-md-3" *ngIf="images?.length > 0">
-              <ul class="item-images">
-                <li *ngFor="let image of images">
-                  <a (click)="set_featured_image(image.store_image.image_path)">
-                    <img [src]="image.store_image.image_path" width="100%" />
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-9">
-              <img [imageZoom]="zoomedImageSrc" [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='product_name' />
-            </div>
+<div class="b-product_single pb-5 pt-5">
+  <div class="container">
+    <div class="row clearfix">
+      
+      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-md-3" *ngIf="images?.length > 0">
+            <ul class="item-images">
+              <li *ngFor="let image of images">
+                <a (click)="set_featured_image(image.store_image.image_path)">
+                  <img [src]="image.store_image.image_path" width="100%" />
+                </a>
+              </li>
+            </ul>
           </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
-          <div class="b-product_single_summary">
-            <span><b>SKU: </b>{{sku_code}}</span>
-            <p class="b-price">
-              <span class="b-amount" *ngIf="discount != 0">
-              <span class="b-symbol">S/</span>{{discount_price}}</span>
-              <span class="b-amount" *ngIf="discount == 0">
-                <span class="b-symbol">S/</span>{{price}}</span>
-            </p>
-            <div class="b-produt_description text-left">
+          <div class="{{images?.length > 0 ? 'col-md-9' : 'col-md-12'}}">
+            <div class="featured-image">
+              <img [imageZoom]="zoomedImageSrc" [scrollZoom]="false" [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='product_name' />
             </div>
-            <div class="b-product_single_action text-center clearfix">
-              <div class="characteristics" *ngIf="isloggedIn">
-                <div class="characteristic" *ngFor="let characteristic of characteristics; let i = index">
-                  <div class="form-group">
-                    <label>{{characteristic.characteristic.name}}</label>
-                    <select class="form-control" name="characteristic[i]" (change)="getCharacteristic(i, $event)">
-                      <option>Seleccionar...</option>
-                      <option *ngFor="let value of characteristic.product_characteristic_values.split(',')" [value]="value">{{value}}</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <p *ngIf="!store_open" style="text-align: left; color: red; margin-bottom: 0;">Establecimiento cerrado</p>
-              <button *ngIf="isloggedIn" class="text-uppercase pull-left btn" (click)="checkout()" [disabled]="!store_open">comprar</button>
-              <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn" [routerLink]="['/register']">ingresar</button>
-            </div>
+            <p class="text-red">Pasa el mouse encima de la imagen para aplicar zoom</p>
           </div>
         </div>
       </div>
-    </div>
-</div>
-<div class="b-gray_bg b-product_tabs mb-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <ngb-tabset [justify]="center">
-          <ngb-tab title="Descripción">
-            <ng-template ngbTabContent>
-              <div [innerHtml]="description"></div>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Información Adicional">
-            <ng-template ngbTabContent>
-              <div>
-                <table class="table">
-                  <tr>
-                    <td><b>SKU</b></td>
-                    <td>{{sku_code}}</td>
-                  </tr>
-                  <tr>
-                    <td><b>Ventar por</b></td>
-                    <td>{{data_product.product_presentation}}</td>
-                  </tr>
-                  <tr>
-                    <td><b>Vendido por</b></td>
-                    <td>{{data_product.store.comercial_name}}</td>
-                  </tr>
-                  <tr *ngFor="let characteristic of characteristics">
-                    <td><b>{{characteristic.characteristic.name}}</b></td>
-                    <td>{{characteristic.product_characteristic_values}}</td>
-                  </tr>
-                </table>
+
+      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+        <div class="product-first-detail mb-3 pb-2 row">
+          <div class="col-md-8">
+            <h5>{{product_name}}</h5>
+          </div>
+          <div class="col-md-4">
+            <button *ngIf="isloggedIn" class="text-uppercase pull-left btn btn-outline" (click)="checkout()" [disabled]="!store_open">comprar</button>
+            <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn btn-outline" [routerLink]="['/register']">ingresar</button>
+          </div>
+        </div>
+
+          <div class="product-second-detail row">
+            <div class="col-md-4">
+              <div class="old-price text-center pt-4" *ngIf="discount !== 0">
+                <p>antes S/{{price}}</p>
               </div>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Ubicación de la tienda">
-            <ng-template ngbTabContent>
-                <agm-map *ngIf="multiple_directions == true" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="12">
-                    <agm-marker [iconUrl]="client_marker" [latitude]="single_latitude" [longitude]="single_longitude"></agm-marker>
-                    <agm-marker *ngFor="let branch of data_branche" [iconUrl]="store_marker" [latitude]="branch.latitude" [longitude]="branch.longitude"></agm-marker>
-                </agm-map>
-                <agm-map *ngIf="multiple_directions == false" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="14">
-                  <agm-direction *ngIf="directions" [origin]="directions.origin" [destination]="directions.destination" [markerOptions]="marker_options" [renderOptions]="direction_options"></agm-direction>
-                </agm-map>
-            </ng-template>
-          </ngb-tab>
-        </ngb-tabset>
+            </div>
+            <div class="col-md-8">
+              <h1 class="text-center" *ngIf="discount !== 0">S/{{discount_price}}</h1>
+              <h1 class="text-center" *ngIf="discount == 0">S/{{price}}</h1>
+            </div>
+          </div>
+        
+          <div class="product-third-detail clearfix" *ngIf="isloggedIn">
+            <div class="characteristics">
+              <div class="characteristic" *ngFor="let characteristic of characteristics; let i = index">
+                <div class="form-group">
+                  <label>{{characteristic.characteristic.name}}</label>
+                  <select class="form-control" name="characteristic[i]" (change)="getCharacteristic(i, $event)">
+                    <option>Seleccionar...</option>
+                    <option *ngFor="let value of characteristic.product_characteristic_values.split(',')" [value]="value">{{value}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row b-product_tabs">
+                <div class="col-md-12">
+                  <ngb-tabset [justify]="center">
+                    <ngb-tab title="Descripción">
+                      <ng-template ngbTabContent>
+                        <div [innerHtml]="description"></div>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Información Adicional">
+                      <ng-template ngbTabContent>
+                        <div>
+                          <table class="table">
+                            <tr>
+                              <td><b>SKU</b></td>
+                              <td>{{sku_code}}</td>
+                            </tr>
+                            <tr>
+                              <td><b>Ventar por</b></td>
+                              <td>{{data_product.product_presentation}}</td>
+                            </tr>
+                            <tr>
+                              <td><b>Vendido por</b></td>
+                              <td>{{data_product.store.comercial_name}}</td>
+                            </tr>
+                            <tr *ngFor="let characteristic of characteristics">
+                              <td><b>{{characteristic.characteristic.name}}</b></td>
+                              <td>{{characteristic.product_characteristic_values}}</td>
+                            </tr>
+                          </table>
+                        </div>
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab title="Ubicación de la tienda">
+                      <ng-template ngbTabContent>
+                          <agm-map *ngIf="multiple_directions == true" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="12">
+                              <agm-marker [iconUrl]="client_marker" [latitude]="single_latitude" [longitude]="single_longitude"></agm-marker>
+                              <agm-marker *ngFor="let branch of data_branche" [iconUrl]="store_marker" [latitude]="branch.latitude" [longitude]="branch.longitude"></agm-marker>
+                          </agm-map>
+                          <agm-map *ngIf="multiple_directions == false" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="14">
+                            <agm-direction *ngIf="directions" [origin]="directions.origin" [destination]="directions.destination" [markerOptions]="marker_options" [renderOptions]="direction_options"></agm-direction>
+                          </agm-map>
+                      </ng-template>
+                    </ngb-tab>
+                  </ngb-tabset>
+                </div>
+              </div>
+        </div>
       </div>
     </div>
   </div>
-</div>

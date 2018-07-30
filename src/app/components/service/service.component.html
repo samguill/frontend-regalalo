@@ -16,7 +16,9 @@
                 </ul>
               </div>
               <div class="col-md-9">
-                <img [imageZoom]="zoomedImageSrc" [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='service_name' />
+                <div class="featured-image">
+                  <img [imageZoom]="zoomedImageSrc" [scrollZoom]="false" [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='service_name' />
+                </div>
               </div>
             </div>
           </div>

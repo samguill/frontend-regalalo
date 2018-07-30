@@ -63,9 +63,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (!!App && App.hasOwnProperty('HomeSlider')) {
-      App.HomeSlider();
+    if (!!App && App.hasOwnProperty('GetSliderItems')) {
+      App.GetSliderItems();
     }
+
     if (!!App && App.hasOwnProperty('Carousel')) {
       App.Carousel();
     }

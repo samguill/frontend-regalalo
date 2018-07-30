@@ -6,7 +6,7 @@ var App = (function(window){
     return{
         init : function(){
             this.HeaderFixOnScroll();
-            this.HomeSlider();
+            this.GetSliderItems();
             this.MobileNavToggle();
             this.FilterToggle();
             this.MultiStepForm();
@@ -21,65 +21,76 @@ var App = (function(window){
                 else sticky.removeClass('b-header_fixed');
             })
         },
-        HomeSlider: function(){
-            jQuery("#b-home_01_slider").show().revolution({
-                sliderType:"standard",
-                jsFileLocation:"revolution/js/",
-                sliderLayout:"fullwidth",
-                dottedOverlay:"none",
-                delay:4500,
-                navigation: {
-                    keyboardNavigation:"off",
-                    keyboard_direction: "horizontal",
-                    mouseScrollNavigation:"off",
-                    mouseScrollReverse:"default",
-                    onHoverStop:"off",
-                    touch:{
-                        touchenabled:"on",
-                        swipe_threshold: 75,
-                        swipe_min_touches: 1,
-                        swipe_direction: "horizontal",
-                        drag_block_vertical: false
-                    },
-                    arrows: {
-                        style:"zeus",
-                        enable:true,
-                        hide_onmobile:true,
-                        hide_under:600,
-                        hide_onleave:true,
-                        hide_delay:200,
-                        hide_delay_mobile:1200,
-                        tmp:'<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div> </div>',
-                        left: {
-                            h_align:"left",
-                            v_align:"center",
-                            h_offset:30,
-                            v_offset:0
+        GetSliderItems: function(){
+            jQuery("#b-home_01_slider").hide();
+            let home_url = "https://admin.regalalo.pe/api/home";
+            $.get(home_url, function(data){
+                let ul_slider = $("#b-home_01_slider ul");
+                $.each(data.slides, function(i, slide){
+                    let content_li = '<li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-thumb="'+ slide["image"] +'"  data-rotate="0" data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="'+ slide["name"] +'">' +
+                        '<img src="'+ slide["image"] +'" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina> ' +
+                    '</li>';
+                    ul_slider.append(content_li);
+                });
+                jQuery("#b-home_01_slider").show().revolution({
+                    sliderType:"standard",
+                    jsFileLocation:"revolution/js/",
+                    sliderLayout:"fullwidth",
+                    dottedOverlay:"none",
+                    delay:4500,
+                    navigation: {
+                        keyboardNavigation:"off",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation:"off",
+                        mouseScrollReverse:"default",
+                        onHoverStop:"off",
+                        touch:{
+                            touchenabled:"on",
+                            swipe_threshold: 75,
+                            swipe_min_touches: 1,
+                            swipe_direction: "horizontal",
+                            drag_block_vertical: false
                         },
-                        right: {
-                            h_align:"right",
-                            v_align:"center",
-                            h_offset:30,
-                            v_offset:0
+                        arrows: {
+                            style:"zeus",
+                            enable:true,
+                            hide_onmobile:true,
+                            hide_under:600,
+                            hide_onleave:true,
+                            hide_delay:200,
+                            hide_delay_mobile:1200,
+                            tmp:'<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div> </div>',
+                            left: {
+                                h_align:"left",
+                                v_align:"center",
+                                h_offset:30,
+                                v_offset:0
+                            },
+                            right: {
+                                h_align:"right",
+                                v_align:"center",
+                                h_offset:30,
+                                v_offset:0
+                            }
+                        },
+                        bullets: {
+                            enable:true,
+                            hide_onmobile:false,
+                            hide_under:600,
+                            style:"ares",
+                            hide_onleave:false,
+                            hide_delay:200,
+                            hide_delay_mobile:1200,
+                            direction:"horizontal",
+                            h_align:"center",
+                            v_align:"bottom",
+                            h_offset:0,
+                            v_offset:30,
+                            space:10,
+                            tmp:'<span class="tp-bullet-img-wrap">  <span class="tp-bullet-image"></span></span><span class="tp-bullet-title">{{title}}</span>'
                         }
                     },
-                    bullets: {
-                        enable:true,
-                        hide_onmobile:false,
-                        hide_under:600,
-                        style:"ares",
-                        hide_onleave:false,
-                        hide_delay:200,
-                        hide_delay_mobile:1200,
-                        direction:"horizontal",
-                        h_align:"center",
-                        v_align:"bottom",
-                        h_offset:0,
-                        v_offset:30,
-                        space:10,
-                        tmp:'<span class="tp-bullet-img-wrap">  <span class="tp-bullet-image"></span></span><span class="tp-bullet-title">{{title}}</span>'
-                    }
-                },
+                });
             });
         },
         MobileNavToggle: function(){
