@@ -41,6 +41,7 @@
     "magnific-popup": "^1.1.0",
     "masonry-layout": "^4.2.1",
     "ng-masonry-grid": "^1.2.5",
+    "ng2-social-share": "0.0.10",
     "ng4-geoautocomplete": "^0.1.0",
     "ngx-owl-carousel": "^2.0.7",
     "popper.js": "^1.12.9",

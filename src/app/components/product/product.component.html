@@ -2,8 +2,25 @@
   <div class="container">
     <div class="row clearfix">
       
-      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+      <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12">
         <div class="row">
+          <div class="col-md-12">
+            <ul class="social-product mb-2">
+              <li class="share-text">Compartir:</li>
+              <li>
+                <img src="assets/img/icon-fb.png" ceiboShare [facebook]="{u: repoUrl}" />
+              </li>
+              <li>
+                <img src="assets/img/icon-pinterest.png" ceiboShare [pinterest]="{url: repoUrl}" />
+              </li>
+              <li>
+                <img src="assets/img/icon-twitter.png" ceiboShare [twitter]="{url: repoUrl}" />
+              </li>
+              <li>
+                <img src="assets/img/icon-google-plus.png" ceiboShare [googlePlus]="{url: repoUrl}" />
+              </li>
+            </ul>
+          </div>
           <div class="col-md-3" *ngIf="images?.length > 0">
             <ul class="item-images">
               <li *ngFor="let image of images">
@@ -22,14 +39,14 @@
         </div>
       </div>
 
-      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+      <div class="col-xl-5 col-lg-5 col-mb-5 col-sm-12 col-xs-12">
         <div class="product-first-detail mb-3 pb-2 row">
           <div class="col-md-8">
             <h5>{{product_name}}</h5>
           </div>
           <div class="col-md-4">
-            <button *ngIf="isloggedIn" class="text-uppercase pull-left btn btn-outline" (click)="checkout()" [disabled]="!store_open">comprar</button>
-            <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn btn-outline" [routerLink]="['/register']">ingresar</button>
+            <button *ngIf="isloggedIn" class="text-uppercase pull-left btn btn-primary btn-outline" (click)="checkout()" [disabled]="!store_open">comprar</button>
+            <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn btn-primary btn-outline" [routerLink]="['/register']">ingresar</button>
           </div>
         </div>
 
@@ -42,6 +59,10 @@
             <div class="col-md-8">
               <h1 class="text-center" *ngIf="discount !== 0">S/{{discount_price}}</h1>
               <h1 class="text-center" *ngIf="discount == 0">S/{{price}}</h1>
+            </div>
+            <div class="col-md-12 mt-3">
+              <p class="text-uppercase mb-0"><b>Descripción:</b></p>
+              <div [innerHtml]="description"></div>
             </div>
           </div>
         
@@ -60,54 +81,18 @@
           </div>
         </div>
 
-        <div class="col-md-12">
-            <div class="row b-product_tabs">
-                <div class="col-md-12">
-                  <ngb-tabset [justify]="center">
-                    <ngb-tab title="Descripción">
-                      <ng-template ngbTabContent>
-                        <div [innerHtml]="description"></div>
-                      </ng-template>
-                    </ngb-tab>
-                    <ngb-tab title="Información Adicional">
-                      <ng-template ngbTabContent>
-                        <div>
-                          <table class="table">
-                            <tr>
-                              <td><b>SKU</b></td>
-                              <td>{{sku_code}}</td>
-                            </tr>
-                            <tr>
-                              <td><b>Ventar por</b></td>
-                              <td>{{data_product.product_presentation}}</td>
-                            </tr>
-                            <tr>
-                              <td><b>Vendido por</b></td>
-                              <td>{{data_product.store.comercial_name}}</td>
-                            </tr>
-                            <tr *ngFor="let characteristic of characteristics">
-                              <td><b>{{characteristic.characteristic.name}}</b></td>
-                              <td>{{characteristic.product_characteristic_values}}</td>
-                            </tr>
-                          </table>
-                        </div>
-                      </ng-template>
-                    </ngb-tab>
-                    <ngb-tab title="Ubicación de la tienda">
-                      <ng-template ngbTabContent>
-                          <agm-map *ngIf="multiple_directions == true" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="12">
-                              <agm-marker [iconUrl]="client_marker" [latitude]="single_latitude" [longitude]="single_longitude"></agm-marker>
-                              <agm-marker *ngFor="let branch of data_branche" [iconUrl]="store_marker" [latitude]="branch.latitude" [longitude]="branch.longitude"></agm-marker>
-                          </agm-map>
-                          <agm-map *ngIf="multiple_directions == false" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="14">
-                            <agm-direction *ngIf="directions" [origin]="directions.origin" [destination]="directions.destination" [markerOptions]="marker_options" [renderOptions]="direction_options"></agm-direction>
-                          </agm-map>
-                      </ng-template>
-                    </ngb-tab>
-                  </ngb-tabset>
-                </div>
-              </div>
+        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-12 col-xs-12">
+          <div class="store-location">
+            <agm-map *ngIf="multiple_directions == true" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="12">
+              <agm-marker [iconUrl]="client_marker" [latitude]="single_latitude" [longitude]="single_longitude"></agm-marker>
+              <agm-marker *ngFor="let branch of data_branche" [iconUrl]="store_marker" [latitude]="branch.latitude" [longitude]="branch.longitude"></agm-marker>
+            </agm-map>
+            <agm-map *ngIf="multiple_directions == false" [latitude]="single_latitude" [longitude]="single_longitude" [zoom]="14">
+              <agm-direction *ngIf="directions" [origin]="directions.origin" [destination]="directions.destination" [markerOptions]="marker_options" [renderOptions]="direction_options"></agm-direction>
+            </agm-map>
+          </div>
         </div>
+
       </div>
     </div>
   </div>

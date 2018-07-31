@@ -59,6 +59,7 @@ import { FaqComponent } from './components/faq/faq.component';
 import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 import { AgmDirectionModule } from 'agm-direction';
 import { NguCarouselModule } from '@ngu/carousel';
+import { CeiboShare } from 'ng2-social-share';
 import 'hammerjs';
 import { PageComponent } from './components/page/page.component';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
@@ -100,7 +101,8 @@ import { ServiceComponent } from './components/service/service.component';
     UserLocationComponent,
     RegisterStoreComponent,
     BrandComponent,
-    ServiceComponent
+    ServiceComponent,
+    CeiboShare
   ],
   imports: [
     AgmCoreModule.forRoot({

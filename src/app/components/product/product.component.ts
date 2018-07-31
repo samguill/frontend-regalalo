@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Route } from '@angular/router';
-
+import {Meta} from '@angular/platform-browser';
 import { ProductService } from './../../services/product.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
 import swal from 'sweetalert2';
-import { AgmCoreModule, AgmMarker } from '@agm/core'; 
+import { AgmCoreModule, AgmMarker } from '@agm/core';
 
 @Component({
   selector: 'app-product',
@@ -51,8 +51,9 @@ export class ProductComponent implements OnInit {
       icon: 'assets/img/store-marker.png'
     }
   }
+  public repoUrl:string;
 
-  constructor(
+  constructor(private meta:Meta,
     private router: Router,
     private activated_route: ActivatedRoute,
     private product_service: ProductService,
@@ -61,12 +62,31 @@ export class ProductComponent implements OnInit {
       if(access_token != null){
         this.isloggedIn = true;
       }
+      this.repoUrl="https://regalalo.pe" + this.router.url;
     }
 
   ngOnInit() {
     this.activated_route.params.subscribe(params => {
       this.data_slug = params["id"];
       this.getDataBySlug(this.data_slug);
+    });
+  }
+
+  setMedaData(){
+    this.meta.updateTag({
+      name: 'title', content: this.product_name
+    });
+    this.meta.updateTag({
+      property: 'og:title', content: this.product_name
+    });
+    this.meta.updateTag({
+      property: 'og:image', content: this.featured_image
+    });
+    this.meta.updateTag({
+      name: 'description', content: this.description
+    });
+    this.meta.updateTag({
+      property: 'og:description', content: this.description
     });
   }
 
@@ -109,6 +129,7 @@ export class ProductComponent implements OnInit {
           destination: { lat: this.data_branche[0].latitude, lng: this.data_branche[0].longitude }
         }
       }
+      this.setMedaData();
     })
     .catch((error)=>{
       swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");

@@ -12,6 +12,9 @@ import swal from 'sweetalert2';
 export class PostComponent implements OnInit {
 
   post: any;
+  title: string;
+  featured_image: string;
+  content;
 
   constructor(private activatedRoute:ActivatedRoute,
     private blog_service: BlogService,
@@ -20,18 +23,30 @@ export class PostComponent implements OnInit {
         this.blog_service.post(id.id)
         .then((response)=> {
           this.post = response;
+          this.title = this.post.title;
+          this.featured_image = this.post.featured_image;
+          this.content = this.post.content;
 
-          if(response.meta_title !== ""){
+          if(response.meta_title != ""){
             this.meta.addTag({
               name: 'title', content: response.meta_title
             });
+            this.meta.addTag({
+              property: 'og:title', content: response.meta_title
+            });
+            this.meta.addTag({
+              property: 'og:image', content: this.featured_image
+            });
           }
-          if(response.meta_description !== ""){
+          if(response.meta_description != ""){
             this.meta.addTag({
               name: 'description', content: response.meta_description
             });
+            this.meta.addTag({
+              property: 'og:description', content: response.meta_description
+            });
           }
-          if(response.meta_keywords !== ""){
+          if(response.meta_keywords != ""){
             this.meta.addTag({
               name: 'keywords', content: response.meta_keywords
             });

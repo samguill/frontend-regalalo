@@ -21,33 +21,9 @@ a {
     clear: both;
 }
 
-.b-wrapper{
-    background: #fff;
-}
-
+.b-wrapper,
 header#b-header {
     background: #FFF;
-}
-
-.d-transition_slow,
-.b-header_main,
-.b-search_popup .b-searchsubmit::before,
-.b-search_popup .b-close_search,
-.b-featured_cat-2 .b-img_zoom img,
-.b-featured_cat-3 .b-img_zoom img,
-.b-img_zoom img,
-.b-feature_cat-3 .b-featured_cat_img .b-featured_cat_caption,
-.b-product_grid_overlay .b-hover_mask,
-.b-product_grid_overlay .b-hover_mask span,
-.b-product_grid_overlay .b-hover_mask .b-product_name,
-.b-banner_lg .b-banner_lg_img img, .b-minimal_banner img,
-.b-mini_cart .b-close_search, .b-gallery_blocks .col-xl-6 img,
-.owl-carousel .owl-nav > div.owl-prev,
-.owl-carousel .owl-nav > div.owl-next {
-    -webkit-transition: all .7s;
-    -moz-transition: all .7s;
-    -o-transition: all .7s;
-    transition: all .7s;
 }
 
 .d-inline-block {
@@ -105,13 +81,6 @@ header#b-header {
     margin: 0;
     list-style: none;
 }
-
-/*.b-topbar_menu ul > li {
-    position: relative;
-    margin-left: -2px;
-    display: inline-block;
-    line-height: 30px;
-}*/
 
 .b-topbar_menu ul > li a {
     color: #fff;
@@ -1419,7 +1388,7 @@ ul.item-images a:hover {
 }
 
 .b-product_single {
-    background: #f9f9f9;
+    background: #fdfdfd;
 }
 
 .tp-loader.spinner0{
@@ -1433,14 +1402,9 @@ ul.item-images a:hover {
 }
 
 .btn-outline {
-    background: #FFF;
-    border: 1px solid #f05223 !important;
-    color: #f05223;
     font-size: 14px !important;
     border-radius: 5px !important;
     padding: 5px 30px !important;
-    -webkit-box-shadow: 0px 0px 5px #bf3d16 !important;
-    box-shadow: 0px 0px 5px #bf3d16 !important;
 }
 
 .product-first-detail {
@@ -1470,3 +1434,38 @@ ul.item-images a:hover {
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
   }
+
+  ul.social-product {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+}
+
+ul.social-product li {
+    float: left;
+    margin-right: 3px;
+}
+
+ul.social-product li.share-text {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 10px;
+    margin-right: 10px;
+}
+
+ul.social-product li img {
+    height: 35px;
+    cursor: pointer;
+}
+
+.b-product_single .container {
+    max-width: 1220px;
+}
+
+.store-location {
+    background: #FFF;
+    padding: 10px;
+    border: 1px solid #848484;
+    border-radius: 10px;
+}
