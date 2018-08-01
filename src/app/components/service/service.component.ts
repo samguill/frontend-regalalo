@@ -51,6 +51,7 @@ export class ServiceComponent implements OnInit {
       icon: 'assets/img/store-marker.png'
     }
   }
+  public repoUrl:string;
 
   constructor(private router: Router,
     private service:ServiceService,
@@ -60,6 +61,7 @@ export class ServiceComponent implements OnInit {
       if(access_token != null){
         this.isloggedIn = true;
       }
+      this.repoUrl="https://regalalo.pe" + this.router.url;
     }
 
   ngOnInit() {

@@ -26,15 +26,53 @@
             <div class="clearfix">
               <div class="row" *ngIf="product.discount != 0">
                 <div class="col-md-5">
-                  <span class="regular-price">P. regular:<br> S/{{ product.price }} <span class="zero">.00</span></span>
+                  <span class="regular-price">P. regular:<br> S/{{ product.price.toFixed(2) }}</span>
                 </div>
                 <div class="col-md-7">
-                  <span class="new-price">S/.{{ product.discount_price.toFixed(0) }} <span class="zero">.00</span></span>
+                  <span class="new-price">S/.{{ product.discount_price.toFixed(2) }}</span>
                 </div>
               </div>
               <div class="row" *ngIf="product.discount == 0">
                 <div class="col-md-12">
-                  <span class="new-price">S/.{{ product.price }} <span class="zero">.00</span></span>
+                  <span class="new-price">S/.{{ product.price.toFixed(2) }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4" *ngFor="let service of services">
+        <div class="b-product_grid_single">
+          <div class="b-product_grid_header">
+            <h3 class="product-title">
+                <a routerLink="/servicio/{{service.slug}}">{{ (service.name.length > 30) ? (service.name | slice:0:35) + '...' : (service.name) }}</a>
+            </h3>
+            <div class="b-product_grid_action">
+              <a (click)="add_to_wishlist(service)">
+                <i class="icon-heart icons"></i>
+              </a>
+            </div>
+          </div>
+          <div class="b-product_grid_info mb-3">
+            <a routerLink="/servicio/{{service.slug}}">
+              <div class="product-image">
+                <div class="image" [ngStyle]="{'background-image': 'url(' +  service.featured_image + ')'}"></div>
+              </div>
+            </a>
+          </div>
+          <div class="b-product_grid_footer pt-3">
+            <div class="clearfix">
+              <div class="row" *ngIf="service.discount != 0">
+                <div class="col-md-5">
+                  <span class="regular-price">P. regular:<br> S/{{ service.price.toFixed(2) }}</span>
+                </div>
+                <div class="col-md-7">
+                  <span class="new-price">S/.{{ service.discount_price.toFixed(2) }}</span>
+                </div>
+              </div>
+              <div class="row" *ngIf="service.discount == 0">
+                <div class="col-md-12">
+                  <span class="new-price">S/.{{ service.price.toFixed(2) }}</span>
                 </div>
               </div>
             </div>

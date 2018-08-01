@@ -14,6 +14,7 @@ import swal from 'sweetalert2';
 export class StoreComponent implements OnInit {
 
   products: any;
+  services: any;
   store: any;
   loading:boolean = false;
 
@@ -26,12 +27,10 @@ export class StoreComponent implements OnInit {
         this.store_service.store_products(id.id)
           .then((response)=> {
             this.products = response.products;
+            this.services = response.services;
             this.store = response.store;
             if(this.store.analytics_id != null ){
-              console.log(this.store.analytics_id);
               if(event instanceof NavigationEnd){
-                //(<any>window).ga('create', this.store.analytics_id, 'auto');
-                //(<any>window).ga('set', 'page', event.urlAfterRedirects);                
                 (<any>window).ga('create', this.store.analytics_id, 'auto');
                 (<any>window).ga('send', 'pageview');
               }

@@ -15,6 +15,7 @@ export class PostComponent implements OnInit {
   title: string;
   featured_image: string;
   content;
+  author: string;
 
   constructor(private activatedRoute:ActivatedRoute,
     private blog_service: BlogService,
@@ -26,28 +27,29 @@ export class PostComponent implements OnInit {
           this.title = this.post.title;
           this.featured_image = this.post.featured_image;
           this.content = this.post.content;
+          this.author = this.post.author;
 
           if(response.meta_title != ""){
-            this.meta.addTag({
+            this.meta.updateTag({
               name: 'title', content: response.meta_title
             });
-            this.meta.addTag({
+            this.meta.updateTag({
               property: 'og:title', content: response.meta_title
             });
-            this.meta.addTag({
+            this.meta.updateTag({
               property: 'og:image', content: this.featured_image
             });
           }
           if(response.meta_description != ""){
-            this.meta.addTag({
+            this.meta.updateTag({
               name: 'description', content: response.meta_description
             });
-            this.meta.addTag({
+            this.meta.updateTag({
               property: 'og:description', content: response.meta_description
             });
           }
           if(response.meta_keywords != ""){
-            this.meta.addTag({
+            this.meta.updateTag({
               name: 'keywords', content: response.meta_keywords
             });
           }
