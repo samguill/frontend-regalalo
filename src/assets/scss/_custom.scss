@@ -1469,3 +1469,54 @@ ul.social-product li img {
     border: 1px solid #848484;
     border-radius: 10px;
 }
+
+div#related_products h5 {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+div#related_products .ngucarousel button {
+    background: none;
+    color: #696969;
+    border: none;
+    font-family: FontAwesome;
+    opacity: 1;
+}
+
+div#related_products .ngucarousel button i.fa {
+    font-size: 50px;
+}
+
+div#related_products .ngucarousel button.leftRs {
+    left: -15px;
+}
+
+div#related_products .ngucarousel button.rightRs {
+    right: -15px;
+}
+
+ul.tags-lists {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul.tags-lists li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+ul.tags-lists li a {
+    color: #000;
+    font-weight: bold;
+}
+
+.b-header_fixed .b-header_search.mov {
+    display: none;
+}
+
+@media (max-width: 767px){
+    .ngucarousel button {
+        opacity: 1;
+    }
+}

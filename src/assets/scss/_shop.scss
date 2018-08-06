@@ -38,7 +38,7 @@
 	display: inline-block; margin-left: 20px; margin-bottom: 10px; line-height: 19px;
 	.b-open_filters{
 		font-size: 16px; font-weight: 700; color: #1B1919; position: relative; padding-right: 20px; text-decoration: none;
-		&::after,&::before{content: " "; width: 10px; height: 2px; position: absolute; right: 0; top: 5px; display: inline-block; background-color: #1B1919; @extend .d-transition_fast;}
+		&::after,&::before{content: " "; width: 10px; height: 2px; position: absolute; right: 0; top: 8px; display: inline-block; background-color: #1B1919; @extend .d-transition_fast;}
 		&::before{transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -o-transform: rotate(-90deg); -ms-transform: rotate(-90deg); -sand-transform: rotate(-90deg);}
 		&.b-btn_open{
 			&::after{transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -o-transform: rotate(45deg); -ms-transform: rotate(45deg); -sand-transform: rotate(45deg); }

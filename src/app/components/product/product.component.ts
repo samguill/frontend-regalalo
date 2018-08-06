@@ -5,6 +5,8 @@ import { ProductService } from './../../services/product.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
 import swal from 'sweetalert2';
 import { AgmCoreModule, AgmMarker } from '@agm/core';
+import 'slick-carousel/slick/slick';
+import { NguCarousel } from '@ngu/carousel';
 
 @Component({
   selector: 'app-product',
@@ -22,7 +24,7 @@ export class ProductComponent implements OnInit {
   product_name: string;
   isloggedIn: boolean = false;
   multiple_directions: boolean = false;
-  store_open: boolean;
+  store_open: boolean = false;
   client_marker: string = "assets/img/client-marker.png";
   store_marker: string = "assets/img/store-marker.png";
   discount;
@@ -34,6 +36,9 @@ export class ProductComponent implements OnInit {
   description;
   characteristics: any = [];
   order_characteristics: any = [];
+  related_products: any = [];
+  tags: any = [];
+  public relatedCarousel: NguCarousel;
 
   single_latitude: number = parseFloat(localStorage.getItem('latitude'));
   single_longitude: number = parseFloat(localStorage.getItem('longitude'));
@@ -70,6 +75,19 @@ export class ProductComponent implements OnInit {
       this.data_slug = params["id"];
       this.getDataBySlug(this.data_slug);
     });
+    this.relatedCarousel = {
+      grid: {xs: 1, sm: 1, md: 2, lg: 4, all: 0},
+      slide: 1,
+      speed: 400,
+      interval: 4000,
+      point: {
+        visible: true
+      },
+      load: 2,
+      touch: false,
+      loop: true,
+      custom: 'banner'
+    }
   }
 
   setMedaData(){
@@ -109,7 +127,7 @@ export class ProductComponent implements OnInit {
     }
     this.product_service.detail(data)
     .then((response)=> {
-      this.data_product = response.json().data;
+      this.data_product = response.data;
       this.discount = this.data_product.discount;
       this.price = this.data_product.price.toFixed(2);
       this.featured_image = this.data_product.featured_image;
@@ -122,16 +140,26 @@ export class ProductComponent implements OnInit {
       this.product_name = this.data_product.name;
       this.data_branche = this.data_product.store.branches;
       this.characteristics = this.data_product.productcharacteristicsdetail;
-      this.store_open = this.data_branche[0].open;
+      this.related_products = this.data_product.relatedproducts;
+      
+      if(this.data_product.tags != null){
+        this.tags = this.data_product.tags.split(',');
+      }
+      if(this.data_branche.length > 0){
+        this.store_open = this.data_branche[0].open;
+      }
       if(latitude && longitude){
-        this.directions = {
-          origin: { lat: this.single_latitude, lng: this.single_longitude },
-          destination: { lat: this.data_branche[0].latitude, lng: this.data_branche[0].longitude }
+        if(this.data_branche.length > 0){
+          this.directions = {
+            origin: { lat: this.single_latitude, lng: this.single_longitude },
+            destination: { lat: this.data_branche[0].latitude, lng: this.data_branche[0].longitude }
+          }
         }
       }
       this.setMedaData();
     })
     .catch((error)=>{
+      console.log(error);
       swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
     });
   }

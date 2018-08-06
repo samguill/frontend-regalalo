@@ -40,6 +40,9 @@ export class SearchResultComponent implements OnInit {
     private search_data: SearchDataService,
     private profile_service: ProfileService,
     private product_data_service: ProductDataService) {
+      if (!!App && App.hasOwnProperty('FilterToggle')) {
+        App.FilterToggle();
+      }
       this.search_data.$getSubject.subscribe(value => {
         this.data_search = value;
         let latitude = localStorage.getItem('latitude');

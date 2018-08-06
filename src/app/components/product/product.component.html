@@ -1,5 +1,21 @@
 <div class="b-product_single pb-5 pt-5">
   <div class="container">
+    <div class="row clearfix mb-3">
+      <div class="col-md-12">
+        <ul class="tags-lists">
+          <li>
+            <a [routerLink]="['/']">Inicio</a><span> / </span>
+          </li>
+          <li *ngFor="let tag of tags; let i = index">
+            <a>{{tag}}</a><span> / </span>
+          </li>
+          <li>
+            <b>{{product_name}}</b>
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <div class="row clearfix">
       
       <div class="col-xl-4 col-lg-4 col-mb-4 col-sm-12 col-xs-12">
@@ -93,6 +109,60 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="row clearfix mt-5" id="related_products" *ngIf="related_products?.length > 0">
+        <div class="col-md-12">
+          <h5 class="text-uppercase">Productos relacionados</h5>
+        </div>
+        <div class="col-md-12">
+        <ngu-carousel [inputs]="relatedCarousel" class="mb-3">
+          <ngu-item NguCarouselItem *ngFor="let product of related_products;let i = index">
+            <div class="b-product_grid_single">
+              <div class="b-product_grid_header">
+                <h3 class="product-title">
+                  <a routerLink="/producto/{{product.slug}}">{{ (product.name.length > 40) ? (product.name | slice:0:45) + '...' : (product.name) }}</a>
+                </h3>
+                <div class="b-product_grid_action" *ngIf="isloggedIn">
+                  <a (click)="add_to_wishlist(product)">
+                    <i class="icon-heart icons"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="b-product_grid_info mb-3">
+                <a routerLink="/producto/{{product.slug}}">
+                  <div class="product-image">
+                    <div class="image" [ngStyle]="{'background-image': 'url(' +  product.featured_image + ')'}"></div>
+                  </div>
+                </a>
+              </div>
+              <div class="b-product_grid_footer pt-3">
+                <div class="clearfix">
+                  <div class="row" *ngIf="product.discount != 0">
+                    <div class="col-md-5">
+                      <span class="regular-price">P. regular:<br> S/{{ product.price }}</span>
+                    </div>
+                    <div class="col-md-7">
+                      <span class="new-price">S/{{ product.discount_price.toFixed(2)}}</span>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="product.discount == 0">
+                    <div class="col-md-12">
+                      <span class="new-price">S/{{ product.price.toFixed(2) }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ngu-item>
+          <button NguCarouselPrev class='leftRs'>
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+          </button>
+          <button NguCarouselNext class='rightRs'>
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </button>
+        </ngu-carousel>
+        </div>
       </div>
     </div>
   </div>

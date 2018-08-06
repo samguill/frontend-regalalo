@@ -79,21 +79,24 @@
 
         <div class="col-xl-1 col-lg-1 col-mb-3 col-sm-6 col-xs-6">
           <div class="b-header_right">
-            <div class="b-header_links">
-                <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
-                    <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
-                    <span class="hidden-sm-down" style="width: 100%; display: block; line-height: 40px;">cuenta</span>
-                    <a class="logout-btn" *ngIf="(isLoggedIn$ | async)" (click)="salir()"><span>Salir</span></a>
-                  </div>
-                  <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
-                    <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
-                    <span class="hidden-sm-down" style="width: 100%; display: block; line-height: 40px;">ingresar</span>
-                  </div>
-            </div>
+            <!-- <div class="b-header_links">-->
+              <div class="b-cart_basket text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
+                <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
+                <span style="width: 100%; display: block; line-height: 30px;">cuenta</span>
+                <a class="logout-btn" *ngIf="(isLoggedIn$ | async)" (click)="salir()"><span>Salir</span></a>
+              </div>
+              <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
+                <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
+                <span style="width: 100%; display: block; line-height: 30px;">ingresar</span>
+              </div>
+              <div class="b-wishlist_icon hidden-lg-up">
+                <i class="icon-menu icons b-nav_icon" id="b-nav_icon"></i>
+              </div>
+            <!-- </div> -->
           </div>
         </div>
         
-        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-6">
+        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-6 hidden-sm-down hidden-md-down">
           <div class="b-header_right">
               <div class="b-header_links hidden-sm-down">
                 <div>
@@ -105,12 +108,11 @@
                   <p>Cupones <br><span style="color: #f05224">¡Muy pronto!</span></p>
                 </div>
               </div>
-              <div class="hidden-lg-up">
-                <i class="icon-menu icons b-nav_icon" id="b-nav_icon"></i>
-              </div>
           </div>
         </div>
-
+        <div class="col-sm-12 col-xs-12 hidden-lg-up b-header_search mov">
+          <app-quick-search-form></app-quick-search-form>
+        </div>
       </div>
     </div>
   </div>

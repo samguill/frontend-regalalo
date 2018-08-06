@@ -4,6 +4,8 @@ import { CheckoutDataService } from './../../services/checkout-data.service';
 import { ServiceService } from './../../services/service.service';
 import swal from 'sweetalert2';
 import { AgmCoreModule, AgmMarker } from '@agm/core'; 
+import 'slick-carousel/slick/slick';
+import { NguCarousel } from '@ngu/carousel';
 
 @Component({
   selector: 'app-service',
@@ -34,6 +36,9 @@ export class ServiceComponent implements OnInit {
   description;
   characteristics: any = [];
   order_characteristics: any = [];
+  related_services: any = [];
+  tags: any = [];
+  public relatedCarousel: NguCarousel;
 
   single_latitude: number = parseFloat(localStorage.getItem('latitude'));
   single_longitude: number = parseFloat(localStorage.getItem('longitude'));
@@ -69,6 +74,19 @@ export class ServiceComponent implements OnInit {
       this.data_slug = params["id"];
       this.getDataBySlug(this.data_slug);
     });
+    this.relatedCarousel = {
+      grid: {xs: 1, sm: 1, md: 2, lg: 4, all: 0},
+      slide: 1,
+      speed: 400,
+      interval: 4000,
+      point: {
+        visible: true
+      },
+      load: 2,
+      touch: false,
+      loop: true,
+      custom: 'banner'
+    }
   }
 
   getDataBySlug(slug:string){
@@ -103,11 +121,18 @@ export class ServiceComponent implements OnInit {
       this.service_name = this.data_service.name;
       this.data_branche = this.data_service.store.branches;
       //this.characteristics = this.data_service.productcharacteristicsdetail;
-      this.store_open = this.data_branche[0].open;
+      if(this.data_service.tags != null){
+        this.tags = this.data_service.tags.split(',');
+      }
+      if(this.data_branche.length > 0){
+        this.store_open = this.data_branche[0].open;
+      }
       if(latitude && longitude){
-        this.directions = {
-          origin: { lat: this.single_latitude, lng: this.single_longitude },
-          destination: { lat: this.data_branche[0].latitude, lng: this.data_branche[0].longitude }
+        if(this.data_branche.length > 0){
+          this.directions = {
+            origin: { lat: this.single_latitude, lng: this.single_longitude },
+            destination: { lat: this.data_branche[0].latitude, lng: this.data_branche[0].longitude }
+          }
         }
       }
     })
