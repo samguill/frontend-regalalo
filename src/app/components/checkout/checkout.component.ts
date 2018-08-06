@@ -104,7 +104,9 @@ export class CheckoutComponent implements OnInit {
     if(this.branche.length > 0){
       data = {
         store_branche_id : this.branche.id,
-        client_direction_id: direction_id
+        client_direction_id: direction_id,
+        item_type: this.item.item_type,
+        item_id: this.item.id
       };
     }else{
       data = {
