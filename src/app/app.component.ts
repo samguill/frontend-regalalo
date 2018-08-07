@@ -25,11 +25,23 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private loaderService: LoaderService){
   }
 
-  showLoader: boolean;
+  showLoader: boolean = false;
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    
+  }
+
+  ngOnInit() {
+    this.load();
+  }
+
+  load(){
     this.loaderService.status.subscribe((val: boolean) => {
       this.showLoader = val;
     });
+  }
+
+  ngAfterViewChecked() {
+    
   }
 }

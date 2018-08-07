@@ -91,21 +91,34 @@ export class ProductComponent implements OnInit {
   }
 
   setMedaData(){
-    this.meta.updateTag({
-      name: 'title', content: this.product_name
-    });
-    this.meta.updateTag({
-      property: 'og:title', content: this.product_name
-    });
+    if(this.data_product.meta_title){
+      this.meta.updateTag({
+        name: 'title', content: this.data_product.meta_title
+      });
+      this.meta.updateTag({
+        property: 'og:title', content: this.data_product.meta_title
+      });
+    }
+    
+    if(this.data_product.meta_description){
+      this.meta.updateTag({
+        name: 'description', content: this.data_product.meta_description
+      });
+      this.meta.updateTag({
+        property: 'og:description', content: this.data_product.meta_description
+      });
+    }
+
+    if(this.data_product.tags){
+      this.meta.updateTag({
+        name: 'keywords', content: this.data_product.tags
+      });
+    }
+    
     this.meta.updateTag({
       property: 'og:image', content: this.featured_image
     });
-    this.meta.updateTag({
-      name: 'description', content: this.description
-    });
-    this.meta.updateTag({
-      property: 'og:description', content: this.description
-    });
+    
   }
 
   getDataBySlug(slug:string){

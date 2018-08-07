@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
+import { SearchDataService } from '../../../services/search-data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,9 @@ export class NavbarComponent implements OnInit {
   direction: string = "";
   client: any;
 
-  constructor(private router: Router,private authService: AuthService) { }
+  constructor(private search_data: SearchDataService,
+    private router: Router,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.isLoggedIn$ = this.authService.isLoggedIn();
@@ -29,6 +32,15 @@ export class NavbarComponent implements OnInit {
   salir(){
     this.authService.logout();
     this.router.navigate(['/']);
+  }
+
+  location_search(){
+    let searchData = {
+      searchtext: "",
+      type: "quick"
+    };
+    this.search_data.sendData(searchData);
+    this.router.navigate(['/busqueda']);
   }
 
 }

@@ -47,8 +47,11 @@
             </ul>
           </div>
           <div class="{{images?.length > 0 ? 'col-md-9' : 'col-md-12'}}">
-            <div class="featured-image">
+            <div class="featured-image  hidden-sm-down hidden-md-down">
               <img [imageZoom]="zoomedImageSrc" [scrollZoom]="false" [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='service_name' />
+            </div>
+            <div class="featured-image-mobile hidden-lg-up">
+              <img [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='service_name' />
             </div>
             <p class="text-red">Pasa el mouse encima de la imagen para aplicar zoom</p>
           </div>

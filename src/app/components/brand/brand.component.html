@@ -23,7 +23,7 @@
                 <a routerLink="/producto/{{product.slug}}">{{ (product.name.length > 40) ? (product.name | slice:0:45) + '...' : (product.name) }}</a>
               </h3>
               <div class="b-product_grid_action">
-                <a (click)="add_to_wishlist(product)">
+                <a (click)="add_to_wishlist(product)" *ngIf="isloggedIn">
                   <i class="icon-heart icons"></i>
                 </a>
               </div>

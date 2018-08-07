@@ -47,8 +47,11 @@
             </ul>
           </div>
           <div class="{{images?.length > 0 ? 'col-md-9' : 'col-md-12'}}">
-            <div class="featured-image">
+            <div class="featured-image  hidden-sm-down hidden-md-down">
               <img [imageZoom]="zoomedImageSrc" [scrollZoom]="false" [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='product_name' />
+            </div>
+            <div class="featured-image-mobile hidden-lg-up">
+              <img [src]="!featured_image ? 'https://admin.regalalo.pe/img/default-image.jpg' : featured_image" width="100%" [alt]='product_name' />
             </div>
             <p class="text-red">Pasa el mouse encima de la imagen para aplicar zoom</p>
           </div>
@@ -123,8 +126,8 @@
                 <h3 class="product-title">
                   <a routerLink="/producto/{{product.slug}}">{{ (product.name.length > 40) ? (product.name | slice:0:45) + '...' : (product.name) }}</a>
                 </h3>
-                <div class="b-product_grid_action" *ngIf="isloggedIn">
-                  <a (click)="add_to_wishlist(product)">
+                <div class="b-product_grid_action">
+                  <a (click)="add_to_wishlist(product)" *ngIf="isloggedIn">
                     <i class="icon-heart icons"></i>
                   </a>
                 </div>

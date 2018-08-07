@@ -1118,7 +1118,6 @@ img.calim-icon {
     right: 0;
     top: 30%;
     height: 100px;
-    border: none;
 }
 
 .ngucarousel button.leftRs {
@@ -1134,6 +1133,7 @@ img.calim-icon {
     opacity: 0;
     transition: ease all 0.3s;
     cursor: pointer;
+    border: none;
 }
 
 .ngucarousel:hover button {
@@ -1379,7 +1379,8 @@ ul.item-images a:hover {
     border: 1px solid #f05224;
 }
 
-.featured-image {
+.featured-image,
+.featured-image-mobile {
     border: 1px solid #CCC;
 }
 
@@ -1515,8 +1516,80 @@ ul.tags-lists li a {
     display: none;
 }
 
+.b-header-custom {
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+.b-header-custom div a {
+    display: block;
+    padding-bottom: 10px;
+}
+
+.b-header-custom .b-header_links div.location-div {
+    display: inline-block;
+}
+
+.b-header-custom > div i#b-nav_icon {
+    cursor: pointer;
+}
+
 @media (max-width: 767px){
     .ngucarousel button {
         opacity: 1;
     }
+
+    footer aside .b-footer_column {
+        text-align: center;
+    }
+
+    .b-header-custom {
+        float: right;
+    }
+
+    .b-header-custom > div {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .b-header-custom div a {
+        text-align: center;
+    }
 }
+
+@media (min-width: 1200px){
+    .container.b-main_footer {
+        max-width: 1200px;
+    }
+}
+
+.b-header-custom #localizame {
+    animation: pulse 2s infinite;
+    cursor: pointer;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(46, 46, 46, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(46, 46, 46, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(46, 46, 46, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(46, 46, 46, 0.4);
+      box-shadow: 0 0 0 0 rgba(46, 46, 46, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(46, 46, 46, 0);
+        box-shadow: 0 0 0 10px rgba(46, 46, 46, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(46, 46, 46, 0);
+        box-shadow: 0 0 0 0 rgba(46, 46, 46, 0);
+    }
+  }

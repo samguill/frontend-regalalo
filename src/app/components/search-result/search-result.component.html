@@ -53,7 +53,7 @@
               </h3>
               <span *ngIf="item.distance">A {{item.distance.toFixed(0)}}km</span>
               <div class="b-product_grid_action">
-                <a (click)="add_to_wishlist(item)">
+                <a (click)="add_to_wishlist(item)" *ngIf="isloggedIn">
                   <i class="icon-heart icons"></i>
                 </a>
               </div>

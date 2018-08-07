@@ -28,7 +28,7 @@ var App = (function(window){
                 let ul_slider = $("#b-home_01_slider ul");
                 $.each(data.slides, function(i, slide){
                     let content_li = '<li data-index="rs-30" data-transition="zoomout" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-thumb="'+ slide["image"] +'"  data-rotate="0" data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off" data-title="'+ slide["name"] +'">' +
-                        '<img src="'+ slide["image"] +'" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina> ' +
+                        '<img src="'+ slide["image"] +'" width="100%" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina> ' +
                     '</li>';
                     ul_slider.append(content_li);
                 });

@@ -41,8 +41,6 @@
           </div>
         </div>
 
-        <!-- <div class="vertical-divider"><div class="mask"></div></div> -->
-
         <div class="col-xl-4 col-lg-4 col-mb-6 col-sm-12 col-xs-12 mt-3 hidden-sm-down hidden-md-down">
           
           <div class="b-header_search">
@@ -56,9 +54,6 @@
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                     <a [routerLink]="['/']"><span class="top">Inicio</span></a>
                   </li>
-                  <!--<li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
-                    <a [routerLink]="['categorias']"><span class="top">Categorías</span></a>
-                  </li>-->
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['catalogo-tiendas']"><span>Tiendas</span></a>
                   </li>
@@ -68,9 +63,6 @@
                   <li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
                     <a [routerLink]="['blog']"><span>Blog</span></a>
                   </li>
-                  <!--<li class="b-has_sub b-dropdown_wrapper from-bottom" routerLinkActive="active">
-                    <a [routerLink]="['ayuda']"><span>Ayuda</span></a>
-                  </li>-->
                 </ul>
               </div>
             </div>
@@ -78,28 +70,35 @@
         </div>
 
         <div class="col-xl-1 col-lg-1 col-mb-3 col-sm-6 col-xs-6">
-          <div class="b-header_right">
-            <!-- <div class="b-header_links">-->
+          <div class="b-header-custom">
               <div class="b-cart_basket text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
                 <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
-                <span style="width: 100%; display: block; line-height: 30px;">cuenta</span>
+                <span>cuenta</span>
                 <a class="logout-btn" *ngIf="(isLoggedIn$ | async)" (click)="salir()"><span>Salir</span></a>
               </div>
               <div class="text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
                 <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
-                <span style="width: 100%; display: block; line-height: 30px;">ingresar</span>
+                <span>ingresar</span>
               </div>
               <div class="b-wishlist_icon hidden-lg-up">
                 <i class="icon-menu icons b-nav_icon" id="b-nav_icon"></i>
               </div>
-            <!-- </div> -->
+          </div>
+        </div>
+
+        <div class="col-xl-1 col-lg-1 col-mb-3 col-sm-6 col-xs-6 hidden-sm-down hidden-md-down">
+          <div class="b-header-custom">
+              <div class="b-cart_basket text-sm-left text-lg-center text-xl-center icon-last-menu">
+                <a (click)="location_search()"><img id="localizame" src="assets/img/localizame-icon.png" /></a>
+                <span>localízame</span>
+              </div>
           </div>
         </div>
         
         <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-6 col-xs-6 hidden-sm-down hidden-md-down">
-          <div class="b-header_right">
+          <div class="b-header-custom">
               <div class="b-header_links hidden-sm-down">
-                <div>
+                <div class="location-div">
                   <img src="assets/img/icon-ubicacion.png" class="marker-icon-header" />
                   <app-user-location></app-user-location>
                 </div>
