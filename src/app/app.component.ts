@@ -18,9 +18,7 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  loading;
   title = 'app';
-  location : any;
 
   constructor(private router: Router, private loaderService: LoaderService){
   }
@@ -32,10 +30,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.load();
-  }
-
-  load(){
     this.loaderService.status.subscribe((val: boolean) => {
       this.showLoader = val;
     });

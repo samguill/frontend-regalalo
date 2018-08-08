@@ -18,6 +18,7 @@ import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-boo
 export class CheckoutComponent implements OnInit {
   data_checkout: any;
   item: any;
+  item_type: string = "product";
   branche: any;
   characteristics: any = [];
   is_delivery: boolean = false;
@@ -78,8 +79,9 @@ export class CheckoutComponent implements OnInit {
     this.address = localStorage.getItem('address');
     this.latitude = localStorage.getItem('latitude');
     this.longitude = localStorage.getItem('longitude');
-    this.subtotal = (this.item.discount != 0 ? this.item.discount_price.toFixed(0) : this.item.price) * this.quantity;
-    this.total = ((this.item.discount != 0 ? this.item.discount_price.toFixed(0) : this.item.price) * this.quantity) + this.price_delivery;
+    this.item_type = this.data_checkout.item_type;
+    this.subtotal = (this.item.discount != 0 ? this.item.discount_price.toFixed(2) : this.item.price.toFixed(2)) * this.quantity;
+    this.total = ((this.item.discount != 0 ? this.item.discount_price.toFixed(2) : this.item.price.toFixed(2)) * this.quantity) + this.price_delivery;
 
     this.searchControl = new FormControl();
     
@@ -105,13 +107,15 @@ export class CheckoutComponent implements OnInit {
       data = {
         store_branche_id : this.branche.id,
         client_direction_id: direction_id,
-        item_type: this.item.item_type,
+        item_type: this.item_type,
         item_id: this.item.id
       };
     }else{
       data = {
         store_branche_id : this.branche.id,
-        client_direction_id: direction_id
+        client_direction_id: direction_id,
+        item_type: this.item_type,
+        item_id: this.item.id
       };
     }
     
@@ -143,8 +147,8 @@ export class CheckoutComponent implements OnInit {
       detail = {
         product_id: this.item.id,
         quantity: this.quantity,
-        price: (this.item.discount != 0 ? this.item.discount_price.toFixed(0) : this.item.price),
-        price_delivery: this.price_delivery,
+        price: (this.item.discount != 0 ? this.item.discount_price.toFixed(2) : this.item.price.toFixed(2)),
+        price_delivery: this.price_delivery.toFixed(2),
         igv: parseFloat(this.total) * 0.18,
         order_detail_characteristics: this.characteristics
       }
@@ -152,8 +156,8 @@ export class CheckoutComponent implements OnInit {
       detail = {
         service_id: this.item.id,
         quantity: this.quantity,
-        price: (this.item.discount != 0 ? this.item.discount_price.toFixed(0) : this.item.price),
-        price_delivery: this.price_delivery,
+        price: (this.item.discount != 0 ? this.item.discount_price.toFixed(2) : this.item.price.toFixed(2)),
+        price_delivery: this.price_delivery.toFixed(2),
         igv: parseFloat(this.total) * 0.18,
         order_detail_characteristics: this.characteristics
       }

@@ -77,6 +77,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       navigator.geolocation.getCurrentPosition(position => {
         let latitude = position.coords.latitude.toFixed(5);
         let longitude = position.coords.longitude.toFixed(5);
+        console.log(position);
         let address = localStorage.getItem('address');
         if(address){ }else{
           this.http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latitude + "," + longitude + "&sensor=false")

@@ -21,14 +21,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngIf="product">
+                <tr *ngIf="item">
                   <td data-th="Producto">
                     <div class="row">
                       <div class="col-sm-2 hidden-xs">
-                        <img [src]="!product.featured_image ? 'https://via.placeholder.com/1200x1200' : product.featured_image" width="100%" />
+                        <img [src]="!item.featured_image ? 'https://via.placeholder.com/1200x1200' : item.featured_image" [alt]='item.name' width="100%" />
                       </div>
                       <div class="col-sm-10">
-                        <p><b>{{product.name}}</b><br><small>{{product.sku_code}}</small></p>
+                        <p><b>{{item.name}}</b><br><small>{{item.sku_code}}</small></p>
                         <div *ngIf="characteristics?.length > 0">
                           <b>Datos adicionales: </b><br>
                           <span style="width: 100%; display: block;" *ngFor="let characteristic of characteristics">{{characteristic.characteristic}}: {{characteristic.value}}</span><br>
@@ -36,8 +36,8 @@
                       </div>
                     </div>
                   </td>
-                  <td data-th="Precio" *ngIf="product.discount == 0">S/{{product.price}}</td>
-                  <td data-th="Precio" *ngIf="product.discount != 0">S/{{product.discount_price.toFixed(0)}}</td>
+                  <td data-th="Precio" *ngIf="item.discount == 0">S/{{item.price.toFixed(2)}}</td>
+                  <td data-th="Precio" *ngIf="item.discount != 0">S/{{item.discount_price.toFixed(2)}}</td>
                   <td data-th="Cantidad">
                     <input class="form-control text-center" value="1" [(ngModel)]="quantity" OnlyNumber="true">
                   </td>
@@ -52,11 +52,11 @@
         <div class="panel panel-info">
           <div class="panel-heading">Pagar</div>
           <div class="panel-body">
-            <table id="cart" class="table table-hover table-condensed" *ngIf="product">
+            <table id="cart" class="table table-hover table-condensed" *ngIf="item">
               <tbody>
                 <tr>
                   <td style="width:30%"><b>Subtotal</b></td>
-                  <td style="width:70%">S/{{ ( (product.discount != 0 ? product.discount_price.toFixed(0) : product.price) * quantity).toFixed(2) }}</td>
+                  <td style="width:70%">S/{{ ( (item.discount != 0 ? item.discount_price.toFixed(2) : item.price.toFixed(2)) * quantity).toFixed(2) }}</td>
                 </tr>
                 <tr>
                   <td style="width:30%"><b>Envío</b></td>
@@ -89,7 +89,7 @@
                 </tr>
                 <tr>
                   <td style="width:30%"><b>Total</b></td>
-                  <td style="width:70%">S/{{ ((product.discount != 0 ? product.discount_price.toFixed(2) : product.price.toFixed(2)) * quantity) + price_delivery }}</td>
+                  <td style="width:70%">S/{{ ((item.discount != 0 ? item.discount_price.toFixed(2) : item.price.toFixed(2)) * quantity) + price_delivery }}</td>
                 </tr>
                 <tr>
                   <td colspan="2">
