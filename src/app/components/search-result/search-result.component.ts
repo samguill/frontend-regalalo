@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick';
 import { NguCarousel } from '@ngu/carousel';
 import { bind } from '../../../../node_modules/@angular/core/src/render3/instructions';
 declare const App: any;
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search-result',
@@ -33,13 +34,15 @@ export class SearchResultComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges){
   }
 
-  constructor(
+  constructor(private title_service:Title,
     private router: Router,
     private route:ActivatedRoute,
     private search_service: SearchService,
     private search_data: SearchDataService,
     private profile_service: ProfileService,
     private product_data_service: ProductDataService) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
+      
       if (!!App && App.hasOwnProperty('FilterToggle')) {
         App.FilterToggle();
       }

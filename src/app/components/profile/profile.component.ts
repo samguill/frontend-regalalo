@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from './../../services/orders.service';
 import swal from 'sweetalert2';
-
+import {Meta, Title} from '@angular/platform-browser';
 import { AuthService } from './../../services/auth.service';
 import { ProfileService } from './../../services/profile.service';
 import { WishlistService } from './../../services/wishlist.service';
@@ -35,11 +35,11 @@ export class ProfileComponent implements OnInit {
   directions: any;
   userSettings = {}
 
-  constructor(
+  constructor(private title_service:Title,
     private orders_service: OrdersService,
     private profile_service: ProfileService,
     private wishlist_service: WishlistService) {
-
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
   }
 
   ngOnInit() {

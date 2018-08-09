@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Route } from '@angular/router';
-import {Meta} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import { ProductService } from './../../services/product.service';
 import { CheckoutDataService } from './../../services/checkout-data.service';
 import swal from 'sweetalert2';
@@ -59,6 +59,7 @@ export class ProductComponent implements OnInit {
   public repoUrl:string;
 
   constructor(private meta:Meta,
+    private title_service:Title,
     private router: Router,
     private activated_route: ActivatedRoute,
     private product_service: ProductService,
@@ -91,10 +92,12 @@ export class ProductComponent implements OnInit {
   }
 
   setMedaData(){
+    this.title_service.setTitle("Regálalo | Tu regalo ideal");
     if(this.data_product.meta_title){
       this.meta.updateTag({
         name: 'title', content: this.data_product.meta_title
       });
+      this.title_service.setTitle(this.data_product.meta_title);
       this.meta.updateTag({
         property: 'og:title', content: this.data_product.meta_title
       });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
-import {Meta} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import { BrandService } from './../../services/brand.service';
 import swal from 'sweetalert2';
 
@@ -18,8 +18,11 @@ export class BrandComponent implements OnInit {
   fetch_loading:boolean = false;
   data_brand = {};
 
-  constructor(private activatedRoute:ActivatedRoute,
+  constructor(private meta:Meta,
+    private title_service:Title,
+    private activatedRoute:ActivatedRoute,
     private brand_service: BrandService) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
       this.activatedRoute.params.subscribe(id => {
         this.data_brand["slug"] = id.id;
         this.getProducts(this.data_brand);

@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { AgmCoreModule, AgmMarker } from '@agm/core'; 
 import 'slick-carousel/slick/slick';
 import { NguCarousel } from '@ngu/carousel';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-service',
@@ -59,6 +60,8 @@ export class ServiceComponent implements OnInit {
   public repoUrl:string;
 
   constructor(private router: Router,
+    private meta:Meta,
+    private title_service:Title,
     private service:ServiceService,
     private activated_route: ActivatedRoute,
     private checkout_data_service: CheckoutDataService) {
@@ -135,6 +138,7 @@ export class ServiceComponent implements OnInit {
           }
         }
       }
+      this.setMedaData();
     })
     .catch((error)=>{
       swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
@@ -159,6 +163,39 @@ export class ServiceComponent implements OnInit {
     obj["characteristic"] = characteristic;
     obj["value"] = value;
     this.order_characteristics.push(obj);
+  }
+
+  setMedaData(){
+    this.title_service.setTitle("Regálalo | Tu regalo ideal");
+    if(this.data_service.meta_title){
+      this.meta.updateTag({
+        name: 'title', content: this.data_service.meta_title
+      });
+      this.title_service.setTitle(this.data_service.meta_title);
+      this.meta.updateTag({
+        property: 'og:title', content: this.data_service.meta_title
+      });
+    }
+    
+    if(this.data_service.meta_description){
+      this.meta.updateTag({
+        name: 'description', content: this.data_service.meta_description
+      });
+      this.meta.updateTag({
+        property: 'og:description', content: this.data_service.meta_description
+      });
+    }
+
+    if(this.data_service.tags){
+      this.meta.updateTag({
+        name: 'keywords', content: this.data_service.tags
+      });
+    }
+    
+    this.meta.updateTag({
+      property: 'og:image', content: this.featured_image
+    });
+    
   }
 
 }

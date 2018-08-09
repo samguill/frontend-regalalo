@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-offer',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfferComponent implements OnInit {
 
-  constructor() { }
+  constructor(private title_service:Title) {
+    this.title_service.setTitle("Regálalo | Tu regalo ideal");
+  }
 
   ngOnInit() {
   }

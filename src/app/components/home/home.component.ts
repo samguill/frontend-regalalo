@@ -1,7 +1,7 @@
 import { UserLocationService } from './../../services/user-location.service';
 import { FormGroup, FormArray, FormControl } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import {Meta} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import { Router, NavigationEnd } from '@angular/router';
 import { Http } from '@angular/http';
 import { PageService } from './../../services/page.service';
@@ -45,12 +45,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private meta:Meta,
+    private title_service:Title,
     private page: PageService,
     private profile_service: ProfileService,
     private user_location_service:UserLocationService,
     private http: Http) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
     this.meta.addTag({
-      name: 'author', content: 'Regalalo'
+      name: 'author', content: 'Regálalo'
     });
     this.meta.addTag({
       name: 'description', content: 'Tu regalo ideal'

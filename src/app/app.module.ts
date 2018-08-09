@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgMasonryGridModule } from 'ng-masonry-grid';
 import { AgmCoreModule } from '@agm/core';
@@ -146,6 +146,7 @@ import { ServiceComponent } from './components/service/service.component';
     LoaderService,
     UserNameService,
     UserLocationService,
+    Title,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: loadingInterceptor,

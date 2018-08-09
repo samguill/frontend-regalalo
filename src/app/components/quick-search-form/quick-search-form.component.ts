@@ -4,6 +4,7 @@ import swal from 'sweetalert2';
 import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { SearchDataService } from './../../services/search-data.service';
 import { SearchService } from './../../services/search.service';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-quick-search-form',
@@ -16,8 +17,11 @@ export class QuickSearchFormComponent implements OnInit {
   searchData: any;
 
   constructor(private router: Router,
+    private title_service:Title,
     private search_service: SearchService,
-    private search_data: SearchDataService) { }
+    private search_data: SearchDataService) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
+    }
 
   ngOnInit() {
     this.searchForm = new FormGroup({

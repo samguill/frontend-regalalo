@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogService } from './../../services/blog.service';
 import swal from 'sweetalert2';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog',
@@ -11,8 +12,11 @@ export class BlogComponent implements OnInit {
 
   posts: any;
 
-  constructor(private blog_service: BlogService) {
+  constructor(private meta:Meta,
+    private title_service:Title,
+    private blog_service: BlogService) {
     this.getPosts();
+    this.title_service.setTitle("Regálalo | Tu regalo ideal");
   }
 
   ngOnInit() {

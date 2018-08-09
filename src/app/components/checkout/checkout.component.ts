@@ -9,6 +9,7 @@ import swal from 'sweetalert2';
 import { AuthService } from './../../services/auth.service';
 import { ProfileService } from './../../services/profile.service';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-checkout',
@@ -58,6 +59,7 @@ export class CheckoutComponent implements OnInit {
   public searchElementRef: ElementRef;
   
   constructor(
+    private title_service:Title,
     private modalService: NgbModal,
     private router: Router,
     private auth: AuthService,
@@ -66,6 +68,7 @@ export class CheckoutComponent implements OnInit {
     private check_out_service: CheckoutService,
     private checkout_data_service: CheckoutDataService,
     private profile_service: ProfileService) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
   }
 
   ngOnInit() {

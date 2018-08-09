@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Meta} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 
 import { StoreService } from './../../services/store.service';
 import swal from 'sweetalert2';
@@ -14,10 +14,10 @@ export class StoresComponent implements OnInit {
 
   stores:any;
 
-  constructor(
+  constructor(private title_service:Title,
     private meta:Meta,
     private store_service: StoreService) {
-
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
       this.meta.addTag({
         name: 'author', content: 'Regalalo'
       });

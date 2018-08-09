@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { AuthService } from './../../services/auth.service';
 import { UserNameService } from './../../services/user-name.service';
 import { Location } from '@angular/common';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -20,8 +21,11 @@ export class RegisterComponent implements OnInit {
 
   constructor( private router: Router,
     private auth: AuthService,
+    private title_service:Title,
     private user_name_service:UserNameService,
-    private location:Location) { }
+    private location:Location) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
+    }
 
   ngOnInit() {
     this.signinForm = new FormGroup({

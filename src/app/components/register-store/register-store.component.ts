@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { AuthService } from './../../services/auth.service';
 declare const App: any;
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register-store',
@@ -19,8 +20,9 @@ export class RegisterStoreComponent implements OnInit {
   loading:boolean = false;
 
   constructor(private router: Router,
+    private title_service:Title,
     private auth: AuthService) {
-
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
   }
 
   ngOnInit() {

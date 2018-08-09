@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
-import {Meta} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 
 import { StoreService } from './../../services/store.service';
 import { ProfileService } from './../../services/profile.service';
@@ -21,8 +21,10 @@ export class StoreComponent implements OnInit {
   constructor(
     private activatedRoute:ActivatedRoute,
     private meta:Meta,
+    private title_service:Title,
     private profile_service: ProfileService,
     private store_service: StoreService) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
       this.activatedRoute.params.subscribe(id => {
         this.store_service.store_products(id.id)
           .then((response)=> {
@@ -39,6 +41,7 @@ export class StoreComponent implements OnInit {
               this.meta.addTag({
                 name: 'title', content: this.store.meta_title
               });
+              this.title_service.setTitle(this.store.meta_title);
             }
             if(this.store.meta_description !== ""){
               this.meta.addTag({

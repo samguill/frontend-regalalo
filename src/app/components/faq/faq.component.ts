@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Meta, Title} from '@angular/platform-browser';
 import { FaqService } from './../../services/faq.service';
 import swal from 'sweetalert2';
 
@@ -12,8 +12,10 @@ export class FaqComponent implements OnInit {
 
   faqs:any;
 
-  constructor(private faq_service: FaqService) {
+  constructor(private title_service:Title,
+    private faq_service: FaqService) {
     this.getFaqs();
+    this.title_service.setTitle("Regálalo | Tu regalo ideal");
   }
 
   ngOnInit() {

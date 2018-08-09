@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
-import {Meta} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 import { BlogService } from './../../services/blog.service';
 import swal from 'sweetalert2';
 
@@ -19,7 +19,9 @@ export class PostComponent implements OnInit {
 
   constructor(private activatedRoute:ActivatedRoute,
     private blog_service: BlogService,
+    private title_service:Title,
     private meta:Meta) {
+      this.title_service.setTitle("Regálalo | Tu regalo ideal");
       this.activatedRoute.params.subscribe(id => {
         this.blog_service.post(id.id)
         .then((response)=> {
@@ -33,6 +35,7 @@ export class PostComponent implements OnInit {
             this.meta.updateTag({
               name: 'title', content: response.meta_title
             });
+            this.title_service.setTitle(response.meta_title);
             this.meta.updateTag({
               property: 'og:title', content: response.meta_title
             });
