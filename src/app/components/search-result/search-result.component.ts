@@ -120,7 +120,10 @@ export class SearchResultComponent implements OnInit {
           let json_arr = Object.keys(json_data).map(function(key){
             return json_data[key];
           });
-          Array.prototype.push.apply(this.items, json_arr);
+          let a = json_arr;
+          let b = this.items;
+          let c = a.filter(item => !b.some(other => item.id === other.id));
+          Array.prototype.push.apply(this.items, c);
           this.next_page_url = response.data.items.next_page_url;
         }
         if(status == "error"){
@@ -129,6 +132,7 @@ export class SearchResultComponent implements OnInit {
         this.fetch_loading = false;
       })
       .catch((error) => {
+        console.log(error);
         swal("Error", "Ocurrió un error, inténtalo de nuevo.", "error");
         this.fetch_loading = false;
       });

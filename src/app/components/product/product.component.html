@@ -64,8 +64,8 @@
             <h5>{{product_name}}</h5>
           </div>
           <div class="col-md-4">
-            <button *ngIf="isloggedIn" class="text-uppercase pull-left btn btn-primary btn-outline" (click)="checkout()">comprar</button>
-            <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn btn-primary btn-outline" [routerLink]="['/register']">ingresar</button>
+              <button *ngIf="isloggedIn" class="text-uppercase pull-left btn btn-primary btn-outline" (click)="checkout()" [disabled]="!store_open">comprar</button>
+              <button *ngIf="!isloggedIn" class="text-uppercase pull-left btn btn-primary btn-outline" [routerLink]="['/register']">ingresar</button>
           </div>
         </div>
 

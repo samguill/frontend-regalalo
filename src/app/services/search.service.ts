@@ -7,7 +7,7 @@ import { Headers, Http } from '@angular/http';
 export class SearchService {
 
   private BASE_URL : string = 'https://admin.regalalo.pe/api';
-  //private BASE_URL : string = 'http://regalalo.test/api/';
+  //private BASE_URL : string = 'http://regalalo.test/api';
   private headers = new HttpHeaders({'Content-Type':'application/json'});
   private http_headers = new Headers({'Content-Type':'application/json'});
 

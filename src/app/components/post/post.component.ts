@@ -16,6 +16,7 @@ export class PostComponent implements OnInit {
   featured_image: string;
   content;
   author: string;
+  another_posts: any = [];
 
   constructor(private activatedRoute:ActivatedRoute,
     private blog_service: BlogService,
@@ -25,35 +26,37 @@ export class PostComponent implements OnInit {
       this.activatedRoute.params.subscribe(id => {
         this.blog_service.post(id.id)
         .then((response)=> {
-          this.post = response;
+          let data = response;
+          this.post = data.post;
+          this.another_posts = data.another;
           this.title = this.post.title;
           this.featured_image = this.post.featured_image;
           this.content = this.post.content;
           this.author = this.post.author;
 
-          if(response.meta_title != ""){
+          if(this.post.meta_title != ""){
             this.meta.updateTag({
-              name: 'title', content: response.meta_title
+              name: 'title', content: this.post.meta_title
             });
-            this.title_service.setTitle(response.meta_title);
+            this.title_service.setTitle(this.post.meta_title);
             this.meta.updateTag({
-              property: 'og:title', content: response.meta_title
+              property: 'og:title', content: this.post.meta_title
             });
             this.meta.updateTag({
               property: 'og:image', content: this.featured_image
             });
           }
-          if(response.meta_description != ""){
+          if(this.post.meta_description != ""){
             this.meta.updateTag({
-              name: 'description', content: response.meta_description
+              name: 'description', content: this.post.meta_description
             });
             this.meta.updateTag({
-              property: 'og:description', content: response.meta_description
+              property: 'og:description', content: this.post.meta_description
             });
           }
-          if(response.meta_keywords != ""){
+          if(this.post.meta_keywords != ""){
             this.meta.updateTag({
-              name: 'keywords', content: response.meta_keywords
+              name: 'keywords', content: this.post.meta_keywords
             });
           }
           
