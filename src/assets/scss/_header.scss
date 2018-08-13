@@ -211,6 +211,15 @@
                 .b-subtotal_divider,.b-cart_subtotal{display: none;}
             }
         }
+        .col-xs-1{
+            width: 10%;
+        }
+        .col-xs-5{
+            width: 40%;
+        }
+        .pt-xs-3 {
+            padding-top: 1rem;
+        }
     }
     .b-header_fixed .b-header_main{
         height: 48px;

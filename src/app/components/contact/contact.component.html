@@ -1,0 +1,43 @@
+<div class="b-page_title b-page_title_default text-center">
+  <h1 class="b-entry_title">Contáctanos</h1>
+</div>
+<div class="b-contact b-contact_light mt-5 mb-5">
+  <div class="container">
+    <div class="row clearfix">
+      <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+        <p>Para cualquier duda o consulta no dudes en llenar los campos a continuación. Te contactaremos lo más rápido que podamos.</p>
+        <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
+          <div class="clearfix row">
+            <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label>Nombres y apellidos <i style="color: red;">*</i></label>
+                <input class="form-control" type="text" name="name" [formControl]="contactForm.controls['name']">
+                <small *ngIf="contactForm.controls['name'].hasError('required') && contactForm.controls['name'].touched" class="form-error-msg"> Este campo es requerido </small>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-mb-6 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label>E-mail <i style="color: red;">*</i></label>
+                <input class="form-control" type="email" name="email" [formControl]="contactForm.controls['email']">
+                <small *ngIf="contactForm.controls['email'].hasError('required') && contactForm.controls['email'].touched" class="form-error-msg"> Este campo es requerido </small>
+              </div>
+            </div> 
+            <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+              <div class="form-group">
+                <label>Consulta</label>
+                <textarea name="message" class="form-control" [formControl]="contactForm.controls['message']"></textarea>
+                <small *ngIf="contactForm.controls['message'].hasError('required') && contactForm.controls['message'].touched" class="form-error-msg"> Este campo es requerido </small>
+              </div>
+            </div>  
+            <div class="col-xl-12 col-lg-12 col-mb-12 col-sm-12 col-xs-12">
+              <button type="submit" class="btn btn-block btn-primary text-white" [disabled]="contactForm.invalid">
+                <i [ngClass]="{'fa-circle-o-notch fa-spin': loading}" class="fa"></i>
+                <span *ngIf="!loading">Enviar mensaje</span>
+              </button>
+            </div>  
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

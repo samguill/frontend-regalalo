@@ -55,7 +55,6 @@ export class RegisterComponent implements OnInit {
         this.signinForm.reset();
         this.auth.setLogin();
         this.location.back();
-        //this.router.navigate(['/mi-cuenta']);
       })
       .catch((error) => {
         this.loading_login = false;
@@ -74,12 +73,7 @@ export class RegisterComponent implements OnInit {
       .then((response) => {
         this.loading_register = false;
         response = response.json();
-        //sessionStorage.setItem('access_token', response.access_token);
-        //sessionStorage.setItem('refresh_token', response.refresh_token);
-        //sessionStorage.setItem('client', JSON.stringify(response.client));
         this.registerForm.reset();
-        //this.auth.setLogin();
-        //this.router.navigate(['/mi-cuenta']);
       })
       .catch((error) => {
         this.loading_register = false;

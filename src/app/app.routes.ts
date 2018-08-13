@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { StoreComponent } from './components/store/store.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { PageComponent } from './components/page/page.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrdersComponent } from './components/orders/orders.component';
@@ -31,6 +32,7 @@ const APP_ROUTES: Routes = [
     { path : 'marca/:id', component : BrandComponent},
     { path : 'oferta/:id', component : OfferComponent},
     { path : 'register', component : RegisterComponent, data: { state: 'register' } },
+    { path : 'contactanos', component : ContactComponent, data: { state: 'contact' } },
     { path : 'vende-con-nosotros', component : RegisterStoreComponent, data: { state: 'vende-con-nosotros' } },
     { path: 'busqueda', component: SearchResultComponent},
     { path: 'faq', component: FaqComponent},

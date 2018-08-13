@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="container">
-      <ngu-carousel [inputs]="carouselOne" class="mb-3">
+      <ngu-carousel [inputs]="carouselOne">
           <ngu-item NguCarouselItem *ngFor="let product of featured_products;let i = index">
               <div class="b-product_grid_single">
                   <div class="b-product_grid_header">
@@ -261,7 +261,7 @@
   </div>
   <div class="b-blog b-blog_grid text-center b-blog_grid_three mb-5">
     <div class="container">
-        <ngu-carousel [inputs]="carouselFour" class="mb-3">
+        <ngu-carousel [inputs]="carouselFour">
             <ngu-item NguCarouselItem *ngFor="let post of posts;let i = index">
                 <div class="b-blog_grid_single">
                     <div class="b-blog_single_header">

@@ -43,6 +43,7 @@ import { BlogService } from './services/blog.service';
 import { BrandService } from './services/brand.service';
 import { ServiceService } from './services/service.service';
 import { loadingInterceptor } from './services/loadingInterceptor';
+import { ContactService } from "./services/contact.service";
 
 import { StoreComponent } from './components/store/store.component';
 import { OnlyNumber } from './directives/only-number.directive';
@@ -72,6 +73,7 @@ import { RegisterStoreComponent } from './components/register-store/register-sto
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { BrandComponent } from './components/brand/brand.component';
 import { ServiceComponent } from './components/service/service.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +104,8 @@ import { ServiceComponent } from './components/service/service.component';
     RegisterStoreComponent,
     BrandComponent,
     ServiceComponent,
-    CeiboShare
+    CeiboShare,
+    ContactComponent
   ],
   imports: [
     AgmCoreModule.forRoot({
@@ -146,6 +149,7 @@ import { ServiceComponent } from './components/service/service.component';
     LoaderService,
     UserNameService,
     UserLocationService,
+    ContactService,
     Title,
     {
       provide: HTTP_INTERCEPTORS,
