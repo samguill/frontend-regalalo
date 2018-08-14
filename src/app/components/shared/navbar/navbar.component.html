@@ -35,10 +35,10 @@
         <div class="b-wishlist_icon hidden-lg-up responsive-menu col-xs-1 pt-3">
           <i class="icon-menu icons b-nav_icon" id="b-nav_icon"></i>
         </div>
-        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-5 col-xs-6 pt-sm-3">
+        <div class="col-xl-3 col-lg-3 col-mb-3 col-sm-5 col-xs-6">
           <div class="b-logo text-sm-left text-lg-center text-xl-center">
             <a [routerLink]="['/']"><img src="assets/img/logo-regalalo.png" alt="Regálalo" /></a>
-            <div class="welcome-user" *ngIf="(isLoggedIn$ | async)">
+            <div class="welcome-user hidden-sm-down hidden-md-down" *ngIf="(isLoggedIn$ | async)">
               <span>Bienvenido: </span><app-user-name></app-user-name>
             </div>
           </div>
@@ -86,12 +86,12 @@
             <div class="b-cart_basket text-sm-left text-lg-center col-xs-6 col-sm-6 text-xl-center text-sm-center icon-last-menu hidden-lg-up pt-sm-2">
               <a (click)="location_search()"><img id="localizame" src="assets/img/localizame-icon.png" /></a>
             </div>
-            <div class="b-cart_basket text-sm-left text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
+            <div class="b-cart_basket text-sm-left col-lg-12 col-xs-6 col-sm-6 pt-sm-2 text-lg-center text-xl-center icon-last-menu" *ngIf="isLoggedIn$ | async">
               <a [routerLink]="['mi-cuenta']"><img src="assets/img/account-icon.png" /></a>
               <span class="hidden-sm-down hidden-md-down">cuenta</span>
               <a class="logout-btn hidden-sm-down hidden-md-down" *ngIf="(isLoggedIn$ | async)" (click)="salir()"><span>Salir</span></a>
             </div>
-            <div class="text-sm-left text-lg-center col-sm-6 col-xs-6 text-xl-center text-sm-center icon-last-menu pt-sm-2" *ngIf="!(isLoggedIn$ | async)">
+            <div class="b-cart_basket text-sm-left col-lg-12 col-xs-6 col-sm-6 pt-sm-2 text-lg-center text-xl-center icon-last-menu" *ngIf="!(isLoggedIn$ | async)">
               <a [routerLink]="['register']"><img src="assets/img/account-icon.png" /></a>
               <span class="hidden-sm-down hidden-md-down">ingresar</span>
             </div>
